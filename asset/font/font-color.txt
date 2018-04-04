@@ -1,0 +1,2 @@
+Code Warna ( Merah Muda ) : #e90052 | rgb (233,0,82)
+Code Warna ( Biru Muda )  : #00aeea | rgb (0,174,234)  
