@@ -1,13 +1,18 @@
+<?php
+  require("http://localhost/akuberi/asset/pages/process/mainprocess.php");
+  $process = new akuberi();
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>akuberi | admin</title>
-    <link rel="stylesheet" type="text/css" href="asset/css/main.css">
-    <link rel="stylesheet" type="text/css" href="asset/css/responsive1.css" media="screen and (max-width:780px)">
-    <link rel="stylesheet" type="text/css" href="asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.css">
-    <link rel="stylesheet" type="text/css" href="asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.min.css">
-    <script src="asset/javascript/jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/main.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/responsive1.css" media="screen and (max-width:780px)">
+    <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.min.css">
+    <script src="<?php echo $process->base_url(); ?>asset/javascript/jquery-2.1.3.min.js"></script>
     <script type="text/javascript">
       zero = 0;
       $(document).ready(function(){
@@ -23,7 +28,7 @@
       <div class="row content">
         <div class="col-2 col-s-12 sidebar-a bg-color1">
           <div class="col-12 col-s-3 logo-a">
-            <img src="asset/image/website/logo-white.png" alt="">
+            <img src="<?php echo $process->base_url(); ?>asset/image/website/logo-white.png" alt="">
           </div>
         </div>
         <div class="col-10 col-s-12 header-a">
