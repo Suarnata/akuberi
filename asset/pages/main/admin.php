@@ -1,5 +1,5 @@
 <?php
-  require("http://localhost/akuberi/asset/pages/process/mainprocess.php");
+  require("../process/mainprocess.php");
   $process = new akuberi();
 ?>
 
@@ -45,7 +45,7 @@
             </a>
             <div class="col-4 header-a-l exit">
               <div class="col-4 header-a-l">
-                <img style="width: 65%;border-radius: 50%;transform: translate(25%,20%);" src="asset/image/website/kim.jpg" alt="">
+                <img style="width: 65%;border-radius: 50%;transform: translate(25%,20%);" src="<?php echo $process->base_url(); ?>asset/image/website/kim.jpg" alt="">
               </div>
               <div class="col-8 header-a-l">
                 <h3 style="    font-size: 18px;text-align: left;color: #00aeea;transform: translate(5%,2%);">Kim Jong Un</h3>
