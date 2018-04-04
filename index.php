@@ -1,5 +1,5 @@
 <?php
-	require("http://localhost/akuberi/asset/pages/process/mainprocess.php");
+	require("asset/pages/process/mainprocess.php");
 	$process = new akuberi();
 ?>
 
