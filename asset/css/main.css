@@ -151,7 +151,7 @@ h5 span{margin-left: 5px;color: #00aeea;}
 .hider-hide{transform: translateY(-100%);}
 
 .sidebar-a {height:100vh; position:fixed;box-shadow:0px 2px 4px rgba(0,0,0,.2);}
-.sidebar
+
 
 .logo-a{height: 10%;}
 .logo-a img{width: 60%;transform: translate(30%,40%);}
@@ -166,8 +166,10 @@ h5 span{margin-left: 5px;color: #00aeea;}
 .fa-sign-out-alt{font-size: 30px;color: #fff;transform: translate(50%,45%);}
 
 
+.title{height: 100%;}
+
 .content-a-1{ height: 91vh;   float: right;margin-top: 9vh;}
-.content-post-a {border-radius: 5px;height: 8%;background-color: #fff;}
+.content-post-a {border-radius: 5px;height: 8%;}
 .content-post-a1{height: 92%;}
 .content-post-a2{height: 100%;}
 .content-post-a3{height: 100%;}
@@ -175,4 +177,4 @@ h5 span{margin-left: 5px;color: #00aeea;}
 .news{height: 28%;}
 .news-diagram{height: 62%;}
 .news-link{height: 10%;}
-.news1{ height: 90%; margin: 1% 0% 1% 2%; transform: translateX(30%);}
+.news1{ height: 90%; margin: 1% 0% 1% 2%; transform: translateX(30%); box-shadow: 0px 2px 6px rgba(0,0,0,.4); border-radius: 5px;}

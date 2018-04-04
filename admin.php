@@ -51,11 +51,16 @@
         </div>
         <div class="col-10 col-s-12 content-a-1 ">
           <div class="col-12 col-s-11 content-post-a">
+            <div class="col-6 col-s-12 title">
+              <h3 style="    font-size: 24px;transform: translate(13.5%,5%);color: #00aeea;">Dashboard</h3>
+            </div>
+            <div class="col-6 col-s-12 title">
 
+            </div>
           </div>
-          <div class="col-12 col-s-12 content-post-a1 bg-color2">
-            <div class="col-9 col-s-12 content-post-a2 bg-color1">
-              <div class="col-12 news bg-color2">
+          <div class="col-12 col-s-12 content-post-a1">
+            <div class="col-9 col-s-12 content-post-a2">
+              <div class="col-12 news">
                 <div class="col-3 col-s-11 news1 bg-color3">
 
                 </div>
@@ -66,10 +71,10 @@
 
                 </div>
               </div>
-              <div class="col-12 news-diagram bg-color3">
+              <div class="col-12 news-diagram">
 
               </div>
-              <div class="col-12 news-link bg-color2">
+              <div class="col-12 news-link ">
 
               </div>
 
