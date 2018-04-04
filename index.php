@@ -1,17 +1,22 @@
+<?php
+	require("http://localhost/akuberi/asset/pages/process/mainprocess.php");
+	$process = new akuberi();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>akuberi</title>
-	<link rel="stylesheet" type="text/css" href="asset/css/main.css">
-	<link rel="stylesheet" type="text/css" href="asset/css/responsive1.css" media="screen and (max-width:780px)">
-	<link rel="stylesheet" type="text/css" href="asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.css">
-	<link rel="stylesheet" type="text/css" href="asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.min.css">
-	<link rel="stylesheet" type="text/css" href="asset/css/flickity.css">
-	<link rel="stylesheet" type="text/css" href="asset/css/flickity.min.css">
-	<script src="asset/javascript/jquery-2.1.3.min.js"></script>
-	<script src="asset/javascript/myscript.js"></script>
-	<script src="asset/javascript/flickity.pkgd.js"></script>
-	<script src="asset/javascript/flickity.pkgd.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/main.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/responsive1.css" media="screen and (max-width:780px)">
+	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/flickity.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/flickity.min.css">
+	<script src="<?php echo $process->base_url(); ?>asset/javascript/jquery-2.1.3.min.js"></script>
+	<script src="<?php echo $process->base_url(); ?>asset/javascript/myscript.js"></script>
+	<script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.js"></script>
+	<script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.min.js"></script>
 
 	<script type="text/javascript">
 		(function(){
@@ -33,7 +38,7 @@
 			<div class="header">
 					<div class="row">
 						<div class="col-6 col-s-6 logo">
-							<img src="asset/image/website/logo.png" alt="">
+							<img src="<?php echo $process->base_url(); ?>asset/image/website/logo.png" alt="">
 						</div>
 						<div class="col-6 col-s-6 bar">
 							<button class="burger" type="button" name="button">
@@ -77,7 +82,7 @@
 								<h6 style="font-size:16px;transform: translate(120px,140px);"><a href="" style="text-decoration: none; color:#e90052;">Telusuri lebih lengkap</a></h6>
 						</div>
 						<div class="col-6 col-s-12 image1">
-								<img style="margin:2% 0% 0% 12%; width:70%; height:auto;" src="asset/image/website/vector-6.png" alt="">
+								<img style="margin:2% 0% 0% 12%; width:70%; height:auto;" src="<?php echo $process->base_url(); ?>asset/image/website/vector-6.png" alt="">
 						</div>
 				</div>
 				<div class="col-12 col-s-12 vector-two">
@@ -99,25 +104,25 @@
 					<div class="col-12 col-s-12 icon1 bg-color1">
 						<div class="col-3 col-s-12 icon2 bg-img1">
 							<div class="col-12 col-s-12 icon3">
-								<img src="asset/image/website/icon1.png" alt="">
+								<img src="<?php echo $process->base_url(); ?>asset/image/website/icon1.png" alt="">
 								<h3>Inovasi</h3>
 							</div>
 						</div>
 						<div class="col-3 col-s-12 icon2 bg-img2">
 							<div class="col-12 col-s-12 icon3">
-								<img src="asset/image/website/icon2.png" alt="">
+								<img src="<?php echo $process->base_url(); ?>asset/image/website/icon2.png" alt="">
 								<h3>Kesehatan</h3>
 							</div>
 						</div>
 						<div class="col-3 col-s-12 icon2 bg-img3">
 							<div class="col-12 col-s-12 icon3">
-								<img src="asset/image/website/icon3.png" alt="">
+								<img src="<?php echo $process->base_url(); ?>asset/image/website/icon3.png" alt="">
 								<h3>Anak-Anak</h3>
 							</div>
 						</div>
 						<div class="col-3 col-s-12 icon2 bg-img4">
 							<div class="col-12 col-s-12 icon3">
-								<img src="asset/image/website/icon4.png" alt="">
+								<img src="<?php echo $process->base_url(); ?>asset/image/website/icon4.png" alt="">
 								<h3>Pendidikan</h3>
 							</div>
 						</div>
@@ -125,25 +130,25 @@
 					<div class="col-12 col-s-12 icon1 bg-color2">
 						<div class="col-3 col-s-12 icon2 bg-img5">
 							<div class="col-12 col-s-12 icon3">
-								<img src="asset/image/website/icon5.png" alt="">
+								<img src="<?php echo $process->base_url(); ?>asset/image/website/icon5.png" alt="">
 								<h3>Bencana</h3>
 							</div>
 						</div>
 						<div class="col-3 col-s-12 icon2 bg-img6">
 							<div class="col-12 col-s-12 icon3">
-								<img src="asset/image/website/icon6.png" alt="">
+								<img src="<?php echo $process->base_url(); ?>asset/image/website/icon6.png" alt="">
 								<h3>Ibu Hamil</h3>
 							</div>
 						</div>
 						<div class="col-3 col-s-12 icon2 bg-img7">
 							<div class="col-12 col-s-12 icon3">
-								<img src="asset/image/website/icon7.png" alt="">
+								<img src="<?php echo $process->base_url(); ?>asset/image/website/icon7.png" alt="">
 								<h3>Suplaiyer</h3>
 							</div>
 						</div>
 						<div class="col-3 col-s-12 icon2 bg-img8">
 							<div class="col-12 col-s-12 icon3">
-								<img src="asset/image/website/icon8.png" alt="">
+								<img src="<?php echo $process->base_url(); ?>asset/image/website/icon8.png" alt="">
 								<h3>Riset</h3>
 							</div>
 						</div>
@@ -153,7 +158,7 @@
 				<h3 style="   text-align: center; color: #00aeea;width: 40%;line-height: 50px;margin: auto;transform: translateY(80px);">Beberapa Penggalangan Dana Terpopuler</h3>
 				<div class="col-3plus col-s-11 post1">
 					<div class="col-12 img-post bg-color1">
-						 <img src="asset/image/website/penggalang-2.png" alt="">
+						 <img src="<?php echo $process->base_url(); ?>asset/image/website/penggalang-2.png" alt="">
 					</div>
 					<div class="col-12 desc">
 						<div class="col-12 desc-post">
@@ -178,7 +183,7 @@
 				</div>
 				<div class="col-3plus col-s-11 post1">
 					<div class="col-12 img-post bg-color1">
-						 <img src="asset/image/website/penggalang-2.png" alt="">
+						 <img src="<?php echo $process->base_url(); ?>asset/image/website/penggalang-2.png" alt="">
 					</div>
 					<div class="col-12 desc">
 						<div class="col-12 desc-post">
@@ -203,7 +208,7 @@
 				</div>
 				<div class="col-3plus col-s-11 post1">
 					<div class="col-12 img-post bg-color1">
-						 <img src="asset/image/website/penggalang-2.png" alt="">
+						 <img src="<?php echo $process->base_url(); ?>asset/image/website/penggalang-2.png" alt="">
 					</div>
 					<div class="col-12 desc">
 						<div class="col-12 desc-post">
@@ -234,21 +239,21 @@
 						<div class="col-12 carousel-cell">
 							<div class=" col-9 testimo-2">
 								<h6 style="text-align: center;line-height: 25px;opacity: .7;transform: translateY(50px);">"Kita memang membutuhkan Media seperti ini karena, dengan adanya Media ini kita dapat membantu Saudara - Saudari Kita yang membutuhkan"</h6>
-								<img style="width: 8%;border-radius: 50%;border:;transform: translate(350px,75px);" src="asset/image/website/kim.jpg" alt="">
+								<img style="width: 8%;border-radius: 50%;border:;transform: translate(350px,75px);" src="<?php echo $process->base_url(); ?>asset/image/website/kim.jpg" alt="">
 								<h3 style="text-align: center;transform: translateY(85px);font-size: 20px;color: #e90052;">Kim Jong Un</h3>
 							</div>
 						</div>
 						<div class="col-12 carousel-cell">
 							<div class=" col-9 testimo-2 ">
 								<h6 style="text-align: center;line-height: 25px;opacity: .7;transform: translateY(50px);">"Kita memang membutuhkan Media seperti ini karena, dengan adanya Media ini kita dapat membantu Saudara - Saudari Kita yang membutuhkan"</h6>
-								<img style="width: 8%;border-radius: 50%;border:;transform: translate(350px,75px);" src="asset/image/website/kim.jpg" alt="">
+								<img style="width: 8%;border-radius: 50%;border:;transform: translate(350px,75px);" src="<?php echo $process->base_url(); ?>asset/image/website/kim.jpg" alt="">
 								<h3 style="text-align: center;transform: translateY(85px);font-size: 20px;color: #e90052;">Kim Jong Un</h3>
 							</div>
 						</div>
 						<div class="col-12 carousel-cell">
 							<div class=" col-9 testimo-2">
 								<h6 style="text-align: center;line-height: 25px;opacity: .7;transform: translateY(50px);">"Kita memang membutuhkan Media seperti ini karena, dengan adanya Media ini kita dapat membantu Saudara - Saudari Kita yang membutuhkan"</h6>
-								<img style="width: 8%;border-radius: 50%;border:;transform: translate(350px,75px);" src="asset/image/website/kim.jpg" alt="">
+								<img style="width: 8%;border-radius: 50%;border:;transform: translate(350px,75px);" src="<?php echo $process->base_url(); ?>asset/image/website/kim.jpg" alt="">
 								<h3 style="text-align: center;transform: translateY(85px);font-size: 20px;color: #e90052;">Kim Jong Un</h3>
 							</div>
 						</div>
@@ -265,7 +270,7 @@
 					<div class="col-4 col-s-12 foot3">
 						<div class="col-9 foot4">
 							<div class="col-3 img-foot">
-								<img style="width: 60%;transform: translate(20px,4px);" src="asset/image/website/foot-22.png" alt="">
+								<img style="width: 60%;transform: translate(20px,4px);" src="<?php echo $process->base_url(); ?>asset/image/website/foot-22.png" alt="">
 							</div>
 							<div class="col-9 desc-foot">
 								<h5 style="    font-size: 20px;color: #00aeea;">Jln. Tukad Citarum</h5>
@@ -276,7 +281,7 @@
 					<div class="col-4 col-s-12 foot3">
 						<div class="col-9 foot4">
 							<div class="col-3 img-foot">
-								<img style="width: 60%;transform: translate(20px,4px);" src="asset/image/website/foot-33.png" alt="">
+								<img style="width: 60%;transform: translate(20px,4px);" src="<?php echo $process->base_url(); ?>asset/image/website/foot-33.png" alt="">
 							</div>
 							<div class="col-9 desc-foot">
 								<h5 style="    font-size: 20px;color: #00aeea;">(0361) 14045 14022</h5>
@@ -287,7 +292,7 @@
 					<div class="col-4 col-s-12 foot3">
 						<div class="col-9 foot4">
 							<div class="col-3 img-foot">
-								<img style="width: 60%;transform: translate(20px,4px);" src="asset/image/website/foot-11.png" alt="">
+								<img style="width: 60%;transform: translate(20px,4px);" src="<?php echo $process->base_url(); ?>asset/image/website/foot-11.png" alt="">
 							</div>
 							<div class="col-9 desc-foot">
 								<h5 style="    font-size: 20px;color: #00aeea;">Hubungi Lewat Gmail</h5>
