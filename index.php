@@ -1,39 +1,11 @@
 <?php
-	require("http://localhost/akuberi/asset/pages/process/mainprocess.php");
+	require("asset/pages/process/mainprocess.php");
 	$process = new akuberi();
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>akuberi</title>
-	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/main.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/responsive1.css" media="screen and (max-width:780px)">
-	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.min.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/flickity.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/flickity.min.css">
-	<script src="<?php echo $process->base_url(); ?>asset/javascript/jquery-2.1.3.min.js"></script>
-	<script src="<?php echo $process->base_url(); ?>asset/javascript/myscript.js"></script>
-	<script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.js"></script>
-	<script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.min.js"></script>
+<?php include 'asset/pages/main/header.php'; ?>
 
-	<script type="text/javascript">
-		(function(){
-			$(document).ready(function(){
-				$(".testimo-1").flickity({
-					wrapAround : true,
-					autoPlay : 3500
 
-				});
-			});
-		})(jQuery)
-	</script>
-
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-
-</head>
-<body>
 	<div class="wrapper">
 			<div class="header">
 					<div class="row">
@@ -308,5 +280,4 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+<?php include 'asset/pages/main/footer.php'; ?>

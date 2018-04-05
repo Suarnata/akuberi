@@ -175,6 +175,10 @@ h5 span{margin-left: 5px;color: #00aeea;}
 .content-post-a3{height: 100%;}
 
 .news{height: 28%;}
+.bg-news-1{background-image: url(../image/website/user-amount.png); background-repeat: no-repeat;background-size: cover; background-position:center;}
+.bg-news-2{background-image: url(../image/website/grafik-amount.png); background-repeat: no-repeat;background-size: cover; background-position:center;}
+.bg-news-3{background-image: url(../image/website/donate-amount.png); background-repeat: no-repeat;background-size: cover; background-position:center;}
+
 .news-diagram{height: 62%;}
 .news-link{height: 10%;}
 .news1{ height: 90%; margin: 1% 0% 1% 2%; transform: translateX(30%); box-shadow: 0px 2px 6px rgba(0,0,0,.4); border-radius: 5px;}
