@@ -1,0 +1,125 @@
+body{
+	margin:0;
+	padding: 0;
+	font-family: sans-serif;;
+	background:url(../image/website/1522839515170.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+.box{
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 400px;
+	background: #fff;
+	padding: 40px;
+	box-sizing:border-box;
+	border:1px solid rgba(0,0,0,.2);
+	box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	border-radius: 3px;
+	margin: 10px 0 0s 0;
+}
+.box h2{
+	margin: 0 0 40px;
+	padding: 0;
+	color: #00aeea;
+}
+.box input{
+	padding: 10px 0;
+	margin-bottom: 30px;
+}
+
+.box input{
+	width: 100%;
+	box-sizing:border-box;
+	box-shadow: none;;
+	outline:none;
+	border:none;
+	border-bottom: 2px solid #999;
+}
+
+.box input[type="submit"]{
+	border-bottom:none;
+	cursor: pointer;
+	background-color: #00aeea;
+	color: #fff;
+	margin-bottom: 0;
+	text-transform: uppercase;
+	border-radius: 3px;
+}
+.box input[type="submit"]:hover{
+	opacity: 0.5;
+}
+.box form div{
+	position: relative;
+}
+.box form div label{
+	position: absolute;
+	top: 10px;
+	left: 0;
+	color: #999;
+	transition :.5s;
+	pointer-events:none;
+}
+.box input:focus ~ label,
+.box input:valid ~ label{
+	top: -12px;
+	left: 0;
+	color: #00aeea;
+	font-size: 12px;
+	font-weight: bold;
+}
+.box .close a{
+	position: absolute;
+	color: #00aeea;
+	margin:-28px 0px 0px 330px;
+	cursor: pointer;
+	text-decoration: none;
+}
+.login{
+	float: left;
+	margin-top: -1%;
+}
+.sosmed{
+	width:100%;
+	color: #00aeea;
+}
+.sosmed label{
+	text-align: center;
+	font-size: 15px;
+}
+.sosmed button{
+	float: right;
+	border: none;
+	border-bottom:none;
+	cursor: pointer;
+	background-color: #fff;
+	color: #00aeea;
+	margin: 20px 20px 0 0 ;
+	padding: 10px;
+	width: 40%;
+	border-radius: 3px;
+	box-shadow: 0 2px 4px rgba(0,0,0,.2);
+}
+.sosmed button:hover{
+	opacity: 0.5;
+}
+.facebook{
+	background: url("../image/website/2000px-F_icon.svg.png");
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position: 10px;
+}
+.google{
+	background: url("../image/website/download.png");
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position: 10px;
+}
+.box .belakang{
+	margin: 0 0 0 45px;
+}
+#notification{
+	color:#e74c3c;
+}

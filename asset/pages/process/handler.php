@@ -8,8 +8,8 @@
 
 		switch($action){
 
-			case '':
-
+			case 'register':
+				$process->register();
 			break;
 
 		}
