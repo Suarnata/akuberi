@@ -89,7 +89,7 @@
 						<div class="col-3 col-s-12 icon2 bg-img3">
 							<div class="col-12 col-s-12 icon3">
 								<img src="<?php echo $process->base_url(); ?>asset/image/website/icon3.png" alt="">
-								<h3>Anak-Anak</h3>
+								<h3>Anak - Anak</h3>
 							</div>
 						</div>
 						<div class="col-3 col-s-12 icon2 bg-img4">

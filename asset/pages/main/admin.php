@@ -46,7 +46,7 @@
             <div class="col-9 col-s-12 content-post-a2">
               <div class="col-12 news">
                 <div class="col-3 col-s-11 news1 bg-news-1 bg-color3">
-
+                  a
                 </div>
                 <div class="col-3 col-s-11 news1 bg-news-2 bg-color3">
 
