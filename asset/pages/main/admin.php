@@ -1,3 +1,7 @@
+<?php
+  require("../process/mainprocess.php");
+  $process = new akuberi();
+?>
 <?php include 'header.php';?>
     <div class="wrapper">
       <div class="row content">
