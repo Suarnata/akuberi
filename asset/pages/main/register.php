@@ -43,6 +43,9 @@
 					<input type="text" name="address" required="true">
 					<label>Alamat</label>
 				</div>
+
+				<p id="notification"></p>
+
 				<input type="submit" name="submit" value="Buat Akun">
 			</form>
 			<div class="sosmed">
@@ -54,5 +57,8 @@
 				</div>
 			</div>
 	</div>
+
+	<script src="<?php echo $process->base_url(); ?>asset/javascript/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="<?php echo $process->base_url() ?>asset/javascript/mainprocess.js"></script>
 </body>
 </html>
