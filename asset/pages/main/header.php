@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>akuberi | Mari BerDonasi</title>
+    <title>akuberi | Mari Ber Donasi</title>
 
     <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/main.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/responsive1.css" media="screen and (max-width:780px)">

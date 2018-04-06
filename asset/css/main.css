@@ -46,6 +46,7 @@ h6{font-family: Palanquinh6;font-size: 20px;}
 .col-3 {width: 25%;}
 .col-3plus{width: 30%;}
 .col-4 {width: 33.33%;}
+.col-4plus{width: 38%;}
 .col-5 {width: 41.66%;}
 .col-6 {width: 50%;}
 .col-7 {width: 58.33%;}
@@ -151,23 +152,31 @@ h5 span{margin-left: 5px;color: #00aeea;}
 .hider-hide{transform: translateY(-100%);}
 
 .sidebar-a {height:100vh; position:fixed;box-shadow:0px 2px 4px rgba(0,0,0,.2);}
+.sidebar-b{height: 92%;}
+.sidebar-b ul{    width: 100%;margin: 0;padding: 0;}
+.sidebar-b ul li{list-style: none; padding-left: 20%;line-height: 45px;}
+.sidebar-b ul li:first-child{}
+.sidebar-b ul li:hover{background-color: #67c8ff; transition: all ease-in-out .3s;}
+.sidebar-b ul li a{text-decoration: none; color: #fff;font-family:Palanquinh3;display: block;line-height: 60px;}
 
+.sb-active {background-color:#67c8ff;}
 
-.logo-a{height: 10%;}
+.logo-a{height: 8%;}
 .logo-a img{width: 60%;transform: translate(30%,40%);}
 
 
 .search{ padding: .5% 1% .5% 9%;width: 50%;background-image: url(../image/website/search.png);background-size: 20px;background-repeat: no-repeat;background-position:20px;/*transition: all ease-in-out .5s;*/outline: none;background-color: transparent;border: none;/* border-radius: 5px;border: solid 2px #00aeea;*/color: #00aeea; font-family: palanquinh3;font-size: 18px;transform: translate(2%,20%);}
-/*.search:focus{width: 85%;}*/
+.search:focus{border-bottom: solid 2px #00aeea; transition: all ease-in-out 1s;}
 .exit{float: right;}
 
 .exit-a:hover{opacity: .8; transition:all ease-in-out .5s;}
 
-.fa-sign-out-alt{font-size: 30px;color: #fff;transform: translate(50%,45%);}
 
 
 .title{height: 100%;}
-
+.title1 h3{display: inline-block;font-size: 16px;transform: translate(5%,35%);box-shadow: 0px 1px 2px rgba(0,0,0,.4); }
+.title1 h3 a{text-decoration: none; color: #fff;}
+.title1 h3:hover{box-shadow: 0px 2px 4px rgba(0,0,0,.6);}
 .content-a-1{ height: 91vh;   float: right;margin-top: 9vh;}
 .content-post-a {border-radius: 5px;height: 8%;}
 .content-post-a1{height: 92%;}
@@ -180,5 +189,23 @@ h5 span{margin-left: 5px;color: #00aeea;}
 .bg-news-3{background-image: url(../image/website/donate-amount.png); background-repeat: no-repeat;background-size: cover; background-position:center;}
 
 .news-diagram{height: 62%;}
-.news-link{height: 10%;}
-.news1{ height: 90%; margin: 1% 0% 1% 2%; transform: translateX(30%); box-shadow: 0px 2px 6px rgba(0,0,0,.4); border-radius: 5px;}
+
+.news1{ height: 95%; margin: 1% 2.5% 1% 1%; transform: translateX(21%); box-shadow: 0px 2px 6px rgba(0,0,0,.4); border-radius: 5px;}
+
+.grafik{width: 80%;height: 86%;transform: translate(11%);box-shadow: 0px 1px 2px rgba(0,0,0,.4); border-radius: 5px;}
+
+.chat{height:70%;}
+.chat-work{  overflow: hidden; width: 96%;height: 95%;border-radius: 5px;margin-left: 1%; box-shadow:0px 1px 2px rgba(0,0,0,.3);}
+.chat-title{height: 10%;border-bottom: solid 1px #deebee;}
+.chat-content{height: 70%;}
+.chat2{    overflow-y: scroll;border: none;border-top: solid 1px #deebee;border-radius: 0px 0px 5px 5px;resize: none;width: 93%;height: 15%;padding: 3%;outline: none;margin-left: 1%;
+
+
+
+
+
+/*====================
+USER
+======================*/
+
+.u-wrapper{height:100vh;background-color: 000;}
