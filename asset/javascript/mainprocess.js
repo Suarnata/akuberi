@@ -46,7 +46,7 @@
 				}else if(data.notif=="err-failed"){
 					alert("Terjadi Error Saat Memasukan Data Ke Database");
 				}else if("success"){
-					redirect(base_url+'asset/pages/main/login.php');
+					redirect(base_url+'asset/pages/main/login.php?status=registered');
 				}
 			}
 		});
@@ -57,4 +57,11 @@
 		$(".box").find('input').css({
 			borderBottom: '2px solid #999'
 		});;
+	});
+
+
+	// Proses Login
+	$("#loginform").submit(function(e){
+		e.preventDefault();
+		alert("test");
 	});

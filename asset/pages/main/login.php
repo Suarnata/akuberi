@@ -1,18 +1,34 @@
 <?php
   require("../process/mainprocess.php");
   $process = new akuberi();
+  $message = "";
+
+  if(isset($_GET['status'])&&!empty($_GET['status'])){
+  	switch($_GET['status']){
+  		case 'registered':
+  			$message = "Registrasi Berhasil, Silahkan Login";
+  		break;
+  	}
+
+  }
+
 ?>
 
 <html>
 <head>
-	<title></title>
+	<title>akuberi | Login</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/login.css">
 </head>
 <body>
 	<div class="box">
+
 		<label class="close"><a href="<?php echo $process->base_url(); ?>">X</a></label>
 		<div class="login">
+
 			<h2>Masuk Ke Akuberi</h2>
+
+			<p style="color:#2ecc71;"><?php echo $message;?></p>
+			
 			<form id="loginform" method="POST">
 				<div>
 					<input type="email" name="email" required="true">
@@ -24,6 +40,9 @@
 				</div>
 				<input type="submit" name="submit" value="Submit">
 			</form>
+
+			<p id="notification"></p>
+
 		</div>
 		<div class="sosmed">
 			<br/>

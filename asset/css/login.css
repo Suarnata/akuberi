@@ -121,3 +121,7 @@ body{
 	background-repeat: no-repeat;
 	background-position: 10px;
 }
+
+#notification{
+	color:#e74c3c;
+}
