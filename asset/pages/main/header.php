@@ -1,3 +1,8 @@
+<?php
+  require("../process/mainprocess.php");
+  $process = new akuberi();
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
