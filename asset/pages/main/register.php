@@ -1,6 +1,16 @@
 <?php
   require("../process/mainprocess.php");
   $process = new akuberi();
+
+  if($process->session_check()['login']==true){
+    $userInfo = $process->session_check();
+    if($userInfo['user_level']==1){
+    	header("Location:".$process->base_url().'asset/pages/main/admin.php');
+    }else{	
+    	header("Location:".$process->base_url().'asset/pages/main/user.php');
+    }
+  }
+  
 ?>
 
 <html>
