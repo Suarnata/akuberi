@@ -198,7 +198,7 @@ h5 span{margin-left: 5px;color: #00aeea;}
 .chat-work{  overflow: hidden; width: 96%;height: 95%;border-radius: 5px;margin-left: 1%; box-shadow:0px 1px 2px rgba(0,0,0,.3);}
 .chat-title{height: 10%;border-bottom: solid 1px #deebee;}
 .chat-content{height: 70%;}
-.chat2{    overflow-y: scroll;border: none;border-top: solid 1px #deebee;border-radius: 0px 0px 5px 5px;resize: none;width: 93%;height: 15%;padding: 3%;outline: none;margin-left: 1%;
+.chat2{    overflow-y: scroll;border: none;border-top: solid 1px #deebee;border-radius: 0px 0px 5px 5px;resize: none;width: 93%;height: 15%;padding: 3%;outline: none;margin-left: 1%;}
 
 
 
@@ -207,5 +207,4 @@ h5 span{margin-left: 5px;color: #00aeea;}
 /*====================
 USER
 ======================*/
-
-.u-wrapper{height:100vh;background-color: 000;}
+.u-wrapper{height: 100vh;}

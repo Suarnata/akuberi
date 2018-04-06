@@ -4,7 +4,7 @@ $process = new akuberi();
 ?>
 <?php include 'header.php'; ?>
 
-<div class="col-12 u-wrapper">
+<div class="col-12 u-wrapper bg-color1">
 
 </div>
 
