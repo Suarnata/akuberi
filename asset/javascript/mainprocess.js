@@ -21,7 +21,7 @@
 			success:function(data){
 				if(data.notif=="err-username"){
 					$("#notification").fadeIn();
-					$("#notification").html("*Nama Hanya Boleh Berupa Huruf Dan Angka");
+					$("#notification").html("*Nama Hanya Boleh Berupa Huruf");
 					$(".box").find("input[name=fname]").css({
 						borderBottom: '2px solid #e74c3c'
 					});
@@ -38,7 +38,7 @@
 					$(".box").find("input[name=email]").focus();
 				}else if(data.notif=="err-telp"){
 					$("#notification").fadeIn();
-					$("#notification").html("*No Hp Hanya Boleh Berupa Huruf");
+					$("#notification").html("*No Hp Hanya Boleh Berupa Angka");
 					$(".box").find("input[name=telp]").css({
 						borderBottom: '2px solid #e74c3c'
 					});
