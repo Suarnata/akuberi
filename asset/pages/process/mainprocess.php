@@ -163,8 +163,6 @@
 					setcookie("ABID", "", time() - 7200,'/');
 					header("Location:".$this->base_url());
 				}
-			}else{
-				header("Location:".$this->base_url());
 			}
 		}
 

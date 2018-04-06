@@ -2,7 +2,7 @@
 
 <?php
   if($userInfo['user_level']!=2){
-    header("Location:".$process->base_url());
+    header("Location:".$process->base_url().'asset/pages/main/login.php');
   }
 ?>
 
