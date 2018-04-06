@@ -47,6 +47,13 @@
 					alert("Terjadi Error Saat Memasukan Data Ke Database");
 				}else if("success"){
 					redirect(base_url+'asset/pages/main/login.php?status=registered');
+				}else if(data.notif=="err-empty"){
+					$("#notification").fadeIn();
+					$("#notification").html("*Masih Terdapat Kolom Yang Kosong");
+					$(".box").find("input").css({
+						borderBottom: '2px solid #e74c3c'
+					});
+					$(".box").find("input[name=fname]").focus();
 				}
 			}
 		});
@@ -56,12 +63,63 @@
 		$("#notification").hide();
 		$(".box").find('input').css({
 			borderBottom: '2px solid #999'
-		});;
+		});
 	});
 
 
 	// Proses Login
 	$("#loginform").submit(function(e){
 		e.preventDefault();
-		alert("test");
+		$.ajax({
+			url:action_url+'login',
+			type:'POST',
+			data: new FormData(this),
+			dataType:'json',
+			contentType:false,
+			processData:false,
+			success:function(data){
+				if(data.notif=='err-empty'){
+					$("#notification").fadeIn();
+					$("#notification").html("*Masih Terdapat Kolom Yang Kosong");
+					$(".box").find("input").css({
+						borderBottom: '2px solid #e74c3c'
+					});
+					$(".box").find("input[name=email]").focus();
+				}else if(data.notif=='err-wrong'){
+					$("#notification").fadeIn();
+					$("#notification").html("*Email Atau Password Yang Anda Masukkan Salah");
+					$(".box").find("input").css({
+						borderBottom: '2px solid #e74c3c'
+					});
+					$(".box").find("input[name=email]").focus();
+				}else if(data.notif=='err-db'){
+					$("#notification").fadeIn();
+					$("#notification").html("*Terjadi Error Pada Proses Login, Segera Kontak Admin Website");
+					$(".box").find("input").css({
+						borderBottom: '2px solid #e74c3c'
+					});
+					$(".box").find("input[name=email]").focus();
+				}else if(data.notif=='success'){
+					if(data.level=='admin'){
+						redirect(base_url+'asset/pages/main/admin.php');
+					}else if(data.level=='user'){
+						redirect(base_url+'asset/pages/main/user.php');
+					}
+				}else if(data.notif=='err-blocked'){
+					$("#notification").fadeIn();
+					$("#notification").html("*Akun Anda Telah Diblokir Dari Website Ini Karena Melanggar Aturan Yang Berlaku");
+					$(".box").find("input").css({
+						borderBottom: '2px solid #e74c3c'
+					});
+					$(".box").find("input[name=email]").focus();
+				}
+			}
+		});
+	});
+
+	$("#loginform").keyup(function(){
+		$("#notification").hide();
+		$(".box").find('input').css({
+			borderBottom: '2px solid #999'
+		});
 	});

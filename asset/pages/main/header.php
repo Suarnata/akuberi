@@ -1,6 +1,10 @@
 <?php
   require("../process/mainprocess.php");
   $process = new akuberi();
+  $process->session_check();
+  if($process->session_check()['login']==true){
+    $userInfo = $process->session_check();
+  }
 ?>
 
 <!DOCTYPE html>

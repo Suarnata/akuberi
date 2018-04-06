@@ -1,4 +1,11 @@
 <?php include 'header.php';?>
+
+<?php
+  if($userInfo['user_level']!=1){
+    header("Location:".$process->base_url());
+  }
+?>
+
     <div class="wrapper">
       <div class="row content">
         <div class="col-2 col-s-12 sidebar-a bg-color1">
@@ -32,7 +39,7 @@
               <a href="#"> <i style="    color: #00aeea;font-size: 28px;transform: translate(20px,15px);" class="far fa-bell"></i></a>
               </div>
               <div class="col-8 header-a-l">
-                <h3 style="       font-size: 16px;text-align: right;color: #00aeea;transform: translate(-5%,15%);">Kim Jong Un</h3>
+                <h3 style="       font-size: 16px;text-align: right;color: #00aeea;transform: translate(-5%,15%);"><?php echo $userInfo['user_name']; ?></h3>
                 <h5 style="  font-size: 12px;text-align: right;color: #00aeea;transform: translate(-5%,-15%);opacity: .6;  ">Admin</h5>
               </div>
             </div>
