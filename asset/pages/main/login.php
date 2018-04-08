@@ -3,6 +3,15 @@
   $process = new akuberi();
   $message = "";
 
+  if($process->session_check()['login']==true){
+    $userInfo = $process->session_check();
+    if($userInfo['user_level']==1){
+    	header("Location:".$process->base_url().'asset/pages/main/admin.php');
+    }else{	
+    	header("Location:".$process->base_url().'asset/pages/main/user.php');
+    }
+  }
+
   if(isset($_GET['status'])&&!empty($_GET['status'])){
   	switch($_GET['status']){
   		case 'registered':

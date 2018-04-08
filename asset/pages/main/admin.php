@@ -1,4 +1,11 @@
 <?php include 'header.php';?>
+
+<?php
+  /*if($userInfo['user_level']!=1){
+    header("Location:".$process->base_url().'asset/pages/main/login.php');
+  }*/
+?>
+
     <div class="wrapper">
       <div class="row content">
         <div class="col-2 col-s-12 sidebar-a bg-color1">

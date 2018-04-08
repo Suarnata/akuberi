@@ -12,6 +12,10 @@
 				$process->register();
 			break;
 
+			case 'login':
+				$process->login();
+			break;
+
 		}
 
 	}else{
