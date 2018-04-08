@@ -42,7 +42,9 @@ h6{font-family: Palanquinh6;font-size: 20px;}
 
 .col-1 {width: 8.33%;}
 .col-1plus{width: 11%;}
+.col-1pluss{width: 10%;}
 .col-2 {width: 16.66%;}
+.col-2plus{width: 20%;}
 .col-3 {width: 25%;}
 .col-3plus{width: 30%;}
 .col-4 {width: 33.33%;}
@@ -50,6 +52,7 @@ h6{font-family: Palanquinh6;font-size: 20px;}
 .col-5 {width: 41.66%;}
 .col-6 {width: 50%;}
 .col-7 {width: 58.33%;}
+.col-7plus{width: 60%;}
 .col-8 {width: 66.66%;}
 .col-9 {width: 75%;}
 .col-10 {width: 83.33%;}
@@ -87,12 +90,14 @@ h6{font-family: Palanquinh6;font-size: 20px;}
 .button-size-3:hover{opacity: .9; box-shadow:0px 2px 4px rgba(0,0,0,.6)}
 .button-size-4{cursor: pointer;width: 20%;height: 8.5%;border: none;border-radius: 3px;transform: translate(-130px,450px);box-shadow: 0px 2px 4px rgba(0, 0, 0, .3);color: #00aeea;font-family: Palanquinh2;font-size: 20px;}
 .button-size-4:hover{opacity: .9; box-shadow:0px 2px 4px rgba(0,0,0,.6)}
+.button-size-5{    cursor: pointer;width: 20%;  height: 4%;  border: none;  border-radius: 3px;transform: translate(535px,300px);  box-shadow: 0px 2px 4px rgba(0, 0, 0, .3);color: #fff;  font-family: Palanquinh2;font-size: 20px;}
+.button-size-5:hover{opacity: .9; box-shadow:0px 2px 4px rgba(0,0,0,.6)}
 
 .content{height: auto; background-color: #deebee;}/* Admin-User */
 .content1{height: 130vh;}
 .content2{height: 80vh;}
 .content3{height: 25vh;}
-.content4{height: 130vh;background-color: #deebee;}
+.content4{height: 260vh;background-color: #deebee;}
 .vector-one{height: 50%;}
 .vector-two{height: 50%;}
 .word1{height:100%;}
@@ -114,7 +119,9 @@ h6{font-family: Palanquinh6;font-size: 20px;}
 
 .bg-img1:hover, .bg-img2:hover, .bg-img3:hover, .bg-img4:hover, .bg-img5:hover, .bg-img6:hover, .bg-img7:hover, .bg-img8:hover{background-size:600px; background-position: center;}
 
-.post1{height: 60%; background-color:#ffffff;overflow: hidden;border-radius: 5px;margin-left:2.5%; transform: translateY(150px);}
+.post1{height: 30%; background-color:#ffffff;overflow: hidden;border-radius: 5px;margin-left:2.5%; transform: translateY(150px);}
+.baris2{margin-top: 5%;}
+
 .post1:hover{box-shadow: 0px 2px 3px rgba(0,0,0,.5)}
 .img-post{height: 40%;}
 .img-post img{width: 100%; height: 100%;}
@@ -207,4 +214,27 @@ h5 span{margin-left: 5px;color: #00aeea;}
 /*====================
 USER
 ======================*/
-.u-wrapper{height: 100vh;}
+.u-wrapper{height: auto;}
+.header-u{height: 10vh; box-shadow: 0px 1px 2px rgba(0,0,0,.2)}
+.content-header{height: 100%; margin:0% 4.17%;}
+.search2{ padding: .5% 1% .5% 10%;width: 70%;background-image: url(../image/website/search.png);background-size: 20px;background-repeat: no-repeat;background-position: 10px;outline: none;background-color: transparent;border: none;    border-left: solid 2px #deebee;color: #00aeea;font-family: palanquinh3;font-size: 16px;transform: translate(2%,50%);}
+
+.logo-u{height: 100%;}
+.logo-u2{height: 100%; float: right;}
+
+.link{height: 100%;}
+.link ul{width: 80%;height: 100%;margin: 0; padding: 0; float: left;}
+.link ul li{    list-style: none;line-height: 73px;  padding: 0% 10%;display: inline-block;}
+.link ul li a{text-decoration: none; color: #00aeea; font-family: palanquinh3; font-size: 16px;line-height: 30px;display:inline-block;}
+.link ul li:hover{}
+.bell{    float: right;width: 20%;}
+.bell a{overflow: hidden;}
+.bell a i{padding: 0; margin: 0;text-decoration: none;color: #00aeea;   transform: translate(25px);line-height: 73px;font-size: 24px;}
+.profil-u{height: 100%;}
+.name-profil{height: 100%;}
+.img-profil{height: 100%;}
+.bar{height: 100%;}
+.burger1{cursor: pointer;position: absolute;width: 30px; height: 35px;top:18px;background-color: transparent;box-sizing:border-box;;outline: none; border: none}
+.burger1 span{ position: absolute; top: 15px;display: block; background-color: #00aeea; width: 100%;height: 4px; transition: all ease-in-out .3s;}
+.burger1 span:before{content:""; position: absolute;width: 100%;height: 4px;left: 0;top:-10px; background-color: #00aeea; transition: all ease-in-out .3s;}
+.burger1 span:after{content: ""; position: absolute; width: 100%; height: 4px; left: 0; top: 10px; background-color: #00aeea; transition: all ease-in-out .3s;}

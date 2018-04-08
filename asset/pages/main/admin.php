@@ -14,7 +14,7 @@
               <li> <a href="#"> <i class="fas fa-cogs"></i> &nbsp;&nbsp; Pengaturan </a> </li>
             </ul>
           </div>
-        </div>
+        </div>  <!-- Sidebar -->
         <div class="col-10 col-s-12 header-a">
           <div class="col-6 header-a-l ">
             <form class="" action="index.html" method="post">
@@ -37,7 +37,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>  <!-- Header -->
         <div class="col-10 col-s-12 content-a-1 ">
           <div class="col-12 col-s-11 content-post-a">
             <div class="col-6 col-s-12 title">
@@ -48,7 +48,7 @@
               <h3 style="    padding: 0% 3%;" class="bg-color3"> <a style="color:#00aeea;" href="#">Donate</a> </h3>
               <h3 style="    padding: 0% 4%;transform: translate(225%,35%);" class="bg-color2"> <a href="#">Sign - Out</a> </h3>
             </div>
-          </div>
+          </div> <!-- Judul Title yang isi Tulisan Dashboard -->
           <div class="col-12 col-s-12 content-post-a1">
             <div class="col-9 col-s-12 content-post-a2">
               <div class="col-12 news">
@@ -67,7 +67,7 @@
                   </div>
               </div>
 
-            </div>
+            </div> <!-- KOnten Yang bEda Beda ||||| Kalau yang di Admin.php ini isi Grafik -->
 
             <div class="col-3 content-post-a3">
               <div class="col-12 chat">
@@ -78,13 +78,13 @@
                   <div class="col-12 chat-content bg-color3">
 
                   </div>
-                  <textarea class="chat2" name="chat"></textarea>
+                  <textarea class="chat2" name="chat" placeholder="Ketik Chat"></textarea>
                 </div>
               </div>
               <div class="col-12 calender">
 
               </div>
-            </div>
+            </div> <!-- This is Chat -->
           </div>
         </div>
       </div>

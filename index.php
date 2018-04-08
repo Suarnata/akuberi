@@ -3,7 +3,47 @@
 	$process = new akuberi();
 ?>
 
-<?php include 'asset/pages/main/header.php'; ?>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>akuberi | Mari Ber Donasi</title>
+
+    <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/main.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/responsive1.css" media="screen and (max-width:780px)">
+    <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/flickity.css">
+  	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/flickity.min.css">
+    <script src="<?php echo $process->base_url(); ?>asset/javascript/jquery-2.1.3.min.js"></script>
+    <script src="<?php echo $process->base_url(); ?>asset/javascript/myscript.js"></script>
+    <script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.js"></script>
+    <script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.min.js"></script>
+    <script type="text/javascript">
+      zero = 0;
+      $(document).ready(function(){
+        $(window).on('scroll', function(){
+          $('.header-a').toggleClass('hider-hide', $(window).scrollTop() > zero);
+          zero = $(window).scrollTop();
+        })
+      })
+    </script>
+    <script type="text/javascript">
+      (function(){
+        $(document).ready(function(){
+          $(".testimo-1").flickity({
+            wrapAround : true,
+            autoPlay : 3500
+
+          });
+        });
+      })(jQuery)
+    </script>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+
+  </head> <!-- INI HEAD - nya .... -->
+  <body>
 
 
 	<div class="wrapper">
@@ -30,7 +70,7 @@
 
 						</div>
 					</div>
-			</div>
+			</div> <!-- Ini Headernya -->
 
 			<div class="row banner">
 				<div class="col-12 col-s-12 banner1">
@@ -45,7 +85,7 @@
 								</div>
 						</div>
 				</div>
-			</div>
+			</div> <!-- Ini Bannernya -->
 			<div class="row content1">
 				<div class="col-12 col-s-12 vector-one">
 						<div class="col-6 col-s-12 word1">
@@ -68,10 +108,10 @@
 								<h6 style=" text-align: right;font-size:16px;    transform: translate(-135px,50px);"><a href="" style="text-decoration: none; color:#e90052;">Telusuri lebih lengkap</a></h6>
 						</div>
 				</div>
-			</div>
+			</div> <!-- ini konten yang isi pengenalan -->
 			<div class="row content3">
 				<h2 style="font-size: 36px;width:55%; text-align:center;line-height: 40px;margin: auto; color:#00aeea; "> Anda Bisa Membantu Sesama Dalam Bentuk Apa Saja dan Kemana Saja</h2>
-			</div>
+			</div> <!-- ini Judul Kategori -->
 			<div class="row content2">
 					<div class="col-12 col-s-12 icon1 bg-color1">
 						<div class="col-3 col-s-12 icon2 bg-img1">
@@ -108,14 +148,14 @@
 						</div>
 						<div class="col-3 col-s-12 icon2 bg-img6">
 							<div class="col-12 col-s-12 icon3">
-								<img src="<?php echo $process->base_url(); ?>asset/image/website/icon6.png" alt="">
-								<h3>Ibu Hamil</h3>
+								<img src="<?php echo $process->base_url(); ?>asset/image/website/icon11.png" alt="">
+								<h3>Rumah Ibadah</h3>
 							</div>
 						</div>
 						<div class="col-3 col-s-12 icon2 bg-img7">
 							<div class="col-12 col-s-12 icon3">
-								<img src="<?php echo $process->base_url(); ?>asset/image/website/icon7.png" alt="">
-								<h3>Suplaiyer</h3>
+								<img src="<?php echo $process->base_url(); ?>asset/image/website/icon10.png" alt="">
+								<h3>Difabel</h3>
 							</div>
 						</div>
 						<div class="col-3 col-s-12 icon2 bg-img8">
@@ -125,7 +165,7 @@
 							</div>
 						</div>
 					</div>
-			</div>
+			</div><!-- Ini yang isi Kategori -->
 			<div class="row content4">
 				<h3 style="   text-align: center; color: #00aeea;width: 40%;line-height: 50px;margin: auto;transform: translateY(80px);">Beberapa Penggalangan Dana Terpopuler</h3>
 				<div class="col-3plus col-s-11 post1">
@@ -203,7 +243,85 @@
 						<button class="button-size-2 bg-color1" type="button" name="button">Donasi</button>
 					</div>
 				</div>
-			</div>
+				<div class="col-3plus col-s-11 post1 baris2">
+					<div class="col-12 img-post bg-color1">
+						 <img src="<?php echo $process->base_url(); ?>asset/image/website/penggalang-2.png" alt="">
+					</div>
+					<div class="col-12 desc">
+						<div class="col-12 desc-post">
+							<h5 style="font-size: 18px;transform: translate(20px,10px);">Giovani da Cunha <span class="time">| &nbsp;2 hari lalu</span></h5>
+							<h3 style="line-height: 35px;font-size: 30px;color: #00aeea;transform: translate(20px,15px);">Ayo Bersama Kita Bisa Membuat Pesawat</h3>
+							<h6 style="opacity: .8;font-size: 17px;line-height: 20px;width: 90%;transform: translate(20px,25px);">Mari berdonasi untuk pembuatan Pesawat Terbang asli Indonesia, agar dapat menjadi alat pemersatu bangsa</h6>
+						</div>
+						<div class="col-12 dana-post ">
+							<div class="col-6 dana ">
+								<h5 style="font-size: 18px;color: #00aeea;transform: translateX(20px);">sisa hari</h5>
+								<h3 style="font-size: 24px;color: #e90052;transform: translate(20px,-10px);">6 hri</h3>
+							</div>
+							<div class="col-6 dana">
+								<h5 style="font-size: 18px;color: #00aeea;text-align: right;transform: translateX(-20px);">Dana Terkumpul</h5>
+								<h3 style="font-size: 24px;color: #e90052;text-align: right;transform: translate(-20px,-10px);">Rp 1.5M</h3>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 button-post">
+						<button class="button-size-2 bg-color1" type="button" name="button">Donasi</button>
+					</div>
+				</div>
+				<div class="col-3plus col-s-11 post1 baris2">
+					<div class="col-12 img-post bg-color1">
+						 <img src="<?php echo $process->base_url(); ?>asset/image/website/penggalang-2.png" alt="">
+					</div>
+					<div class="col-12 desc">
+						<div class="col-12 desc-post">
+							<h5 style="font-size: 18px;transform: translate(20px,10px);">Giovani da Cunha <span class="time">| &nbsp;2 hari lalu</span></h5>
+							<h3 style="line-height: 35px;font-size: 30px;color: #00aeea;transform: translate(20px,15px);">Ayo Bersama Kita Bisa Membuat Pesawat</h3>
+							<h6 style="opacity: .8;font-size: 17px;line-height: 20px;width: 90%;transform: translate(20px,25px);">Mari berdonasi untuk pembuatan Pesawat Terbang asli Indonesia, agar dapat menjadi alat pemersatu bangsa</h6>
+						</div>
+						<div class="col-12 dana-post ">
+							<div class="col-6 dana ">
+								<h5 style="font-size: 18px;color: #00aeea;transform: translateX(20px);">sisa hari</h5>
+								<h3 style="font-size: 24px;color: #e90052;transform: translate(20px,-10px);">6 hri</h3>
+							</div>
+							<div class="col-6 dana">
+								<h5 style="font-size: 18px;color: #00aeea;text-align: right;transform: translateX(-20px);">Dana Terkumpul</h5>
+								<h3 style="font-size: 24px;color: #e90052;text-align: right;transform: translate(-20px,-10px);">Rp 1.5M</h3>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 button-post">
+						<button class="button-size-2 bg-color1" type="button" name="button">Donasi</button>
+					</div>
+				</div>
+				<div class="col-3plus col-s-11 post1 baris2">
+					<div class="col-12 img-post bg-color1">
+						 <img src="<?php echo $process->base_url(); ?>asset/image/website/penggalang-2.png" alt="">
+					</div>
+					<div class="col-12 desc">
+						<div class="col-12 desc-post">
+							<h5 style="font-size: 18px;transform: translate(20px,10px);">Giovani da Cunha <span class="time">| &nbsp;2 hari lalu</span></h5>
+							<h3 style="line-height: 35px;font-size: 30px;color: #00aeea;transform: translate(20px,15px);">Ayo Bersama Kita Bisa Membuat Pesawat</h3>
+							<h6 style="opacity: .8;font-size: 17px;line-height: 20px;width: 90%;transform: translate(20px,25px);">Mari berdonasi untuk pembuatan Pesawat Terbang asli Indonesia, agar dapat menjadi alat pemersatu bangsa</h6>
+						</div>
+						<div class="col-12 dana-post ">
+							<div class="col-6 dana ">
+								<h5 style="font-size: 18px;color: #00aeea;transform: translateX(20px);">sisa hari</h5>
+								<h3 style="font-size: 24px;color: #e90052;transform: translate(20px,-10px);">6 hri</h3>
+							</div>
+							<div class="col-6 dana">
+								<h5 style="font-size: 18px;color: #00aeea;text-align: right;transform: translateX(-20px);">Dana Terkumpul</h5>
+								<h3 style="font-size: 24px;color: #e90052;text-align: right;transform: translate(-20px,-10px);">Rp 1.5M</h3>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 button-post">
+						<button class="button-size-2 bg-color1" type="button" name="button">Donasi</button>
+					</div>
+				</div>
+				<h3 style="   text-align: center; color: #00aeea;width: 60%;line-height: 30px;margin: auto;transform: translateY(240px); font-size:20px;">Andapun Dapat Melihat Lebih Lengkap Tentang Penggalangan Dana yang Telah Terdanai Maupun Belum Terdanai</h3>
+				<button class="button-size-5 bg-color1" type="button" name="button">Lihat Lebih Lengkap</button>
+
+			</div> <!-- Penggalangan Dana Terpopuler -->
 			<div class="row content2">
 				<h3 style="transform: translateY(35px);text-align: center;color: #00aeea;">Testimonial</h3>
 				<div class="col-9 col-s-11 testimonial">
@@ -231,7 +349,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> <!-- ini Testimonial -->
 
 			<div class="row footer">
 				<div class="col-12 col-s-12 subs bg-color1">
@@ -277,7 +395,8 @@
 					<h5 style="text-align:center; font-size:16px; color:#fff; opacity:.8; line-height:40px;">copyright &copy; 2018</h5>
 					<h3 style="text-align:center; font-size:18px; color:#fff; line-height:10px;">akuberi.com</h3>
 				</div>
-			</div>
+			</div> <!-- Ini Footernya
 		</div>
 	</div>
-<?php include 'asset/pages/main/footer.php'; ?>
+</body>
+</html>
