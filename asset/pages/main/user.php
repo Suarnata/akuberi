@@ -27,11 +27,11 @@
         </div>
         <div class="col-3plus profil-u">
           <div class="col-6 name-profil">
-            <h3 style="    font-size: 18px;transform: translate(-2%,40%);text-align: right;"><a href="#" style="text-decoration: none;color: #00aeea;">Giovani D</a></h3>
+            <h3 style="    font-size: 18px;transform: translate(-2%,40%);text-align: right;"><a href="#" style="text-decoration: none;color: #00aeea;"></a></h3>
             <h5 style="    font-size: 12px;text-align: right;transform: translate(-2%,5%);color: #00aeea;opacity: .5;">online</h5>
           </div>
           <div class="col-6 img-profil">
-            <img style="width: 40%;height: auto;border-radius: 50%;transform: translate(30%,45%);" src="<?php echo $process->base_url(); ?>asset/image/website/kim.jpg" alt="">
+            <img style="width: 40%;height: auto;border-radius: 50%;transform: translate(75%,45%);" src="<?php echo $process->base_url(); ?>asset/image/website/kim.jpg" alt="">
           </div>
         </div>
         <div class="col-1pluss bar">
@@ -41,16 +41,48 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="content-u">
-    <div class="sidebar-u">
+  </div><!-- Header -->
+  <div class="col-12 content-u">
+    <div class="col-2plus sidebar-u bg-color1">
+      <div class="col-9 sidebar-u-con">
 
+      </div>
     </div>
-    <div class="posting-u">
+    <div class="col-7plus posting-u bg-color2">
+      <div class="col-9 post-u-con">
 
+      </div>
+      <div class="col-9 post-u-con">
+
+      </div>
+      <div class="col-9 post-u-con">
+
+      </div>
+      <div class="col-9 post-u-con">
+
+      </div>
+      <div class="col-9 post-u-con">
+
+      </div>
+      <div class="col-9 post-u-con">
+
+      </div>
+      <div class="col-9 post-u-con">
+
+      </div>
+      <div class="col-9 post-u-con">
+
+      </div>
+      <div class="col-9 post-u">
+        <div class="col-12 box-post-u">
+
+        </div>
+      </div>
     </div>
-    <div class="chat-u">
+    <div class="col-2plus chat-u bg-color1">
+      <div class="col-9 chat-u-con">
 
+      </div>
     </div>
   </div>
 </div>

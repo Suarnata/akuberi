@@ -154,7 +154,7 @@ h5 span{margin-left: 5px;color: #00aeea;}
 /* Dashboard Admin in Down */
 /* ==================================================== */
 
-.header-a {position: fixed;height:8vh;background-color: #fff;right: 0;box-shadow:0px 2px 4px rgba(0,0,0,.2); transition: .5s;}
+.header-a {position: fixed;z-index: 1000;height:8vh;background-color: #fff;right: 0;box-shadow:0px 2px 4px rgba(0,0,0,.2); transition: .5s;}
 .header-a-l{height: 100%;}
 .hider-hide{transform: translateY(-100%);}
 
@@ -215,7 +215,9 @@ h5 span{margin-left: 5px;color: #00aeea;}
 USER
 ======================*/
 .u-wrapper{height: auto;}
-.header-u{height: 10vh; box-shadow: 0px 1px 2px rgba(0,0,0,.2)}
+.header-u{position: fixed;z-index: 1000;height: 10vh; box-shadow: 0px 1px 2px rgba(0,0,0,.2); transition: all ease-in-out .3s;}
+.hider-hide-u{transform: translateY(-100%);}
+
 .content-header{height: 100%; margin:0% 4.17%;}
 .search2{ padding: .5% 1% .5% 10%;width: 70%;background-image: url(../image/website/search.png);background-size: 20px;background-repeat: no-repeat;background-position: 10px;outline: none;background-color: transparent;border: none;    border-left: solid 2px #deebee;color: #00aeea;font-family: palanquinh3;font-size: 16px;transform: translate(2%,50%);}
 
@@ -234,7 +236,19 @@ USER
 .name-profil{height: 100%;}
 .img-profil{height: 100%;}
 .bar{height: 100%;}
-.burger1{cursor: pointer;position: absolute;width: 30px; height: 35px;top:18px;background-color: transparent;box-sizing:border-box;;outline: none; border: none}
+.burger1{cursor: pointer;position: absolute;width: 30px; height: 35px;top:18px;right: 5%;background-color: transparent;box-sizing:border-box;;outline: none; border: none}
 .burger1 span{ position: absolute; top: 15px;display: block; background-color: #00aeea; width: 100%;height: 4px; transition: all ease-in-out .3s;}
 .burger1 span:before{content:""; position: absolute;width: 100%;height: 4px;left: 0;top:-10px; background-color: #00aeea; transition: all ease-in-out .3s;}
 .burger1 span:after{content: ""; position: absolute; width: 100%; height: 4px; left: 0; top: 10px; background-color: #00aeea; transition: all ease-in-out .3s;}
+
+
+
+.content-u{height:auto; padding-top: 13vh;}
+.sidebar-u{height: auto;}
+.posting-u{height: auto;}
+.chat-u{height: auto;}
+
+.sidebar-u-con{height: 50vh;background-color: #ffffff;box-shadow: 0px 2px 4px rgba(0,0,0,.4); float:right;}
+.sidebar-u-con-title{}
+.post-u-con{height: 20vh;background-color:#ffffff; box-shadow:0px 2px 4px rgba(0,0,0,.4); margin: 0% 12.5% 1%;}
+.chat-u-con{height: 20vh;background-color:#ffffff; box-shadow:0px 2px 4px rgba(0,0,0,.4);}

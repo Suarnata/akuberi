@@ -1,7 +1,7 @@
 <?php
   require("../process/mainprocess.php");
   $process = new akuberi();
-  
+
   if($process->session_check()['login']==true){
     $userInfo = $process->session_check();
   }
@@ -29,6 +29,15 @@
         $(window).on('scroll', function(){
           $('.header-a').toggleClass('hider-hide', $(window).scrollTop() > zero);
           zero = $(window).scrollTop();
+        })
+      })
+    </script>
+    <script type="text/javascript">
+      nol = 0;
+      $(document).ready(function(){
+        $(window).on('scroll', function(){
+          $('.header-u').toggleClass('hider-hide-u', $(window).scrollTop() > nol);
+          nol = $(window).scrollTop();
         })
       })
     </script>
