@@ -27,7 +27,7 @@
         </div>
         <div class="col-3plus profil-u">
           <div class="col-6 name-profil">
-            <h3 style="    font-size: 18px;transform: translate(-2%,40%);text-align: right;"><a href="#" style="text-decoration: none;color: #00aeea;"></a></h3>
+            <h3 style="    font-size: 18px;transform: translate(-2%,40%);text-align: right;"><a href="#" style="text-decoration: none;color: #00aeea;">Giovani D</a></h3>
             <h5 style="    font-size: 12px;text-align: right;transform: translate(-2%,5%);color: #00aeea;opacity: .5;">online</h5>
           </div>
           <div class="col-6 img-profil">
