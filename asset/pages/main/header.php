@@ -4,6 +4,8 @@
 
   if($process->session_check()['login']==true){
     $userInfo = $process->session_check();
+  }else{
+    header("Location:login.php");
   }
 ?>
 
