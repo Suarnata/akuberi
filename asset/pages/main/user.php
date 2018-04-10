@@ -31,7 +31,7 @@
             <h5 style="    font-size: 12px;text-align: right;transform: translate(-2%,5%);color: #00aeea;opacity: .5;">online</h5>
           </div>
           <div class="col-6 img-profil">
-            <img style="width: 40%;height: 57%;border-radius: 50%;transform: translate(75%,45%);" src="<?php echo $process->base_url(); ?>asset/image/user/<?php echo $userInfo['user_image']; ?>" alt="">
+            <img style="width: 40%;height: 54%;border-radius: 50%;transform: translate(75%,45%);" src="<?php echo $process->base_url(); ?>asset/image/user/<?php echo $userInfo['user_image']; ?>" alt="">
           </div>
         </div>
         <div class="col-1pluss bar">
@@ -51,7 +51,9 @@
     <div class="col-6 posting-u bg-color2">
       <div class="col-12 post-u-con">
         <div class="col-3 push bg-color1">
-          
+          <div class="col-12 image-push">
+
+          </div>
         </div>
 
         <div class="col-9 push bg-color2">
