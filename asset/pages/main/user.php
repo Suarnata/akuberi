@@ -52,7 +52,7 @@
       <div class="col-12 post-u-con">
         <div class="col-3 push bg-color1">
           <div class="col-12 image-push">
-
+            <i class="far fa-images"></i>
           </div>
         </div>
 
