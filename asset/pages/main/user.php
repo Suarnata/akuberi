@@ -41,45 +41,32 @@
         </div>
       </div>
     </div>
-  </div><!-- Header -->
+  </div><!-- Header --><!-- THIS IS HEADER-->
   <div class="col-12 content-u">
-    <div class="col-2plus sidebar-u bg-color1">
+    <div class="col-3 sidebar-u bg-color1">
       <div class="col-9 sidebar-u-con">
 
       </div>
-    </div>
-    <div class="col-7plus posting-u bg-color2">
-      <div class="col-9 post-u-con">
+    </div><!-- THIS IS SIDEBAR -->
+    <div class="col-6 posting-u bg-color2">
+      <div class="col-12 post-u-con">
+        <div class="col-3 push bg-color1">
+          
+        </div>
 
-      </div>
-      <div class="col-9 post-u-con">
+        <div class="col-9 push bg-color2">
 
+        </div>
       </div>
-      <div class="col-9 post-u-con">
 
-      </div>
-      <div class="col-9 post-u-con">
-
-      </div>
-      <div class="col-9 post-u-con">
-
-      </div>
-      <div class="col-9 post-u-con">
-
-      </div>
-      <div class="col-9 post-u-con">
-
-      </div>
-      <div class="col-9 post-u-con">
-
-      </div>
-      <div class="col-9 post-u">
+      <div class="col-12 post-u">
         <div class="col-12 box-post-u">
 
         </div>
       </div>
+
     </div>
-    <div class="col-2plus chat-u bg-color1">
+    <div class="col-3 chat-u bg-color1">
       <div class="col-9 chat-u-con">
 
       </div>
