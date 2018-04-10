@@ -47,6 +47,6 @@
             <div class="col-6 col-s-12 title title1">
               <h3 style="    padding: 0% 5%;margin-right: 1%;" class="bg-color1"> <a href="#">User</a> </h3>
               <h3 style="    padding: 0% 3%;" class="bg-color3"> <a style="color:#00aeea;" href="#">Donate</a> </h3>
-              <h3 style="    padding: 0% 4%;transform: translate(225%,35%);" class="bg-color2"> <a href="#">Sign - Out</a> </h3>
+              <h3 style="    padding: 0% 4%;transform: translate(225%,35%);" class="bg-color2"> <a id="logout-btn" data-token="<?php echo $_COOKIE['ABID']; ?>">Sign - Out</a> </h3>
             </div>
           </div> <!-- Judul Title yang isi Tulisan Dashboard -->
