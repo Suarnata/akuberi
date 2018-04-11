@@ -7,7 +7,7 @@
           </div>
         </div>
 
-        <div class="col-9 push bg-color2">
+        <div class="col-9 push bg-color3">
 
         </div>
       </div>
