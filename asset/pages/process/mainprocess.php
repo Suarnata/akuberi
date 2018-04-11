@@ -166,6 +166,18 @@
 			}
 		}
 
+		public function logout(){
+			$data = array();
+			$token = sha1($_POST['token']);
+			$query = mysqli_query($this->connection,"DELETE FROM token_table WHERE token_code = '$token'");
+			if($query){
+				setcookie("ABID", "", time() - 7200,'/');
+				$data['notif'] = 'success';
+			}
+
+			echo json_encode($data);
+		}
+
 	}
 
 ?>

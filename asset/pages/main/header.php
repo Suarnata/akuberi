@@ -4,6 +4,8 @@
 
   if($process->session_check()['login']==true){
     $userInfo = $process->session_check();
+  }else{
+    header("Location:login.php");
   }
 ?>
 
@@ -13,6 +15,7 @@
     <meta charset="utf-8">
     <title>akuberi | Mari Ber Donasi</title>
 
+    <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/main.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/responsive1.css" media="screen and (max-width:780px)">
     <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.min.css">
@@ -22,14 +25,7 @@
     <script src="<?php echo $process->base_url(); ?>asset/javascript/myscript.js"></script>
     <script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.js"></script>
     <script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.min.js"></script>
-
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
-
-
-        <link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/main.css">
     <script type="text/javascript">
-
       zero = 0;
       $(document).ready(function(){
         $(window).on('scroll', function(){
@@ -62,4 +58,4 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 
   </head>
-  <body style="font-family: Palanquinh1;">
+  <body>
