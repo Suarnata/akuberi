@@ -25,6 +25,12 @@
     <script src="<?php echo $process->base_url(); ?>asset/javascript/myscript.js"></script>
     <script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.js"></script>
     <script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.min.js"></script>
+    
+    <!--cdn data table-->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
+
+
     <script type="text/javascript">
       zero = 0;
       $(document).ready(function(){
