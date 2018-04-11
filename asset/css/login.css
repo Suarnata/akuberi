@@ -7,6 +7,10 @@ body{
 	background-size: cover;
 	background-position: 0px -150px;
 }
+    table.dataTable th,
+    table.dataTable td {
+        white-space: nowrap;
+    }
 .login{
 	width: 55%;
 }

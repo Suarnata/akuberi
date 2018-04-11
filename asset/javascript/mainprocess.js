@@ -123,34 +123,3 @@
 			borderBottom: '2px solid #999'
 		});
 	});
-
-	$("#logout-btn").click(function(e){
-		e.preventDefault();
-		var usertoken = $(this).data('token'); 
-		$.ajax({
-			url:action_url+'logout',
-			data:{token:usertoken},
-			type:"POST",
-			dataType:'json',
-			success:function(data){
-				if(data.notif=='success'){
-					redirect(base_url);
-				}
-			}
-		});
-	});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

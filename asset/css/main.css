@@ -33,6 +33,13 @@ h4{font-family: Palanquinh4;font-size: 30px;}
 h5{font-family: Palanquinh5;font-size: 22px;}
 h6{font-family: Palanquinh6;font-size: 20px;}
 
+.data-table-pengguna{
+  padding: 6px;
+}
+.data-table-lis-donasi{
+  padding: 6px;
+}
+
 .right{float: right;}
 .left{float: left;}
 
@@ -48,7 +55,6 @@ h6{font-family: Palanquinh6;font-size: 20px;}
 .col-3 {width: 25%;}
 .col-3plus{width: 30%;}
 .col-4 {width: 33.33%;}
-.col-4plus{width: 40%;}
 .col-5 {width: 41.66%;}
 .col-4plus{width: 38%;}
 .col-6 {width: 50%;}
@@ -203,6 +209,7 @@ h5 span{margin-left: 5px;color: #00aeea;}
 .news1{ height: 95%; margin: 1% 2.5% 1% 1%; transform: translateX(21%); box-shadow: 0px 2px 6px rgba(0,0,0,.4); border-radius: 5px;}
 
 .grafik{width: 80%;height: 86%;transform: translate(11%);box-shadow: 0px 1px 2px rgba(0,0,0,.4); border-radius: 5px;}
+.data-table{width: 80%;height: auto;transform: translate(11%);box-shadow: 0px 1px 2px rgba(0,0,0,.4); border-radius: 5px;}
 
 .chat{height:70%;}
 .chat-work{  overflow: hidden; width: 96%;height: 95%;border-radius: 5px;margin-left: 1%; box-shadow:0px 1px 2px rgba(0,0,0,.3);}
@@ -241,7 +248,7 @@ USER
 .name-profil{height: 100%;}
 .img-profil{height: 100%;}
 .bar{height: 100%;}
-.burger1{cursor: pointer;position: absolute;width: 30px; height: 35px;top:18px;right: 4.5%;background-color: transparent;box-sizing:border-box;;outline: none; border: none}
+.burger1{cursor: pointer;position: absolute;width: 30px; height: 35px;top:18px;right: 5%;background-color: transparent;box-sizing:border-box;;outline: none; border: none}
 .burger1 span{ position: absolute; top: 15px;display: block; background-color: #00aeea; width: 100%;height: 4px; transition: all ease-in-out .3s;}
 .burger1 span:before{content:""; position: absolute;width: 100%;height: 4px;left: 0;top:-10px; background-color: #00aeea; transition: all ease-in-out .3s;}
 .burger1 span:after{content: ""; position: absolute; width: 100%; height: 4px; left: 0; top: 10px; background-color: #00aeea; transition: all ease-in-out .3s;}
@@ -253,12 +260,7 @@ USER
 .posting-u{height: auto;}
 .chat-u{height: auto;}
 
-.sidebar-u-con{height: 50vh;background-color: #ffffff;box-shadow: 0px 2px 4px rgba(0,0,0,.4); float:right; transform: translate(-10%);}
+.sidebar-u-con{height: 50vh;background-color: #ffffff;box-shadow: 0px 2px 4px rgba(0,0,0,.4); float:right;}
 .sidebar-u-con-title{}
-.post-u-con{height: 25vh;background-color:#ffffff; box-shadow:0px 2px 4px rgba(0,0,0,.4); margin:0% 0% 1% 0%;}
-.post-u{height: 35vh;background-color:#ffffff; box-shadow:0px 2px 4px rgba(0,0,0,.4); margin: 0% 0% 1% 0%;}
-.push{height: 100%;}
-
-
-
-.chat-u-con{height: 25vh;background-color:#ffffff; box-shadow:0px 2px 4px rgba(0,0,0,.4); transform: translate(10%);}
+.post-u-con{height: 20vh;background-color:#ffffff; box-shadow:0px 2px 4px rgba(0,0,0,.4); margin: 0% 12.5% 1%;}
+.chat-u-con{height: 20vh;background-color:#ffffff; box-shadow:0px 2px 4px rgba(0,0,0,.4);}

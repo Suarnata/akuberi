@@ -16,10 +16,6 @@
 				$process->login();
 			break;
 
-			case 'logout':
-				$process->logout();
-			break;
-
 		}
 
 	}else{
