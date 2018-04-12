@@ -26,6 +26,17 @@
   float:left;
 }
 
+.data-table-pengguna{
+  padding: 6px;
+}
+.data-table-pengumuman{
+  padding: 6px;
+}
+.data-table-lisdonasi{
+  padding: 6px;
+}
+
+
 h1{font-family: Palanquinh1;font-size: 60px;}
 h2{font-family: Palanquinh2;font-size: 54px;}
 h3{font-family: Palanquinh3;font-size: 36px;}
