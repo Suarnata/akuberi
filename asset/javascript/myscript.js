@@ -3,8 +3,11 @@ $(document).ready(function(){
     $(".sidebar").toggleClass("active");
     $(".burger").toggleClass("toggle");
   });
-   //script data table
-    $('#tabel-data-pengguna').DataTable();
+  
+});
+$(document).ready(function(){
+	$('#tabel-data-pengguna').DataTable();
    	$('#tabel-data-pengumuman').DataTable();
    	$('#tabel-data-lisdonasi').DataTable();
+
 });

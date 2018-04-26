@@ -17,6 +17,8 @@
   	<link rel="stylesheet" type="text/css" href="<?php echo $process->base_url(); ?>asset/css/flickity.min.css">
     <script src="<?php echo $process->base_url(); ?>asset/javascript/jquery-2.1.3.min.js"></script>
     <script src="<?php echo $process->base_url(); ?>asset/javascript/myscript.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
     <script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.js"></script>
     <script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.min.js"></script>
     <script type="text/javascript">
@@ -26,10 +28,8 @@
           $('.header-a').toggleClass('hider-hide', $(window).scrollTop() > zero);
           zero = $(window).scrollTop();
         })
-      })
-    </script>
-    <script type="text/javascript">
-      (function(){
+      });
+
         $(document).ready(function(){
           $(".testimo-1").flickity({
             wrapAround : true,
@@ -37,7 +37,6 @@
 
           });
         });
-      })(jQuery)
     </script>
 
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
@@ -395,7 +394,7 @@
 					<h5 style="text-align:center; font-size:16px; color:#fff; opacity:.8; line-height:40px;">copyright &copy; 2018</h5>
 					<h3 style="text-align:center; font-size:18px; color:#fff; line-height:10px;">akuberi.com</h3>
 				</div>
-			</div> <!-- Ini Footernya
+			</div> 
 		</div>
 	</div>
 </body>
