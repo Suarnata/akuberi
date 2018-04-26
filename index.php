@@ -22,6 +22,7 @@
     <script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.js"></script>
     <script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.min.js"></script>
     <script type="text/javascript">
+    	//azegg
       zero = 0;
       $(document).ready(function(){
         $(window).on('scroll', function(){
