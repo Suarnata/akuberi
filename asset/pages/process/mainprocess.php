@@ -41,7 +41,7 @@
 				$dataset = array('NULL',$username,$_POST['email'],md5($_POST['password']),$_POST['address'],$_POST['telp'],2,1,'defaultuser.jpg');
 
 				for($a=0;$a<=8;$a++){
-					if(empty($dataset[0])){
+					if(empty($dataset[$a])){
 						$emptycount++;
 					}
 				}
@@ -179,6 +179,28 @@
 
 			echo json_encode($data);
 		}
+
+		//Menampilkan jenis bank pada modal media
+		public function showbank(){
+			$query = mysqli_query($this->connection,"SELECT * FROM bank_table");
+
+	        while($row = mysqli_fetch_assoc($query)){
+	        
+	        	echo '
+
+	        		<div class="col-3 bank1">
+		              <img src="'.$this->base_url().'/asset/image/website/bank/'.$row['bank_image'].'">
+		              <br/>
+		              <input class="radio-bnk" type="radio" name="bank" value="'.$row['bank_id'].'">
+		            </div>
+
+	        	';
+
+	        }
+		}
+
+	
+
 
 	}
 
