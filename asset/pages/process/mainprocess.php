@@ -145,6 +145,7 @@
 			echo json_encode($data);
 		}
 
+		//Fungsi Untuk Memastikan User Telah Login Dan Mengambil Data User Yang Login
 		public function session_check(){
 			if(isset($_COOKIE['ABID'])&&!empty($_COOKIE['ABID'])){
 				$cookie = sha1($_COOKIE['ABID']);
@@ -166,6 +167,7 @@
 			}
 		}
 
+		//Fungsi Untuk Logout User
 		public function logout(){
 			$data = array();
 			$token = sha1($_POST['token']);
