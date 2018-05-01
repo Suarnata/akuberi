@@ -6,8 +6,8 @@
       </div>  
       <div class="col-12 post-u-con">
         <div class="col-3 push">
-          <div class="col-12 image-push">
-            <button class="picture-s" type="submit" name="button"></button>
+          <div class="col-12 image-push" id="img-container">
+            <button class="picture-s" type="button" name="button"></button>
           </div>
         </div>
 
@@ -61,6 +61,8 @@
               <option value="[object Object]">1 Tahun</option>
             </select>
           </div>
+
+          <input type="file" id="inputfile" name="image" hidden>
 
           <div class="col-12 category-btn-u">
                    <button style="     border: none;
@@ -209,4 +211,36 @@
 
 
     </div><!-- Content Postingan Tengah -->
+
+    <script type="text/javascript">
+
+      $(document).on('click','.picture-s',function(){
+        $('#inputfile').click();
+      });
+
+      $(document).on('click','.picture-s2',function(){
+        $('#inputfile').click();
+      });
+
+      function readURL(input) {
+
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function(e) {
+            $("#img-container").html(`
+                <img src="${e.target.result}" width="200px" height="145px"/><br/>
+                <button class="picture-s2" type="button">Ubah</button>
+              `);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      $('#inputfile').change(function(){
+        readURL(this);
+      });
+
+    </script>
 <?php include 'chat-footer-u.php';?>
