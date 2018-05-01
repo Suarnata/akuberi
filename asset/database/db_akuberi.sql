@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2018 at 05:37 PM
+-- Generation Time: May 01, 2018 at 01:05 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_akuberi`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bank_table`
+--
+
+CREATE TABLE `bank_table` (
+  `bank_id` int(11) NOT NULL,
+  `bank_name` varchar(200) NOT NULL,
+  `bank_image` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bank_table`
+--
+
+INSERT INTO `bank_table` (`bank_id`, `bank_name`, `bank_image`) VALUES
+(2, 'Mastercard', 'mastercard.png'),
+(3, 'Mandiri', 'mandiri.png'),
+(4, 'BNI', 'bni.png'),
+(5, 'BCA', 'bca.png');
 
 -- --------------------------------------------------------
 
@@ -46,6 +68,20 @@ CREATE TABLE `category_table` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `category_table`
+--
+
+INSERT INTO `category_table` (`category_id`, `category_name`) VALUES
+(1, 'Inovasi'),
+(2, 'Kesehatan'),
+(3, 'Anak-Anak'),
+(4, 'Pendidikan'),
+(5, 'Bencana'),
+(6, 'Rumah Ibadah'),
+(7, 'Difabel'),
+(8, 'Riset');
 
 -- --------------------------------------------------------
 
@@ -89,7 +125,9 @@ CREATE TABLE `post_table` (
   `post_img` text NOT NULL,
   `post_status` int(11) NOT NULL,
   `post_due` datetime NOT NULL,
-  `post_revenue` int(11) NOT NULL
+  `post_revenue` int(11) NOT NULL,
+  `bank_id` int(11) NOT NULL,
+  `post_rek` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -103,6 +141,17 @@ CREATE TABLE `token_table` (
   `user_id` int(11) NOT NULL,
   `token_code` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `token_table`
+--
+
+INSERT INTO `token_table` (`token_id`, `user_id`, `token_code`) VALUES
+(2, 2, '914092d53cd142f2d3b4d940a8dc9401753f46ce'),
+(5, 2, '525fcb46681fb08235258aff27e43edd95a6ab6b'),
+(6, 4, '11ecd4e00b9cbdf36be00bb59647940d366e8a12'),
+(7, 5, '20f27f6193bade5784dc09bc8be4f64f24305611'),
+(8, 3, '155bfd9504ca1c4d8bb816aa4bcc49945ba51d81');
 
 -- --------------------------------------------------------
 
@@ -128,11 +177,20 @@ CREATE TABLE `user_table` (
 
 INSERT INTO `user_table` (`user_id`, `user_name`, `user_email`, `user_password`, `user_address`, `user_phone`, `user_level`, `user_status`, `user_image`) VALUES
 (1, 'Admin Akuberi', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 'Jl.Serpong Raya', '08123456789', 1, 1, 'defaultuser.jpg'),
-(2, 'User Akuberi', 'user@user.com', 'ee11cbb19052e40b07aac0ca060c23ee', 'Jl.Serpong Raya', '08123456789', 2, 1, 'defaultuser.jpg');
+(2, 'User Akuberi', 'user@user.com', 'ee11cbb19052e40b07aac0ca060c23ee', 'Jl.Serpong Raya', '08123456789', 2, 1, 'defaultuser.jpg'),
+(3, 'Russell  Raimundo', 'raimundorussell@gmail.com', 'fece7a3025a1cfdaaa5b864fa10b3e96', 'asdasdasd', '08123123', 2, 1, 'defaultuser.jpg'),
+(4, 'Roger Marino', 'roger@gmail.com', 'fece7a3025a1cfdaaa5b864fa10b3e96', 'Jl.Sermasdasdasds', '081316105021', 2, 1, 'defaultuser.jpg'),
+(5, 'Felly  Zefanya', 'felly@gmail.com', 'fece7a3025a1cfdaaa5b864fa10b3e96', 'aseloleeeeeeeasdasd as asdas ds', '0811312312', 2, 1, 'defaultuser.jpg');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `bank_table`
+--
+ALTER TABLE `bank_table`
+  ADD PRIMARY KEY (`bank_id`);
 
 --
 -- Indexes for table `broadcast_table`
@@ -181,6 +239,12 @@ ALTER TABLE `user_table`
 --
 
 --
+-- AUTO_INCREMENT for table `bank_table`
+--
+ALTER TABLE `bank_table`
+  MODIFY `bank_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `broadcast_table`
 --
 ALTER TABLE `broadcast_table`
@@ -190,7 +254,7 @@ ALTER TABLE `broadcast_table`
 -- AUTO_INCREMENT for table `category_table`
 --
 ALTER TABLE `category_table`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `chat_table`
@@ -214,13 +278,13 @@ ALTER TABLE `post_table`
 -- AUTO_INCREMENT for table `token_table`
 --
 ALTER TABLE `token_table`
-  MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_table`
 --
 ALTER TABLE `user_table`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -180,6 +180,25 @@
 			echo json_encode($data);
 		}
 
+//================================USER PAGE==============================================================================
+
+
+
+		//Menampilkan jenis kategori pada halaman user
+		public function showcategories(){
+			$query = mysqli_query($this->connection,"SELECT * FROM category_table");
+
+	        while($row = mysqli_fetch_assoc($query)){
+	        
+	        	echo '
+
+	        		<option value="'.$row['category_id'].'">'.$row['category_name'].'</option>
+
+	        	';
+
+	        }
+		}
+
 		//Menampilkan jenis bank pada modal media
 		public function showbank(){
 			$query = mysqli_query($this->connection,"SELECT * FROM bank_table");
@@ -211,7 +230,8 @@
 			echo json_encode($data);
 		}
 
-	
+//================================USER PAGE===========================================================================
+
 
 
 	}

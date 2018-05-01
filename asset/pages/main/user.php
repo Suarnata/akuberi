@@ -44,20 +44,19 @@
     height: 32px;
     margin: 0px 4px 0px;
     color: #696969;
-    font-family: Palanquin;" class="" name="">
-              <option value="[object Object]">Kesehatan</option>
-              <option value="[object Object]">Kurang Mampu</option>
+    font-family: Palanquin;" class="" name="kategori">
+              <option value="">...</option>
+              <?php
+                $process->showcategories();
+              ?>
             </select>
           </div>
 
           <div class="col-6 time-post-u">
             <select style="         width: 242px;outline: none;border: solid 2px #e8e8e8;border-radius: 2px;height: 32px;margin: 0px 4px 0px;color: #696969;font-family: Palanquin;  margin-left: 8px;" class="" name="">
-              <option value="[object Object]">1 Hari</option>
               <option value="[object Object]">3 Hari</option>
               <option value="[object Object]">1 Minggu</option>
               <option value="[object Object]">1 Bulan</option>
-              <option value="[object Object]">3 Bulan</option>
-              <option value="[object Object]">6 Bulan</option>
               <option value="[object Object]">1 Tahun</option>
             </select>
           </div>
