@@ -20,6 +20,10 @@
 				$process->logout();
 			break;
 
+			case 'addpayment':
+				$process->addpayment();
+			break;
+
 		}
 
 	}else{

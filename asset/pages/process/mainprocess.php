@@ -199,6 +199,18 @@
 	        }
 		}
 
+		//Memasukkan informasi sementara no rekening dalam media
+		public function addpayment(){
+			if(!empty($_POST['rekening'])&&!empty($_POST['bank'])){
+				setcookie('rekening_temp',$_POST['rekening'],time() + (60 * 60 * 24 * 7), '/', NULL, NULL, TRUE);
+				setcookie('bank_temp',$_POST['bank'],time() + (60 * 60 * 24 * 7), '/', NULL, NULL, TRUE);
+				$data = ['notif'=>'success'];
+			}else{
+				$data = ['notif'=>'empty'];
+			}
+			echo json_encode($data);
+		}
+
 	
 
 

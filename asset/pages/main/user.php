@@ -22,7 +22,7 @@
     border-radius: 2px;
     height: 20px;
     margin: 4px 4px 0px;
-    padding: 3px;" type="text" name="" value="" placeholder="Judul Galang Dana">
+    padding: 3px;" type="text" name="judul" value="" placeholder="Judul Galang Dana">
           </div>
 
           <div class="col-12 desc-post-u">
@@ -138,7 +138,7 @@
     background-color: #00aeea;
     cursor: pointer;
     font-size: 16px;
-    box-shadow: 0px 2px 8px rgba(0,0,0,.3);" class="col-1 val-s" type="button" name="button">Tambahkan</button>
+    box-shadow: 0px 2px 8px rgba(0,0,0,.3);" class="col-1 val-s" id="addpayment" type="button" name="button">Tambahkan</button>
             </div>
           
           

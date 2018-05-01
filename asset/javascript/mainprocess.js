@@ -124,6 +124,8 @@
 		});
 	});
 
+
+	//Proses Logout
 	$("#logout-btn").click(function(e){
 		e.preventDefault();
 		var usertoken = $(this).data('token'); 
@@ -135,6 +137,33 @@
 			success:function(data){
 				if(data.notif=='success'){
 					redirect(base_url);
+				}
+			}
+		});
+	});
+
+	//Proses menyimpan sementara no rekening dan jenis bank pada halaman user
+	var bankid = '';
+	$('.radio-bnk').change(function(){
+		bankid = $(this).val();
+	});
+
+	$("#addpayment").click(function(e){
+		e.preventDefault();
+		var norek = $('input[name=rekening]').val();
+		$.ajax({
+			url:action_url+'addpayment',
+			data:{rekening:norek,bank:bankid},
+			type:'POST',
+			dataType:'json',
+			success:function(data){
+				if(data.notif=='success'){
+					alert("No Rekening Anda Sudah Ditambahkan Silahkan Lanjutkan Pengisian Formulir Penggalangan Dana Kemudian Klik Tombol Post");
+					$('input[name=judul]').focus();
+				}else if(data.notif=='empty'){
+					alert("Gagal!, Pastikan Anda Telah Mengisi Semua Informasi Dengan Benar!");
+				}else{
+					alert("Error!");
 				}
 			}
 		});
