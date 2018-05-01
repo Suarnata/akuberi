@@ -43,8 +43,19 @@
     </div>
   </div><!-- Header --><!-- THIS IS HEADER-->
   <div class="col-12 content-u">
-    <div class="col-3 sidebar-u bg-color1">
+    <div class="col-3 sidebar-u">
       <div class="col-9 sidebar-u-con">
-
+        <div class="col-12 menu-u">
+          <h3><i class=" fas fa-list"> </i>&nbsp; &nbsp; Menu</h3>
+        </div>
+        <div class="col-12 sidebar-u-link">
+          <ul>
+            <li class="active-u"> <a href="#"><i class="fas fa-columns"></i>&nbsp; &nbsp; Beranda</a> </li>
+            <li> <a href="#"><i class="fas fa-ambulance"></i>&nbsp; &nbsp;Donasiku</a> </li>
+            <li> <a href="#"><i class="far fa-user"> </i>&nbsp; &nbsp; Profil</a> </li>
+            <li> <a href="#"><i class="fas fa-cog"></i> &nbsp; &nbsp; Pengaturan</a> </li>
+          </ul>
+        </div>
       </div>
     </div><!-- THIS IS SIDEBAR -->
+    
