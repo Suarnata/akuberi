@@ -29,6 +29,59 @@
 			return $this->base_url;
 		}
 
+		//Memproses gambar sebelum diupload
+		public function image_process($type){
+
+			if(!empty($_FILES['image']['name'])){
+
+				$image_ext = explode('.', $_FILES['image']['name']);
+				$image_whitelist = array('jpg','png','jpeg','gif');
+				$data = array();
+
+				if(in_array(strtolower($image_ext[1]), $image_whitelist)){
+					
+					if($_FILES['image']['size']<=100000000){
+
+						if($_FILES['image']['error']==0){	
+							$data['image_name'] = uniqid()."_".$image_ext[0].".".$image_ext[1];
+
+							switch($type){
+								case 'storepost':
+									$moveurl = "../../../asset/image/post/".$data['image_name'];
+								break;
+							}
+
+							move_uploaded_file($_FILES['image']['tmp_name'],$moveurl);
+							$data['notif'] = 'success';
+
+						}else{
+							$data['notif'] = 'err-img';
+						}
+						
+					}else{
+						$data['notif'] = 'err-size';
+					}
+				
+				}else{
+					$data['notif'] = 'err-ext';
+				}
+
+			}else{
+				
+				switch($type){
+					case 'storepost':
+						$data['image_name'] = "defaultpost.jpg";
+						$data['notif']="success";
+					break;
+				}
+
+			}
+
+				return $data;
+		}
+
+//==============================AUTHENTICATION===========================================================================
+
 		//Fungsi Pendaftaran User
 		public function register(){
 
@@ -179,11 +232,9 @@
 
 			echo json_encode($data);
 		}
+//=========================== / AUTHENTICATION===========================================================================
 
 //================================USER PAGE==============================================================================
-
-
-
 		//Menampilkan jenis kategori pada halaman user
 		public function showcategories(){
 			$query = mysqli_query($this->connection,"SELECT * FROM category_table");
@@ -230,7 +281,20 @@
 			echo json_encode($data);
 		}
 
-//================================USER PAGE===========================================================================
+		public function validatepost(){
+			echo $this->session_check()['user_id'];
+			echo $_COOKIE['rekening_temp'];
+			echo $_COOKIE['bank_temp'];
+
+			echo '<pre>';
+				print_r($_POST);
+			echo '</pre>';
+		}
+
+		public function storepost($image){
+			$this->validatepost();
+		}
+//=============================== / USER PAGE============================================================================
 
 
 

@@ -169,6 +169,35 @@
 		});
 	});
 
+	//Proses upload post
+	$("#postform").submit(function(e){
+		e.preventDefault();
+		$.ajax({
+			url:action_url+'storepost',
+			data:new FormData(this),
+			processData:false,
+			contentType:false,
+			type:'POST',
+			dataType:'json',
+			success:function(data){
+				switch(data.notif){
+					case "err-ext":
+						alert("Gambar Hanya Boleh Berupa .jpg, .png, dan .gif!");
+					break;
+
+					case "err-size":
+						alert("Gambar Tidak Boleh Melebihi 100Mb");
+					break;
+
+					case "err-img":
+						alert("Terjadi Kesalahan Dalam Memproses Gambar Anda, Silahkan Ganti Gambar");
+					break;
+				}
+			}
+		});
+
+	});
+
 
 
 
