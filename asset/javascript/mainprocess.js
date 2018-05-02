@@ -207,6 +207,13 @@
 
 					case "success":
 						alert("Selamat, Penggalangan Dana Telah Berhasil Dibuat!, Anda Dapat Melihatnya Di Beranda Atau Di Halaman Donasiku");
+						$.ajax({
+							url:action_url+'showposts',
+							type:'GET',
+							success:function(data){
+								$("#postsection").html(data);
+							}
+						});
 					break;
 				}
 			}

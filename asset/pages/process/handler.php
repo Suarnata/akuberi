@@ -32,6 +32,10 @@
 				}
 			break;
 
+			case 'showposts':
+				$process->showposts();
+			break;
+
 		}
 
 	}else{
