@@ -220,7 +220,14 @@
       </div>
 
       <?php
-        $process->showposts();
+
+        if(isset($_GET['search'])&&!empty($_GET['search'])){
+          $search = $_GET['search'];
+        }else{
+          $search="";
+        }
+
+        $process->showposts($search);
       ?>
 
      </div> <!-- / post section -->

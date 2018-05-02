@@ -33,7 +33,7 @@
 			break;
 
 			case 'showposts':
-				$process->showposts();
+				$process->showposts("");
 			break;
 
 		}

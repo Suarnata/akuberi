@@ -221,6 +221,13 @@
 
 	});
 
+	$("#searchinput").keyup(function(e){
+		var searchvalue = $(this).val();
+		if(e.keyCode==13){
+			window.location=base_url+'asset/pages/main/user.php?search='+searchvalue;
+		}
+	});
+
 
 
 
