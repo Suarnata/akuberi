@@ -26,7 +26,7 @@
 
 			case 'storepost':
 				if($process->image_process("storepost")['notif']=="success"){
-					$process->storepost($process->image_process("storepost")['image_name']);
+					$process->storepost($process->get_imgname());
 				}else{
 					echo json_encode($process->image_process("storepost"));
 				}

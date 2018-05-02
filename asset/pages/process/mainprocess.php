@@ -4,6 +4,7 @@
 
 		private $base_url = "http://localhost/akuberi/";
 		public $connection;
+		public $img_name;
 
 		//Fungsi Yang Menjalankan Perintah Dasar Ke Semua Halaman
 		function __construct(){
@@ -29,6 +30,16 @@
 			return $this->base_url;
 		}
 
+		public function dd($array){
+			echo '<pre>';
+				print_r($array);
+			echo '</pre>';
+		}
+
+		public function get_imgname(){
+			return $this->img_name;
+		}
+
 		//Memproses gambar sebelum diupload
 		public function image_process($type){
 
@@ -42,8 +53,9 @@
 					
 					if($_FILES['image']['size']<=100000000){
 
-						if($_FILES['image']['error']==0){	
-							$data['image_name'] = uniqid()."_".$image_ext[0].".".$image_ext[1];
+						if($_FILES['image']['error']==0){
+							$test = bin2hex(openssl_random_pseudo_bytes(8));	
+							$data['image_name'] = $test."_".$image_ext[0].".".$image_ext[1];
 
 							switch($type){
 								case 'storepost':
@@ -52,6 +64,8 @@
 							}
 
 							move_uploaded_file($_FILES['image']['tmp_name'],$moveurl);
+
+							$this->img_name = $data['image_name'];
 							$data['notif'] = 'success';
 
 						}else{
@@ -70,7 +84,7 @@
 				
 				switch($type){
 					case 'storepost':
-						$data['image_name'] = "defaultpost.jpg";
+						$this->img_name = "defaultpost.jpg";
 						$data['notif']="success";
 					break;
 				}
@@ -282,17 +296,101 @@
 		}
 
 		public function validatepost(){
-			echo $this->session_check()['user_id'];
-			echo $_COOKIE['rekening_temp'];
-			echo $_COOKIE['bank_temp'];
+			$data = array();
+			if(isset($_COOKIE['rekening_temp'])&&isset($_COOKIE['bank_temp'])&&!empty($_COOKIE['rekening_temp'])&&!empty($_COOKIE['bank_temp'])){
 
-			echo '<pre>';
-				print_r($_POST);
-			echo '</pre>';
+				$data['norek'] = $_COOKIE['rekening_temp'];
+				$data['bank'] = $_COOKIE['bank_temp'];
+
+				if(!empty($_POST['judul'])&&!empty($_POST['deskripsi'])&&!empty($_POST['kategori'])&&!empty($_POST['durasi'])){
+
+					$data['judul'] = $_POST['judul'];
+					$data['deskripsi'] = $_POST['deskripsi'];
+					$data['kategori'] = $_POST['kategori'];
+					$data['durasi'] = $_POST['durasi'];
+					$data['notif'] = "success";
+
+					switch($data['durasi']){
+						case '3h':
+							$date = date("Y-m-d");
+							$date = strtotime(date("Y-m-d", strtotime($date)) . " +3 day");
+						break;
+
+						case '1m':
+							$date = date("Y-m-d");
+							$date = strtotime(date("Y-m-d", strtotime($date)) . " +1 week");
+						break;
+
+						case '1b':
+							$date = date("Y-m-d");
+							$date = strtotime(date("Y-m-d", strtotime($date)) . " +1 month");
+						break;
+
+						case '1t':
+							$date = date("Y-m-d");
+							$date = strtotime(date("Y-m-d", strtotime($date)) . " +1 year");
+						break;
+
+						case '10t':
+							$date = date("Y-m-d");
+							$date = strtotime(date("Y-m-d", strtotime($date)) . " +10 year");
+						break;
+
+					}
+
+					$data['durasi'] = date("Y-m-d",$date);
+
+				}else{
+					$data['notif'] = 'err-empty';
+				}
+
+			}else{
+				$data['notif'] = 'err-account';
+			}
+
+
+			return $data;
 		}
 
 		public function storepost($image){
-			$this->validatepost();
+			$dt = $this->validatepost();
+			$dt['image'] = $image;
+			$dt['userid'] = $this->session_check()['user_id'];
+			$data = array();
+
+			switch($dt['notif']){
+
+				case 'success':
+					
+					$query = mysqli_query($this->connection,"INSERT INTO post_table VALUES(
+						NULL,
+						'".$dt['userid']."',
+						'".$dt['kategori']."',
+						'".$dt['judul']."',
+						'".$dt['deskripsi']."',
+						'".$dt['image']."',
+						1,
+						'".$dt['durasi']."',
+						0,
+						'".$dt['bank']."',
+						'".$dt['norek']."'
+				)");
+
+					if($query){
+						setcookie("rekening_temp", "", time() - 7200,'/');
+						setcookie("bank_temp", "", time() - 7200,'/');
+						$data['notif'] = 'success';
+					}else{
+						$data['notif'] = 'err-db';
+					}
+
+				break;
+
+				default:
+				$data['notif'] = $dt['notif'];
+			}
+
+			echo json_encode($data);
 		}
 //=============================== / USER PAGE============================================================================
 

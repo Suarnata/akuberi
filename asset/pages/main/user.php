@@ -152,16 +152,26 @@
         </div>
       </div>
 
+
+      <?php
+
+      $query = mysqli_query($process->connection,"SELECT post_table.*, category_table.*  FROM post_table
+          INNER JOIN category_table ON post_table.category_id = category_table.category_id
+          ORDER BY post_table.post_id DESC
+        ");
+
+      while($row = mysqli_fetch_assoc($query)){
+        echo '
       <div class="col-12 post-u">
         <div class="col-12 box-post-u">
           <div class="col-4 box-post-con bg-color1">
-            <img style="width: 100%;" src="<?php echo $process->base_url();?>/asset/image/website/photo.png">
+            <img style="width: 100%; height:100%;" src="'.$process->base_url().'asset/image/post/'.$row['post_img'].'">
           </div>
           <div class="col-8 box-post-con">
             <div class="col-6">
               <h1 style="    font-size: 24px;
     transform: translate(25px, 10px);
-    color: #00aeea;">Title Only Title </h1>       
+    color: #00aeea;">'.$row['post_title'].'</h1>       
             </div>
             
             <div class="col-6">
@@ -174,26 +184,26 @@
               <h2 style="     font-size: 17px;
     width: 85%;
     transform: translate(25px,5px);
-    opacity: 0.5;">Kesehatan</h2>
+    opacity: 0.5;">'.$row['category_name'].'</h2>
             </div>
             
             <div class="col-12">
               <h2 style="      opacity: .8;
     font-size: 14px;
     width: 90%;
-    transform: translate(25px,16px);">Yang pertama Masyarakatnya Ramah, Pantainya Indah, Kaya Sejarah dan Budaya, Tempat Belanja yang beraneka ragam, Penginapan yang super nyaman dan berdisain Klasik</h2>
+    transform: translate(25px,16px);">'.$row['post_desc'].'</h2>
             </div>
             
             <div class="col-2plus">
               <h2 style="     font-size: 17px;
     transform: translate(25px,24px);
-    opacity: .7;">6 Hari</h2>
+    opacity: .7;">'.date('d-m-Y',strtotime($row['post_due'])).'</h2>
             </div>
             
             <div class="col-3plus">
             <h2 style="    font-size: 17px;
     transform: translate(25px,24px);
-    opacity: .7;">Rp. 12.513.234,-</h2>
+    opacity: .7;">Rp '.number_format($row['post_revenue'],2,",",".").'</h2>
             </div>
             
             <div class="col-3 donate">
@@ -216,133 +226,12 @@
         </div>
       </div>
 
-      <div class="col-12 post-u">
-        <div class="col-12 box-post-u">
-          <div class="col-4 box-post-con bg-color1">
-            <img style="width: 100%;" src="<?php echo $process->base_url();?>/asset/image/website/photo.png">
-          </div>
-          <div class="col-8 box-post-con">
-            <div class="col-6">
-              <h1 style="    font-size: 24px;
-    transform: translate(25px, 10px);
-    color: #00aeea;">Title Only Title </h1>       
-            </div>
-            
-            <div class="col-6">
-               <button class="bullet" type="button">
-                 <span></span>
-               </button>
-            </div>
-            
-            <div class="col-12">
-              <h2 style="     font-size: 17px;
-    width: 85%;
-    transform: translate(25px,5px);
-    opacity: 0.5;">Kesehatan</h2>
-            </div>
-            
-            <div class="col-12">
-              <h2 style="      opacity: .8;
-    font-size: 14px;
-    width: 90%;
-    transform: translate(25px,16px);">Yang pertama Masyarakatnya Ramah, Pantainya Indah, Kaya Sejarah dan Budaya, Tempat Belanja yang beraneka ragam, Penginapan yang super nyaman dan berdisain Klasik</h2>
-            </div>
-            
-            <div class="col-2plus">
-              <h2 style="     font-size: 17px;
-    transform: translate(25px,24px);
-    opacity: .7;">6 Hari</h2>
-            </div>
-            
-            <div class="col-3plus">
-            <h2 style="    font-size: 17px;
-    transform: translate(25px,24px);
-    opacity: .7;">Rp. 12.513.234,-</h2>
-            </div>
-            
-            <div class="col-3 donate">
-             <h2 style="    font-size: 14px;transform: translate(49px,60px);"><a style="background-color: #00aeea;
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 20px;
-    box-shadow: 0px 1px 2px rgba(0,0,0,.4);" href=""> Donasi</a></h2>
-           </div>
+      ';
 
-           <div class="col-3 look">
-             <h2 style="    font-size: 14px;transform: translate(26px,60px);"><a style="    background-color: #2b5f67;
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 25px;
-    box-shadow: 0px 1px 2px rgba(0,0,0,.4);" href=""> Lihat</a></h2>
-            </div>
-             
-          </div>
-        </div>
-      </div>
+    }
 
-      <div class="col-12 post-u">
-        <div class="col-12 box-post-u">
-          <div class="col-4 box-post-con bg-color1">
-            <img style="width: 100%;" src="<?php echo $process->base_url();?>/asset/image/website/photo.png">
-          </div>
-          <div class="col-8 box-post-con">
-            <div class="col-6">
-              <h1 style="    font-size: 24px;
-    transform: translate(25px, 10px);
-    color: #00aeea;">Title Only Title </h1>       
-            </div>
-            
-            <div class="col-6">
-               <button class="bullet" type="button">
-                 <span></span>
-               </button>
-            </div>
-            
-            <div class="col-12">
-              <h2 style="     font-size: 17px;
-    width: 85%;
-    transform: translate(25px,5px);
-    opacity: 0.5;">Kesehatan</h2>
-            </div>
-            
-            <div class="col-12">
-              <h2 style="      opacity: .8;
-    font-size: 14px;
-    width: 90%;
-    transform: translate(25px,16px);">Yang pertama Masyarakatnya Ramah, Pantainya Indah, Kaya Sejarah dan Budaya, Tempat Belanja yang beraneka ragam, Penginapan yang super nyaman dan berdisain Klasik</h2>
-            </div>
-            
-            <div class="col-2plus">
-              <h2 style="     font-size: 17px;
-    transform: translate(25px,24px);
-    opacity: .7;">6 Hari</h2>
-            </div>
-            
-            <div class="col-3plus">
-            <h2 style="    font-size: 17px;
-    transform: translate(25px,24px);
-    opacity: .7;">Rp. 12.513.234,-</h2>
-            </div>
-            
-            <div class="col-3 donate">
-             <h2 style="    font-size: 14px;transform: translate(49px,60px);"><a style="background-color: #00aeea;
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 20px;
-    box-shadow: 0px 1px 2px rgba(0,0,0,.4);" href=""> Donasi</a></h2>
-           </div>
+      ?>
 
-           <div class="col-3 look">
-             <h2 style="    font-size: 14px;transform: translate(26px,60px);"><a style="    background-color: #2b5f67;
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 25px;
-    box-shadow: 0px 1px 2px rgba(0,0,0,.4);" href=""> Lihat</a></h2>
-            </div>
-             
-          </div>
-        </div>
-      </div>
 
 
     </div><!-- Content Postingan Tengah -->

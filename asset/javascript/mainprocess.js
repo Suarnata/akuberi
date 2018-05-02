@@ -192,6 +192,22 @@
 					case "err-img":
 						alert("Terjadi Kesalahan Dalam Memproses Gambar Anda, Silahkan Ganti Gambar");
 					break;
+
+					case "err-account":
+						alert("Anda Belum Memasukkan Informasi Rekening , Silahkan Masukkan Dengan Menekan Tombol Media");
+					break;
+
+					case "err-empty":
+						alert("Pastikan Anda Telah Mengisi Semua Informasi Pada Formulir!");
+					break;
+
+					case "err-db":
+						alert("Terjadi Kesalahan Ketika Memasukkan Data Ke Database");
+					break;
+
+					case "success":
+						alert("Selamat, Penggalangan Dana Telah Berhasil Dibuat!, Anda Dapat Melihatnya Di Beranda Atau Di Halaman Donasiku");
+					break;
 				}
 			}
 		});
