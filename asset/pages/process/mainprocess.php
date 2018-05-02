@@ -1,10 +1,10 @@
-<?php
+ <?php
 	
 	class akuberi{
 
-		private $base_url = "http://localhost/akuberi/";
 		public $connection;
-		public $img_name;
+		private $base_url = "http://localhost/akuberi/";
+		private $img_name;
 
 		//Fungsi Yang Menjalankan Perintah Dasar Ke Semua Halaman
 		function __construct(){
