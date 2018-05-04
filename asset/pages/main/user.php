@@ -2,7 +2,17 @@
    
     <div class="col-6 posting-u ">
       <div class="col-12 banner-u"> 
+        <div class="col-12 carousel-cell">
+          <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg">
+        </div>
 
+        <div class="col-12 carousel-cell">
+          <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-6.jpg">
+        </div>
+
+        <div class="col-12 carousel-cell">
+          <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-4.jpg">
+        </div>
       </div>  
       <div class="col-12 post-u-con">
         <div class="col-3 push">
@@ -72,28 +82,30 @@
     color: #fff;
     float: right;
     margin: 4px 4px 0px 0px;
-    background-color: #00aeea;cursor: pointer;" class="col-1" type="submit" name="button">Post</button> 
+    background-color: #00aeea;cursor: pointer;box-shadow: 0px 2px 6px rgba(0,0,0,.5);" class="col-1 val-s1" type="submit" name="button"><i class="far fa-paper-plane"></i>&nbsp;&nbsp;Kirim</button> 
             <button style="     border: none;
-    width: 80px;
+            outline: none;
+    width: 40px;
     height: 33px;
     font-family: palanquin;
     border-radius: 3px;
     color: #fff;
     float: right;
     margin: 4px 4px 0px 0px;
-    background-color: #ff1215;cursor: pointer;" class="col-1" type="reset" name="button">Delete</button>
+    background-color: #f65061;cursor: pointer;
+    box-shadow: 0px 2px 6px rgba(0,0,0,.5);" class="col-1 val-s1" type="reset" name="button"><i class="fas fa-trash"></i></button>
        
    
-          <button style="     border: none;
+          <button style=" border: none;
     outline: none;
-    width: 80px;
+    width: 40px;
     height: 33px;
     font-family: palanquin;
     border-radius: 3px;
-    color: #fff;
+    color: #696969;
     float: right;
     margin: 4px 4px 0px 0px;
-    background-color: #696969;cursor: pointer;" class="col-1 val-s" type="button" name="button">Media</button>
+    background-color: #f0f0f0;cursor: pointer;box-shadow: 0px 1px 6px rgba(0,0,0,.3);" class="col-1 val-s" type="button" name="button"><i class="far fa-credit-card"></i></button>
           </div>
         </div>
       </div>
@@ -154,7 +166,7 @@
       <div class="col-12 post-u">
         <div class="col-12 box-post-u">
           <div class="col-4 box-post-con bg-color1">
-            <img style="width: 100%;" src="<?php echo $process->base_url();?>/asset/image/website/photo.png">
+            <img style="width: 100%; min-height:  100%;" src="<?php echo $process->base_url();?>/asset/image/website/photo.png">
           </div>
           <div class="col-8 box-post-con">
             <div class="col-6">
@@ -166,47 +178,72 @@
                <button class="bullet" type="button">
                  <span></span>
                </button>
+             
             </div>
+             <div class="bullet-menu">
+              <ul>
+                <li><a href="">Bagikan</a></li>
+                <li><a href="">Hilangkan</a></li>
+              </ul>
+              </div> 
+
             <div class="col-12">
               <h2 style="     font-size: 17px;
     width: 85%;
     transform: translate(25px,5px);
     opacity: 0.5;">Kesehatan</h2>
             </div>
+              
+          
+            <div class="col-12">
+              <h2 style="     font-size: 12px;
+    width: 85%;
+    transform: translate(25px,0px);
+    opacity: 0.5;">User Name</h2>
+            </div>
             <div class="col-12">
               <h2 style="      opacity: .8;
     font-size: 14px;
     width: 90%;
-    transform: translate(25px,16px);">Yang pertama Masyarakatnya Ramah, Pantainya Indah, Kaya Sejarah dan Budaya, Tempat Belanja yang beraneka ragam, Penginapan yang super nyaman dan berdisain Klasik</h2>
+    transform: translate(25px,10px);">Yang pertama Masyarakatnya Ramah, Pantainya Indah, Kaya Sejarah dan Budaya, Tempat Belanja yang beraneka ragam, Penginapan yang super nyaman dan berdisain Klasik</h2>
             </div>
-            <div class="col-2plus">
+            <div class="col-3">
               <h2 style="     font-size: 17px;
-    transform: translate(25px,24px);
+    transform: translate(25px,15px);
     opacity: .7;">6 Hari</h2>
             </div>
-            <div class="col-3plus">
+            <div class="col-9">
             <h2 style="    font-size: 17px;
-    transform: translate(25px,24px);
+    transform: translate(25px,15px);
     opacity: .7;">Rp. 12.513.234,-</h2>
             </div>
-            <div class="col-3 donate">
-             <h2 style="    font-size: 14px;transform: translate(49px,60px);"><a style="background-color: #00aeea;
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 20px;
-    box-shadow: 0px 1px 2px rgba(0,0,0,.4);" href=""> Donasi</a></h2>
-           </div>
-           <div class="col-3 look">
-             <h2 style="    font-size: 14px;transform: translate(26px,60px);"><a style="    background-color: #2b5f67;
+            <div class="col-12">
+              
+                <div class="col-3 donate">
+              <h2 style="    font-size: 14px;transform: translate(25px,35px);"><a style="    background-color:#00aeea;
     text-decoration: none;
     color: #fff;
     padding: 5px 25px;
-    box-shadow: 0px 1px 2px rgba(0,0,0,.4);" href=""> Lihat</a></h2>
+    
+    box-shadow: 0px 2px 6px rgba(0,0,0,.5);
+    " href=""> Donasi</a></h2>
+                </div>
+                <div class="col-9 look">
+              <h2 style="    font-size: 14px;transform: translate(15px,35px);"><a style="    background-color:#fff ;
+    text-decoration: none;
+    color: #808080;
+    padding: 5px 25px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,.5);
+    " href="">Lihat <i class="fas fa-eye"></i></a></h2>
+                </div>
+
             </div>
+       
              
           </div>
         </div>
       </div>
+      
 
 
     </div><!-- Content Postingan Tengah -->

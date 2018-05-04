@@ -17,28 +17,58 @@
       </div>
       <div class="col-6 logo-u2">
         <div class="col-7plus link">
-          <ul>
+          <!--<ul>
             <li><a href="#">Donasi</a></li>
             <li><a href="#">Galang Dana</a></li>
-          </ul>
+          </ul>-->
           <div class="bell">
-            <a href="#"><i class="far fa-bell"></i></a>
+           <!-- <a href="#"><i class="far fa-bell"></i></a>-->
+          </div>
+          <div class="ntf">
+            <div class="col-10 ntf-title">
+              
+            </div>
+            <div class="">
+              
+            </div>
           </div>
         </div>
         <div class="col-3plus profil-u">
-          <div class="col-6 name-profil">
-            <h3 style="    font-size: 18px;transform: translate(-2%,40%);text-align: right;"><a href="#" style="text-decoration: none;color: #00aeea;"><?php echo substr($userInfo['user_name'],0,8); ?></a></h3>
-            <h5 style="    font-size: 12px;text-align: right;transform: translate(-2%,5%);color: #00aeea;opacity: .5;">online</h5>
+          <div class="col-8plus name-profil">
+            <h3 style="      font-size: 18px;
+    transform: translate(-10%,40%);
+    text-align: right;"><a href="#" style="text-decoration: none;color: #00aeea;"><?php echo substr($userInfo['user_name'],0,8); ?></a></h3>
+            <h5 style="  font-size: 12px;
+    text-align: right;
+    transform: translate(-10%,5%);
+    color: #00aeea;
+    opacity: .5;">online</h5>
           </div>
-          <div class="col-6 img-profil">
-            <img style="width: 40%;height: 54%;border-radius: 50%;transform: translate(75%,45%);" src="<?php echo $process->base_url(); ?>asset/image/user/<?php echo $userInfo['user_image']; ?>" alt="">
+          <div class="col-3plus img-profil">
+            <img style="     width: 55%;
+    height: 43%;
+    border-radius: 50%;
+    transform: translate(35%,70%);" src="<?php echo $process->base_url(); ?>asset/image/user/<?php echo $userInfo['user_image']; ?>" alt="">
           </div>
         </div>
         <div class="col-1pluss bar">
-          <button class="burger1" type="button" name="button">
+         <button class="burger1" type="button" name="button">
             <span></span>
           </button>
+         <!-- <a style="    display: block;
+    text-decoration: none;
+    color: #00aeea;
+    font-size: 35px;
+    transform: translate(20px,17px);" href=""><i class="fas fa-sign-out-alt"></i></a>-->
         </div>
+        <div class="bar1">
+          <ul>
+            <li> <a href="#">Beranda</a> </li>
+            <li> <a href="#">Donasiku</a> </li>
+            <li> <a href="#">Keluar</a> </li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </div><!-- Header --><!-- THIS IS HEADER-->
