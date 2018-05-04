@@ -24,6 +24,18 @@
 				$process->addpayment();
 			break;
 
+			case 'storepost':
+				if($process->image_process("storepost")['notif']=="success"){
+					$process->storepost($process->get_imgname());
+				}else{
+					echo json_encode($process->image_process("storepost"));
+				}
+			break;
+
+			case 'showposts':
+				$process->showposts("");
+			break;
+
 		}
 
 	}else{

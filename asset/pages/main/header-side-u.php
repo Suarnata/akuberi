@@ -1,11 +1,5 @@
 <?php include 'header.php'; ?>
 
-<?php
-  if($userInfo['user_level']!=2){
-    header("Location:".$process->base_url().'asset/pages/main/login.php');
-  }
-?>
-
 <div class="col-12 u-wrapper">
   <div class="col-12 header-u bg-color3">
     <div class="col-11 content-header">
@@ -13,7 +7,9 @@
         <img style="width:98.5%;    transform: translate(0%,90%);" src="<?php echo $process->base_url();?>/asset/image/website/logo.png" alt="">
       </div>
       <div class="col-4 logo-u ">
-        <input class="search2" type="text" name="search" value="" placeholder="Cari judul, nama penggalang dana">
+  
+          <input id="searchinput" class="search2" type="text" name="search" value="" placeholder="Cari judul, nama penggalang dana">
+  
       </div>
       <div class="col-6 logo-u2">
         <div class="col-7plus link">
@@ -80,10 +76,10 @@
         </div>
         <div class="col-12 sidebar-u-link">
           <ul>
-            <li class="active-u"> <a href="#"><i class="fas fa-columns"></i>&nbsp; &nbsp; Beranda</a> </li>
-            <li> <a href="#"><i class="fas fa-ambulance"></i>&nbsp; &nbsp;Donasiku</a> </li>
-            <li> <a href="#"><i class="far fa-user"> </i>&nbsp; &nbsp; Profil</a> </li>
-            <li> <a href="#"><i class="fas fa-cog"></i> &nbsp; &nbsp; Pengaturan</a> </li>
+            <li id="mnu-beranda"> <a href="user.php"><i class="fas fa-columns"></i>&nbsp; &nbsp; Beranda</a> </li>
+            <li id="mnu-donasil"> <a href="#"><i class="fas fa-ambulance"></i>&nbsp; &nbsp;Donasiku</a> </li>
+            <li id="mnu-profil"> <a href="#"><i class="fas fa-user"></i> &nbsp; &nbsp; Profil</a> </li>
+            <li id="mnu-pengaturan"> <a href="profil.php"><i class="fas fa-cog"></i> &nbsp; &nbsp; Pengaturan</a> </li>
           </ul>
         </div>
       </div>

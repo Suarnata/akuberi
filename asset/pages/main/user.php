@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        <form>
+        <form method="POST" id="postform" enctype="multipart/form-data">
 
         <div class="col-9 push bg-color3">
           
@@ -32,7 +32,7 @@
     border-radius: 2px;
     height: 20px;
     margin: 4px 4px 0px;
-    padding: 3px;" type="text" name="judul" value="" placeholder="Judul Galang Dana">
+    padding: 3px;" type="text" name="judul" value="" placeholder="Judul Galang Dana" required>
           </div>
 
           <div class="col-12 desc-post-u">
@@ -43,7 +43,7 @@
     margin: 4px 4px 0px;
     overflow: hidden;
     resize: none;
-    padding: 3px;" name="name" rows="5" cols="70" placeholder="Deskripsi Galang Dana"></textarea>
+    padding: 3px;" name="deskripsi" rows="5" cols="70" placeholder="Deskripsi Galang Dana" required></textarea>
           </div>
 
           <div class="col-6 category-post-u">
@@ -54,8 +54,7 @@
     height: 32px;
     margin: 0px 4px 0px;
     color: #696969;
-    font-family: Palanquin;" class="" name="kategori">
-              <option value="">...</option>
+    font-family: Palanquin;" class="" name="kategori" required>
               <?php
                 $process->showcategories();
               ?>
@@ -63,11 +62,12 @@
           </div>
 
           <div class="col-6 time-post-u">
-            <select style="         width: 242px;outline: none;border: solid 2px #e8e8e8;border-radius: 2px;height: 32px;margin: 0px 4px 0px;color: #696969;font-family: Palanquin;  margin-left: 8px;" class="" name="">
-              <option value="[object Object]">3 Hari</option>
-              <option value="[object Object]">1 Minggu</option>
-              <option value="[object Object]">1 Bulan</option>
-              <option value="[object Object]">1 Tahun</option>
+            <select style="         width: 242px;outline: none;border: solid 2px #e8e8e8;border-radius: 2px;height: 32px;margin: 0px 4px 0px;color: #696969;font-family: Palanquin;  margin-left: 8px;" class="" name="durasi" required>
+              <option value="3h">3 Hari</option>
+              <option value="1m">1 Minggu</option>
+              <option value="1b">1 Bulan</option>
+              <option value="1t">1 Tahun</option>
+              <option value="10t">10 Tahun</option>
             </select>
           </div>
 
@@ -110,9 +110,11 @@
         </div>
       </div>
 
+    </form>
+
       <div class="val-byr">
         <div class="val-con-byr">
-          <form name="" action="" method="">
+
             <h2 style="    font-size: 25px;
     color: #00aeea;
     width: 30%;
@@ -158,10 +160,10 @@
               <button class="val-toggle" type="button">
                 <span></span>
               </button>
-            
-          </form>
+        
         </div>
       </div>
+
 
       <div class="col-12 post-u">
         <div class="col-12 box-post-u">
@@ -245,10 +247,27 @@
       </div>
       
 
+    <!-- Post Section -->
+    <div id="postsection">
+      <?php
+
+        if(isset($_GET['search'])&&!empty($_GET['search'])){
+          $search = $_GET['search'];
+        }else{
+          $search="";
+        }
+
+
+        $process->showposts($search);
+      ?>
+     </div> 
+     <!-- / post section -->
 
     </div><!-- Content Postingan Tengah -->
 
     <script type="text/javascript">
+
+      $("#mnu-beranda").addClass('active-u');
 
       $(document).on('click','.picture-s',function(){
         $('#inputfile').click();
@@ -279,4 +298,5 @@
       });
 
     </script>
+
 <?php include 'chat-footer-u.php';?>

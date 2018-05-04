@@ -169,6 +169,65 @@
 		});
 	});
 
+	//Proses upload post
+	$("#postform").submit(function(e){
+		e.preventDefault();
+		$.ajax({
+			url:action_url+'storepost',
+			data:new FormData(this),
+			processData:false,
+			contentType:false,
+			type:'POST',
+			dataType:'json',
+			success:function(data){
+				switch(data.notif){
+					case "err-ext":
+						alert("Gambar Hanya Boleh Berupa .jpg, .png, dan .gif!");
+					break;
+
+					case "err-size":
+						alert("Gambar Tidak Boleh Melebihi 100Mb");
+					break;
+
+					case "err-img":
+						alert("Terjadi Kesalahan Dalam Memproses Gambar Anda, Silahkan Ganti Gambar");
+					break;
+
+					case "err-account":
+						alert("Anda Belum Memasukkan Informasi Rekening , Silahkan Masukkan Dengan Menekan Tombol Media");
+					break;
+
+					case "err-empty":
+						alert("Pastikan Anda Telah Mengisi Semua Informasi Pada Formulir!");
+					break;
+
+					case "err-db":
+						alert("Terjadi Kesalahan Ketika Memasukkan Data Ke Database");
+					break;
+
+					case "success":
+						alert("Selamat, Penggalangan Dana Telah Berhasil Dibuat!, Anda Dapat Melihatnya Di Beranda Atau Di Halaman Donasiku");
+						$.ajax({
+							url:action_url+'showposts',
+							type:'GET',
+							success:function(data){
+								$("#postsection").html(data);
+							}
+						});
+					break;
+				}
+			}
+		});
+
+	});
+
+	$("#searchinput").keyup(function(e){
+		var searchvalue = $(this).val();
+		if(e.keyCode==13){
+			window.location=base_url+'asset/pages/main/user.php?search='+searchvalue;
+		}
+	});
+
 
 
 

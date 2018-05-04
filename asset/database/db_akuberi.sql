@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2018 at 01:05 PM
+-- Generation Time: May 02, 2018 at 07:47 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -124,11 +124,20 @@ CREATE TABLE `post_table` (
   `post_desc` text NOT NULL,
   `post_img` text NOT NULL,
   `post_status` int(11) NOT NULL,
-  `post_due` datetime NOT NULL,
+  `post_due` date NOT NULL,
   `post_revenue` int(11) NOT NULL,
   `bank_id` int(11) NOT NULL,
   `post_rek` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `post_table`
+--
+
+INSERT INTO `post_table` (`post_id`, `user_id`, `category_id`, `post_title`, `post_desc`, `post_img`, `post_status`, `post_due`, `post_revenue`, `bank_id`, `post_rek`) VALUES
+(1, 3, 5, 'Kerasukan Roh Kotak Amal', 'ayo gaes bantu teman kita yang sedang kerasukan roh kotak amal yang merindukan cintanya', '264a9cc024863388_295694.jpg', 1, '2028-05-02', 0, 5, '6112531623412'),
+(2, 3, 6, 'Kejepit Kerudung Janda', 'teman kami terjepit jiwa ny ayo bantu dia', '66dd224c2e6f750b_26484.jpg', 1, '2028-05-02', 0, 4, '8123771234'),
+(3, 3, 3, 'Anak Genduruwo Yang Terlantar', 'ada anak genduruwo yang tidak dianggap oleh kedua orangtuanya ayo bantu dia!', 'defaultpost.jpg', 1, '2018-06-02', 0, 3, '234234234324234324');
 
 -- --------------------------------------------------------
 
@@ -272,7 +281,7 @@ ALTER TABLE `notification_table`
 -- AUTO_INCREMENT for table `post_table`
 --
 ALTER TABLE `post_table`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `token_table`
