@@ -1,9 +1,9 @@
 <?php include 'panel-header.php';?>
 
 <?php
-  /*if($userInfo['user_level']!=1){
+  if($userInfo['user_level']!=1){
     header("Location:".$process->base_url().'asset/pages/main/login.php');
-  }*/
+  }
 ?>
 
           <div class="col-12 col-s-12 content-post-a1">

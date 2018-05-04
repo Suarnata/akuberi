@@ -1,6 +1,15 @@
 <?php
 	require("asset/pages/process/mainprocess.php");
 	$process = new akuberi();
+
+	  if($process->session_check()['login']==true){
+	    $userInfo = $process->session_check();
+	    if($userInfo['user_level']==1){
+	    	header("Location: ".$process->base_url().'asset/pages/main/admin.php');
+	    }else{	
+	    	header("Location: ".$process->base_url().'asset/pages/main/user.php');
+	    }
+	  }
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +31,6 @@
     <script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.js"></script>
     <script src="<?php echo $process->base_url(); ?>asset/javascript/flickity.pkgd.min.js"></script>
     <script type="text/javascript">
-    	//azegg
       zero = 0;
       $(document).ready(function(){
         $(window).on('scroll', function(){
@@ -66,7 +74,7 @@
 								<h3 style="text-align:center;"><a href="#" >Contact</a></h3>
 
 							</div>
-							<button class="button-size-4 bg-color3" type="button" name="button">Sign In</button>
+							<a href="<?php echo $process->base_url();?>asset/pages/main/login.php"><button class="button-size-4 bg-color3" type="button" name="button">Sign In</button></a>
 
 						</div>
 					</div>

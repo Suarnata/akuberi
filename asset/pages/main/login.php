@@ -62,7 +62,11 @@
 			<div>
 				<button type="submit" class="google">Google</button>
 			</div>
+
+			<p>Belum Punya Akun? Silahkan <a href="<?php echo $process->base_url(); ?>asset/pages/main/register.php">Daftar</a></p>
+
 		</div>
+
 	</div>
 
 	<script src="<?php echo $process->base_url(); ?>asset/javascript/jquery-2.1.3.min.js"></script>
