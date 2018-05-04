@@ -222,4 +222,7 @@
 
 
     </div><!-- Content Postingan Tengah -->
+    <script type="text/javascript">
+      $("#mnu-beranda").addClass('active-u');
+    </script>
 <?php include 'chat-footer-u.php';?>

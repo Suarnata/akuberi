@@ -12,7 +12,7 @@
               <li id="menu-pengguna"> <a href="pengguna.php"> <i class="fas fa-users"></i> &nbsp;&nbsp; Pengguna </a> </li>
               <li id="menu-list-donasi"> <a href="lis-donasi.php"> <i class="fas fa-ambulance"></i> &nbsp;&nbsp; List-donasi </a> </li>
               <li id="menu-pengumuman"> <a href="pengumuman.php"> <i class="fas fa-clipboard-list"></i> &nbsp;&nbsp;&nbsp;&nbsp; Pengumuman </a> </li>
-              <li id="menu-pengaturan"> <a href="#"> <i class="fas fa-cogs"></i> &nbsp;&nbsp; Pengaturan </a> </li>
+              <li id="menu-pengaturan"> <a href="pengaturan.php"> <i class="fas fa-cogs"></i> &nbsp;&nbsp; Pengaturan </a> </li>
             </ul>
           </div>
         </div>  <!-- Sidebar -->
