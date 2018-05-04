@@ -152,73 +152,8 @@
         </div>
       </div>
 
+    <!-- Post Section -->
     <div id="postsection">
-
-     <!-- Post Statis -->
-      <div class="col-12 post-u">
-        <div class="col-12 box-post-u">
-          <div class="col-4 box-post-con bg-color1">
-            <img style="width: 100%; height:100%;" src="<? echo $process->base_url(); ?>asset/image/website/bca.jpg'">
-          </div>
-          <div class="col-8 box-post-con">
-            <div class="col-6">
-              <h1 style="    font-size: 16px;
-    transform: translate(25px, 10px);
-    color: #00aeea;">Lorem ipsum dolor asdasd asda</h1>       
-            </div>
-            
-            <div class="col-6">
-               <button class="bullet" type="button">
-                 <span></span>
-               </button>
-            </div>
-            
-            <div class="col-12">
-              <h2 style="     font-size: 17px;
-    width: 85%;
-    transform: translate(25px,5px);
-    opacity: 0.5;">Kesehatan</h2>
-            </div>
-            
-            <div class="col-12">
-              <h2 style="      opacity: .8;
-    font-size: 14px;
-    width: 90%;
-    transform: translate(25px,16px);">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. a</h2>
-            </div>
-            
-            <div class="col-2plus">
-              <h2 style="     font-size: 17px;
-    transform: translate(25px,24px);
-    opacity: .7;">03-06-2018</h2>
-            </div>
-            
-            <div class="col-3plus">
-            <h2 style="    font-size: 17px;
-    transform: translate(25px,24px);
-    opacity: .7;">Rp 20.000.000</h2>
-            </div>
-            
-            <div class="col-3 donate">
-             <h2 style="    font-size: 14px;transform: translate(49px,60px);"><a style="background-color: #00aeea;
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 20px;
-    box-shadow: 0px 1px 2px rgba(0,0,0,.4);" href=""> Donasi</a></h2>
-           </div>
-
-           <div class="col-3 look">
-             <h2 style="    font-size: 14px;transform: translate(26px,60px);"><a style="    background-color: #2b5f67;
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 25px;
-    box-shadow: 0px 1px 2px rgba(0,0,0,.4);" href=""> Lihat</a></h2>
-            </div>
-             
-          </div>
-        </div>
-      </div>
-
       <?php
 
         if(isset($_GET['search'])&&!empty($_GET['search'])){
@@ -229,8 +164,8 @@
 
         $process->showposts($search);
       ?>
-
-     </div> <!-- / post section -->
+     </div> 
+     <!-- / post section -->
 
     </div><!-- Content Postingan Tengah -->
 
@@ -267,4 +202,5 @@
       });
 
     </script>
+
 <?php include 'chat-footer-u.php';?>
