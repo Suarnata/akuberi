@@ -337,21 +337,21 @@
 						<div class="col-12 carousel-cell">
 							<div class=" col-9 testimo-2">
 								<h6 style="text-align: center;line-height: 25px;opacity: .7;transform: translateY(50px);">"Kita memang membutuhkan Media seperti ini karena, dengan adanya Media ini kita dapat membantu Saudara - Saudari Kita yang membutuhkan"</h6>
-								<img style="width: 8%;border-radius: 50%;border:;transform: translate(350px,75px);" src="<?php echo $process->base_url(); ?>asset/image/website/kim.jpg" alt="">
+								<img style="width: 8%;height:20%;border-radius: 50%;border:;transform: translate(350px,75px);" src="<?php echo $process->base_url(); ?>asset/image/website/kim.jpg" alt="">
 								<h3 style="text-align: center;transform: translateY(85px);font-size: 20px;color: #e90052;">Kim Jong Un</h3>
 							</div>
 						</div>
 						<div class="col-12 carousel-cell">
 							<div class=" col-9 testimo-2 ">
 								<h6 style="text-align: center;line-height: 25px;opacity: .7;transform: translateY(50px);">"Kita memang membutuhkan Media seperti ini karena, dengan adanya Media ini kita dapat membantu Saudara - Saudari Kita yang membutuhkan"</h6>
-								<img style="width: 8%;border-radius: 50%;border:;transform: translate(350px,75px);" src="<?php echo $process->base_url(); ?>asset/image/website/kim.jpg" alt="">
+								<img style="width: 8%;height:20%;border-radius: 50%;border:;transform: translate(350px,75px);" src="<?php echo $process->base_url(); ?>asset/image/website/kim.jpg" alt="">
 								<h3 style="text-align: center;transform: translateY(85px);font-size: 20px;color: #e90052;">Kim Jong Un</h3>
 							</div>
 						</div>
 						<div class="col-12 carousel-cell">
 							<div class=" col-9 testimo-2">
 								<h6 style="text-align: center;line-height: 25px;opacity: .7;transform: translateY(50px);">"Kita memang membutuhkan Media seperti ini karena, dengan adanya Media ini kita dapat membantu Saudara - Saudari Kita yang membutuhkan"</h6>
-								<img style="width: 8%;border-radius: 50%;border:;transform: translate(350px,75px);" src="<?php echo $process->base_url(); ?>asset/image/website/kim.jpg" alt="">
+								<img style="width: 8%;height:20%;border-radius: 50%;border:;transform: translate(350px,75px);" src="<?php echo $process->base_url(); ?>asset/image/website/kim.jpg" alt="">
 								<h3 style="text-align: center;transform: translateY(85px);font-size: 20px;color: #e90052;">Kim Jong Un</h3>
 							</div>
 						</div>

@@ -1,5 +1,77 @@
 <?php include 'header-side-u.php'; ?>
    
+   <div class="col-12 edit">
+      <div class="edit-form">
+        <div class="col-12 form-edit">
+           <button class="cancle-edit" type="button">
+                <span></span>
+           </button>
+          <h1 style="font-size: 24px; color: #00aeea; transform: translate(20px,20px);"><i class="far fa-edit"></i> Edit Post</h1>    
+         <div class="col-10plus" style="margin: 8% 4%"> 
+          <form name="" method="" action="">
+           <div class="col-12"> 
+            <input style="width: 98%;padding: 1%; height: 32px;margin: 4px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="" name="" placeholder="Judul Baru...">
+           </div> 
+           <div class="col-12">
+            <textarea style="width: 98%;padding: 1%; height: 52px;margin: 4px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;resize: none;" class="" placeholder="Deskripsi Baru"></textarea>
+           </div>
+           <div class="col-12"> 
+           <div class="col-6"> 
+            <select style="width:100%;
+    outline: none;
+    border: solid 2px #e8e8e8;
+    border-radius: 2px;
+    height: 32px;
+    margin: 0px 4px 0px;
+    color: #696969;
+    font-family: Palanquin;" class="" name="kategori" required>
+              <?php
+                $process->showcategories();
+              ?>
+            </select>
+            </div>
+            <div class="col-6">
+            <select style="         width: 100%;outline: none;border: solid 2px #e8e8e8;border-radius: 2px;height: 32px;margin: 0px 4px 0px;color: #696969;font-family: Palanquin;  margin-left: 8px;" class="" name="durasi" required>
+              <option value="3h">3 Hari</option>
+              <option value="1m">1 Minggu</option>
+              <option value="1b">1 Bulan</option>
+              <option value="1t">1 Tahun</option>
+              <option value="10t">10 Tahun</option>
+            </select>
+            </div>
+            </div>
+            <div class="col-12">
+              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" min="0" name="rekening" placeholder="Masukan No Rekening Anda">
+            </div>
+            <div class="col-12">
+              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" min="0" name="rekening" placeholder="Masukan Batas Donasi">
+            </div>
+            <div class="col-12">
+             <?php
+            //Menampilkan Jenis bank pada media
+            $process->showbank();
+              ?>
+            </div> 
+            <div class="col-12">
+              <button style="   transform: translate(37px,5px);
+    border: none;
+    outline: none;
+    width: 300px;
+    height: 45px;
+    font-family: palanquin;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #00aeea;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,.3);" class="edit-post-new" type="submit">Edit</button>
+          </form>
+          </div>
+        </div>
+      </div>
+      </div>      
+   </div><!-- Edit -->
+
     <div class="col-6 posting-u ">
       <div class="col-12 banner-u"> 
         <div class="col-12 carousel-cell">
@@ -115,7 +187,7 @@
       <div class="val-byr">
         <div class="val-con-byr">
 
-            <h2 style="    font-size: 25px;
+            <h2 style="font-size: 25px;
     color: #00aeea;
     width: 30%;
     text-align: center;
@@ -129,17 +201,25 @@
     padding: 1% 3%;
     margin: 2% 7%;" type="number" min="0" name="rekening" placeholder="Masukan No Rekening Anda">
             </div>
-            <h3 style="   font-size: 15px;
+            <div class="col-12">
+              <input style="      width: 80%;
+    height: 20px;
+    font-family: arial;
+    padding: 1% 3%;
+    margin: 0% 7%;" type="number" min="0" name="rekening" placeholder="Masukan Batas Donasi">
+            </div>
+            <h3 style="    font-size: 15px;
     color: #00aeea;
     width: 30%;
     text-align: center;
     line-height: 25px;
-    transform: translate(0px,0px);">Masukan Jenis Bank Pilihan Anda</h3>
-      
-      <?php
+    transform: translate(42px,0px);">Masukan Jenis Bank Pilihan Anda</h3>
+       
+       <?php
         //Menampilkan Jenis bank pada media
         $process->showbank();
       ?>
+     
             
             <div class="col-12">
                  <button style="      transform: translate(250px,5px);
@@ -165,7 +245,7 @@
       </div>
 
 
-      <div class="col-12 post-u">
+    <!--  <div class="col-12 post-u">
         <div class="col-12 box-post-u">
           <div class="col-4 box-post-con bg-color1">
             <img style="width: 100%; min-height:  100%;" src="<?php echo $process->base_url();?>/asset/image/website/photo.png">
@@ -221,7 +301,7 @@
             </div>
             <div class="col-12">
               
-                <div class="col-3 donate">
+              <div class="col-3 donate">
               <h2 style="    font-size: 14px;transform: translate(25px,35px);"><a style="    background-color:#00aeea;
     text-decoration: none;
     color: #fff;
@@ -244,7 +324,7 @@
              
           </div>
         </div>
-      </div>
+      </div> -->
       
 
     <!-- Post Section -->
@@ -296,6 +376,11 @@
       $('#inputfile').change(function(){
         readURL(this);
       });
+
+        $(document).on('click','.bullet',function(){
+          var data = $(this).data('id');
+          $(".bullet-menu-"+data).toggleClass("active-bull");
+        });
 
     </script>
 

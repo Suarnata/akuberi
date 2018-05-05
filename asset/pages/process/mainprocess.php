@@ -403,8 +403,9 @@
 				    ORDER BY post_table.post_id DESC
 				  ");
 			}else{
-				$query = mysqli_query($this->connection,"SELECT post_table.*, category_table.*  FROM post_table
+				$query = mysqli_query($this->connection,"SELECT post_table.*, category_table.*, user_table.*  FROM post_table
 				    INNER JOIN category_table ON post_table.category_id = category_table.category_id
+				    INNER JOIN user_table ON post_table.user_id = user_table.user_id
 				    ORDER BY post_table.post_id DESC
 				  ");
 			}
@@ -415,69 +416,96 @@
 
 				  while($row = mysqli_fetch_assoc($query)){
 				    echo '
-				  <div class="col-12 post-u">
-				    <div class="col-12 box-post-u">
-				      <div class="col-4 box-post-con bg-color1">
-				        <img style="width: 100%; height:100%;" src="'.$this->base_url().'asset/image/post/'.$row['post_img'].'">
-				      </div>
-				      <div class="col-8 box-post-con">
-				        <div class="col-6">
-				          <h1 style="    font-size: 16px;
-				transform: translate(25px, 10px);
-				color: #00aeea;">'.substr($row['post_title'],0,29).'...</h1>       
+				    <div class="col-12 post-u">
+				      <div class="col-12 box-post-u">
+				        <div class="col-4 box-post-con bg-color1">
+				          <img style="width: 100%; height:  100%;" src="'.$this->base_url().'/asset/image/post/'.$row['post_img'].'">
 				        </div>
-				        
-				        <div class="col-6">
-				           <button class="bullet" type="button">
-				             <span></span>
-				           </button>
-				        </div>
-				        
-				        <div class="col-12">
-				          <h2 style="     font-size: 17px;
-				width: 85%;
-				transform: translate(25px,5px);
-				opacity: 0.5;">'.$row['category_name'].'</h2>
-				        </div>
-				        
-				        <div class="col-12">
-				          <h2 style="      opacity: .8;
-				font-size: 14px;
-				width: 90%;
-				transform: translate(25px,16px);">'.substr($row['post_desc'],0,126).'...</h2>
-				        </div>
-				        
-				        <div class="col-2plus">
-				          <h2 style="     font-size: 17px;
-				transform: translate(25px,24px);
-				opacity: .7;">'.date('d-m-Y',strtotime($row['post_due'])).'</h2>
-				        </div>
-				        
-				        <div class="col-3plus">
-				        <h2 style="    font-size: 17px;
-				transform: translate(25px,24px);
-				opacity: .7;">Rp '.number_format($row['post_revenue'],2,",",".").'</h2>
-				        </div>
-				        
-				        <div class="col-3 donate">
-				         <h2 style="    font-size: 14px;transform: translate(49px,60px);"><a style="background-color: #00aeea;
-				text-decoration: none;
-				color: #fff;
-				padding: 5px 20px;
-				box-shadow: 0px 1px 2px rgba(0,0,0,.4);" href=""> Donasi</a></h2>
-				       </div>
+				        <div class="col-8 box-post-con">
+				          <div class="col-6">
+				            <h1 style="    font-size: 20px;
+				  transform: translate(25px, 15px);
+				  color: #00aeea;line-height:30px;">'.$row['post_title'].'</h1>       
+				          </div>
 
-				       <div class="col-3 look">
-				         <h2 style="    font-size: 14px;transform: translate(26px,60px);"><a style="    background-color: #2b5f67;
-				text-decoration: none;
-				color: #fff;
-				padding: 5px 25px;
-				box-shadow: 0px 1px 2px rgba(0,0,0,.4);" href=""> Lihat</a></h2>
+				          <style type="text/css">
+				          	.bullet-menu-'.$row['post_id'].'{position: absolute; width: 100px;height: 135px; background-color: #fff;box-shadow: 0px 1px 10px rgba(0,0,0,.3); transform: translate(345px,50px);z-index: 1; display: none;}
+				          	.bullet-menu-'.$row['post_id'].' ul{width: 100%; height: 100%;overflow: hidden;}
+				          	.bullet-menu-'.$row['post_id'].' ul li{display: block; list-style: none; width: 100%;height:33%; border-bottom: solid 1px #e8e8e8;}
+				          	.bullet-menu-'.$row['post_id'].' ul li a{display: block;text-decoration: none; line-height: 45px;color: #696969;font-size: 16px; font-family: Palanquin; text-align: center;}
+				          	.bullet-menu-'.$row['post_id'].' ul li a:hover{background-color: #e8e8e8;}
+				          	.bullet-menu-'.$row['post_id'].':before{content:"";position: absolute; width: 20px;height: 20px; background-color: #fff; transform: rotate(45deg); z-index: -2;top:-10px; right: 8px;}
+				          </style>
+
+				          <div class="col-6">
+				             <button class="bullet" data-id='.$row['post_id'].' type="button">
+				               <span></span>
+				             </button>
+				           
+				          </div>
+				           <div class="bullet-menu-'.$row['post_id'].'">
+				            <ul>
+				             <li class="edit-show"><a href="">Edit</a></li>	
+				              <li><a href="">Bagikan</a></li>
+				              <li><a href="">Hilangkan</a></li>
+				            </ul>
+				           </div> 
+
+				          <div class="col-12">
+				            <h2 style="     font-size: 17px;
+				  width: 85%;
+				  transform: translate(25px,15px);
+				  opacity: 0.5;">'.$row['category_name'].'</h2>
+				          </div>
+				            
+				        
+				          <div class="col-12">
+				            <h2 style="     font-size: 12px;
+				  width: 85%;
+				  transform: translate(25px,10px);
+				  opacity: 0.5;"><a style="color:#696969;" href="">'.$row['user_name'].'</a></h2>
+				          </div>
+				          <div class="col-12">
+				            <h2 style="      opacity: .8;
+				  font-size: 14px;
+				  width: 90%;
+				  transform: translate(25px,10px);">'.$row['post_desc'].'</h2>
+				          </div>
+				          <div class="col-3">
+				            <h2 style="     font-size: 17px;
+				  transform: translate(25px,15px);
+				  opacity: .7;">'.date('d/m/Y',strtotime($row['post_due'])).'</h2>
+				          </div>
+				          <div class="col-9">
+				          <h2 style="    font-size: 17px;
+				  transform: translate(25px,15px);
+				  opacity: .7;"> Rp.'.$row['post_revenue'].'</h2>
+				          </div>
+				          <div class="col-12">
+				            
+				              <div class="col-3 donate">
+				            <h2 style="    font-size: 14px;transform: translate(25px,35px);"><a style="    background-color:#00aeea;
+				  text-decoration: none;
+				  color: #fff;
+				  padding: 5px 25px;
+				  
+				  box-shadow: 0px 2px 6px rgba(0,0,0,.5);" href="view-donate.php"> Donasi</a></h2>
+				              </div>
+				              <div class="col-9 look">
+				            <h2 style="    font-size: 14px;transform: translate(15px,35px);"><a style="    background-color:#fff ;
+				  text-decoration: none;
+				  color: #808080;
+				  padding: 5px 25px;
+				  box-shadow: 0px 2px 6px rgba(0,0,0,.5);
+				  " href="view-donate.php">Lihat <i class="fas fa-eye"></i></a></h2>
+				              </div>
+
+				          </div>
+				     
+				           
 				        </div>
-				         
 				      </div>
 				    </div>
-				  </div>
 
 				  ';
 

@@ -1,74 +1,114 @@
 <?php include 'header-side-u.php'; ?>
    
-    <div class="col-6 posting-u ">
-     
-      <div class="container">
-
-            <div class="card-panel">
-              <h5><b>PROFIL</b></h5>
-              <hr size="0.01">
-              <form method="post" id="form-profil" class="form">
-                <div class="rows">
-                  <div class="col s12 m8 offset-m2 l6 offset-l3 center">
-                    <div class="input-field col s13">
-                      <div class="posts">
-                        <div class="col-3 pushs">
-                          <div class="col-12 image-push">
-                            <button class="picture-s" type="submit" name="button"></button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="input-field col s12">
-                      <input id="nama" name="nama" type="text" class="validate" placeholder="Nama..." required="" value="">
-                    </div>
-                      <div class="input-field col s12 m6">
-                      <input id="email" name="email" type="email" class="validate" placeholder="Email..." value="">
-                    </div>
-                    <div class="input-field col s12 m6">
-                      <input id="no_telepon" name="no_telepon" type="text" class="validate" placeholder="No Telepon..." value="">
-                    </div>
-                    <div class="col s12 left-align info-text" id="email-telp-info">E-mail dan nomer hp opsional</div>
-                  </div>
-                </div>
-                <hr size="0.01">
-                <div class="divider"></div><br>
-                <div class="right-align">
-                  <button type="submit" class="waves-effect waves-light btn-flat amber darken-3 white-text" id="btn-update" onclick="update_profil()">update</button>
-                </div>
-              </form>
-
-            </div>
-
-            <div class="card-panel">
-              <h5><b>GANTI PASSWORD</b></h5>
-               <hr size="0.01">
-              <form method="post" id="form-password">
-                <div class="rows">
-                  <div class="col s12 m8 offset-m2 l6 offset-l3 center">
-                    <div class="input-field col s12">
-                      <input id="old_password" name="old_password" type="password" class="validate" placeholder="Password Lama..." required="">
-                    </div>
-                    <div class="input-field col s12 m6">
-                      <input id="password" name="password" type="password" class="validate" placeholder="Password..." required="">
-                    </div>
-                    <div class="input-field col s12 m6">
-                      <input id="conf_pass" name="conf_pass" type="password" class="validate" placeholder="Confirm Password..." required="">
-                    </div>
-                    <div class="col s12 left-align info-text" id="pass-info"></div>
-                  </div>
-                </div>
-                 <hr size="0.01"><br>
-                <div class="right-align">
-                  <button type="submit" class="waves-effect waves-light btn-flat amber darken-3 white-text" id="btn-update">update</button>
-                </div>
-              </form>
-
-            </div>
+    <div class="col-6 posting-u ">        
+      <div class="col-12 identitas">
+        <div class="col-4plus identitas-user-img">
+          <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg">
+        </div>
+        <div class="col-7plus identitas-user">
+          <h2>Profil Pengguna</h2>
+          <div class="col-12 idn">
+            <h1><i class="fas fa-user"></i>Giovani Da Cunha</h1>  
           </div>
+          <div class="col-12 idn">
+            <h1><i class="fas fa-envelope"></i>giovani@email.com</h1>
+          </div>
+          <div class="col-12 idn">
+            <h1><i class="fas fa-phone"></i>08135233123</h1>
+          </div>
+          <div class="col-12 idn">
+            <h1><i class="fas fa-map"></i>Jln. Angin</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 jumlah">
+        <div class="col-12 jumlah1">
+          <h1>Jumlah Kebaikan</h1>
+          <h2>Jumlah Galang Dana : 100</h2>
+          <h2>Jumlah Donasi: 500 </h2>
+        </div>
+      </div>
+      <div class="col-12 auto-loop">
+        <div class="col-12 auto-loop">
+          <h2>Galang Dana yang Dilakukan</h2><!--TITLE LOOP -->
+            <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+             <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+           </div>  
+           <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+             <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+              <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+              <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+              <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+              <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+ 
 
+        </div>    
+        <div class="col-12 auto-loop">
+          <h2>Donasi yang Dilakukan</h2>
+          <!--TITLE LOOP -->
+
+          <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+             <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+           </div>  
+           <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+             <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+              <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+              <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+              <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+              <div class="col-3pluss img-posting">
+                <div class="img-post-hover"></div>
+              <a href=""> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-5.jpg"></a>
+            </div>  
+ 
+
+          
+        </div>  
+      </div>
     </div><!-- Content Postingan Tengah -->
     <script type="text/javascript">
-      $("#mnu-pengaturan").addClass('active-u');
+      $("#mnu-profil").addClass('active-u');
     </script>
 <?php include 'chat-footer-u.php';?>
