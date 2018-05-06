@@ -36,6 +36,21 @@
 				$process->showposts("");
 			break;
 
+			case 'paymentprocess':
+				$process->paymentprocess();
+			break;
+
+			case 'gettotal':
+				$post_id = $_POST['post_id'];
+				$query = mysqli_query($process->connection,"SELECT post_revenue FROM post_table WHERE post_id = '$post_id'");
+				$row = mysqli_fetch_assoc($query);
+				echo "Terkumpul: Rp ".number_format($row['post_revenue'],2,",",".");
+			break;
+
+			case 'getnotification':
+				$process->getnotification();
+			break;
+
 		}
 
 	}else{

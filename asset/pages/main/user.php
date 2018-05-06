@@ -41,10 +41,10 @@
             </div>
             </div>
             <div class="col-12">
-              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" min="0" name="rekening" placeholder="Masukan No Rekening Anda">
+              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" min="1000" name="" placeholder="Masukan No Rekening Anda">
             </div>
             <div class="col-12">
-              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" min="0" name="rekening" placeholder="Masukan Batas Donasi">
+              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" min="1000" name="" placeholder="Masukan Target Donasi">
             </div>
             <div class="col-12">
              <?php
@@ -199,14 +199,14 @@
     height: 20px;
     font-family: arial;
     padding: 1% 3%;
-    margin: 2% 7%;" type="number" min="0" name="rekening" placeholder="Masukan No Rekening Anda">
+    margin: 2% 7%;" type="number" min="1000" name="rekening" placeholder="Masukan No Rekening Anda" required>
             </div>
             <div class="col-12">
               <input style="      width: 80%;
     height: 20px;
     font-family: arial;
     padding: 1% 3%;
-    margin: 0% 7%;" type="number" min="0" name="rekening" placeholder="Masukan Batas Donasi">
+    margin: 0% 7%;" type="number" min="1000" step="1000" name="target" placeholder="Masukan Jumlah Target Donasi (Rp)" required>
             </div>
             <h3 style="    font-size: 15px;
     color: #00aeea;
@@ -243,90 +243,7 @@
         
         </div>
       </div>
-
-
-    <!--  <div class="col-12 post-u">
-        <div class="col-12 box-post-u">
-          <div class="col-4 box-post-con bg-color1">
-            <img style="width: 100%; min-height:  100%;" src="<?php echo $process->base_url();?>/asset/image/website/photo.png">
-          </div>
-          <div class="col-8 box-post-con">
-            <div class="col-6">
-              <h1 style="    font-size: 24px;
-    transform: translate(25px, 10px);
-    color: #00aeea;">Title Only Title </h1>       
-            </div>
-            <div class="col-6">
-               <button class="bullet" type="button">
-                 <span></span>
-               </button>
-             
-            </div>
-             <div class="bullet-menu">
-              <ul>
-                <li><a href="">Bagikan</a></li>
-                <li><a href="">Hilangkan</a></li>
-              </ul>
-              </div> 
-
-            <div class="col-12">
-              <h2 style="     font-size: 17px;
-    width: 85%;
-    transform: translate(25px,5px);
-    opacity: 0.5;">Kesehatan</h2>
-            </div>
-              
-          
-            <div class="col-12">
-              <h2 style="     font-size: 12px;
-    width: 85%;
-    transform: translate(25px,0px);
-    opacity: 0.5;">User Name</h2>
-            </div>
-            <div class="col-12">
-              <h2 style="      opacity: .8;
-    font-size: 14px;
-    width: 90%;
-    transform: translate(25px,10px);">Yang pertama Masyarakatnya Ramah, Pantainya Indah, Kaya Sejarah dan Budaya, Tempat Belanja yang beraneka ragam, Penginapan yang super nyaman dan berdisain Klasik</h2>
-            </div>
-            <div class="col-3">
-              <h2 style="     font-size: 17px;
-    transform: translate(25px,15px);
-    opacity: .7;">6 Hari</h2>
-            </div>
-            <div class="col-9">
-            <h2 style="    font-size: 17px;
-    transform: translate(25px,15px);
-    opacity: .7;">Rp. 12.513.234,-</h2>
-            </div>
-            <div class="col-12">
-              
-              <div class="col-3 donate">
-              <h2 style="    font-size: 14px;transform: translate(25px,35px);"><a style="    background-color:#00aeea;
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 25px;
     
-    box-shadow: 0px 2px 6px rgba(0,0,0,.5);
-    " href=""> Donasi</a></h2>
-                </div>
-                <div class="col-9 look">
-              <h2 style="    font-size: 14px;transform: translate(15px,35px);"><a style="    background-color:#fff ;
-    text-decoration: none;
-    color: #808080;
-    padding: 5px 25px;
-    box-shadow: 0px 2px 6px rgba(0,0,0,.5);
-    " href="">Lihat <i class="fas fa-eye"></i></a></h2>
-                </div>
-
-            </div>
-       
-             
-          </div>
-        </div>
-      </div> -->
-      
-
     <!-- Post Section -->
     <div id="postsection">
       <?php

@@ -285,9 +285,10 @@
 
 		//Memasukkan informasi sementara no rekening dalam media
 		public function addpayment(){
-			if(!empty($_POST['rekening'])&&!empty($_POST['bank'])){
+			if(!empty($_POST['rekening'])&&!empty($_POST['bank'])&&!empty($_POST['target'])){
 				setcookie('rekening_temp',$_POST['rekening'],time() + (60 * 60 * 24 * 7), '/', NULL, NULL, TRUE);
 				setcookie('bank_temp',$_POST['bank'],time() + (60 * 60 * 24 * 7), '/', NULL, NULL, TRUE);
+				setcookie('target_temp',$_POST['target'],time() + (60 * 60 * 24 * 7), '/', NULL, NULL, TRUE);
 				$data = ['notif'=>'success'];
 			}else{
 				$data = ['notif'=>'empty'];
@@ -297,10 +298,11 @@
 
 		public function validatepost(){
 			$data = array();
-			if(isset($_COOKIE['rekening_temp'])&&isset($_COOKIE['bank_temp'])&&!empty($_COOKIE['rekening_temp'])&&!empty($_COOKIE['bank_temp'])){
+			if(isset($_COOKIE['rekening_temp'])&&isset($_COOKIE['bank_temp'])&&isset($_COOKIE['target_temp'])&&!empty($_COOKIE['rekening_temp'])&&!empty($_COOKIE['bank_temp'])&&!empty($_COOKIE['target_temp'])){
 
 				$data['norek'] = $_COOKIE['rekening_temp'];
 				$data['bank'] = $_COOKIE['bank_temp'];
+				$data['target'] = $_COOKIE['target_temp'];
 
 				if(!empty($_POST['judul'])&&!empty($_POST['deskripsi'])&&!empty($_POST['kategori'])&&!empty($_POST['durasi'])){
 
@@ -371,6 +373,7 @@
 						'".$dt['image']."',
 						1,
 						'".$dt['durasi']."',
+						'".$dt['target']."',
 						0,
 						'".$dt['bank']."',
 						'".$dt['norek']."'
@@ -379,6 +382,7 @@
 					if($query){
 						setcookie("rekening_temp", "", time() - 7200,'/');
 						setcookie("bank_temp", "", time() - 7200,'/');
+						setcookie("target_temp", "", time() - 7200,'/');
 						$data['notif'] = 'success';
 					}else{
 						$data['notif'] = 'err-db';
@@ -399,13 +403,13 @@
 				$query = mysqli_query($this->connection,"SELECT post_table.*, category_table.*, user_table.*  FROM post_table
 				    INNER JOIN category_table ON post_table.category_id = category_table.category_id 
 				    INNER JOIN user_table ON post_table.user_id = user_table.user_id
-				    WHERE post_table.post_title LIKE '$search' OR user_table.user_name LIKE '$search'
+				    WHERE post_table.post_title LIKE '$search' OR user_table.user_name LIKE '$search' AND post_table.post_status=1
 				    ORDER BY post_table.post_id DESC
 				  ");
 			}else{
 				$query = mysqli_query($this->connection,"SELECT post_table.*, category_table.*, user_table.*  FROM post_table
 				    INNER JOIN category_table ON post_table.category_id = category_table.category_id
-				    INNER JOIN user_table ON post_table.user_id = user_table.user_id
+				    INNER JOIN user_table ON post_table.user_id = user_table.user_id AND post_table.post_status=1
 				    ORDER BY post_table.post_id DESC
 				  ");
 			}
@@ -425,7 +429,7 @@
 				          <div class="col-6">
 				            <h1 style="    font-size: 20px;
 				  transform: translate(25px, 15px);
-				  color: #00aeea;line-height:30px;">'.$row['post_title'].'</h1>       
+				  color: #00aeea;line-height:30px;">'.substr($row['post_title'],0,30).'...</h1>       
 				          </div>
 
 				          <style type="text/css">
@@ -447,8 +451,14 @@
 				           
 				          </div>
 				           <div class="bullet-menu-'.$row['post_id'].'">
-				            <ul>
-				             <li class="edit-show"><h1>Edit</h1></li>	
+				            <ul>';
+				             
+				            if($row['user_id']==$this->session_check()['user_id']){
+				             echo '<li class="edit-show"><h1>Edit</h1></li>';	
+				            }
+				              
+
+				          echo '
 				              <li><a href="">Bagikan</a></li>
 				              <li><a href="">Hilangkan</a></li>
 				            </ul>
@@ -466,13 +476,13 @@
 				            <h2 style="     font-size: 12px;
 				  width: 85%;
 				  transform: translate(25px,10px);
-				  opacity: 0.5;"><a style="color:#696969;" href="">'.$row['user_name'].'</a></h2>
+				  opacity: 0.5;"><a style="color:#696969;" href="profil.php?userid='.$row['user_id'].'">'.$row['user_name'].'</a></h2>
 				          </div>
 				          <div class="col-12">
 				            <h2 style="      opacity: .8;
 				  font-size: 14px;
 				  width: 90%;
-				  transform: translate(25px,10px);">'.$row['post_desc'].'</h2>
+				  transform: translate(25px,10px);">'.substr($row['post_desc'],0,110).'...</h2>
 				          </div>
 				          <div class="col-3">
 				            <h2 style="     font-size: 17px;
@@ -482,7 +492,7 @@
 				          <div class="col-9">
 				          <h2 style="    font-size: 17px;
 				  transform: translate(25px,15px);
-				  opacity: .7;"> Rp.'.$row['post_revenue'].'</h2>
+				  opacity: .7;"> Rp '.number_format($row['post_revenue'],2,",",".").'</h2>
 				          </div>
 				          <div class="col-12">
 				            
@@ -492,7 +502,7 @@
 				  color: #fff;
 				  padding: 5px 25px;
 				  
-				  box-shadow: 0px 2px 6px rgba(0,0,0,.5);" href="view-donate.php"> Donasi</a></h2>
+				  box-shadow: 0px 2px 6px rgba(0,0,0,.5);" href="view-donate.php?postid='.$row['post_id'].'"> Donasi</a></h2>
 				              </div>
 				              <div class="col-9 look">
 				            <h2 style="    font-size: 14px;transform: translate(15px,35px);"><a style="    background-color:#fff ;
@@ -500,7 +510,7 @@
 				  color: #808080;
 				  padding: 5px 25px;
 				  box-shadow: 0px 2px 6px rgba(0,0,0,.5);
-				  " href="view-donate.php">Lihat <i class="fas fa-eye"></i></a></h2>
+				  " href="view-donate.php?postid='.$row['post_id'].'">Lihat <i class="fas fa-eye"></i></a></h2>
 				              </div>
 
 				          </div>
@@ -517,8 +527,129 @@
 			}	
 
 		}
+
+		public function getnotification(){
+			$user_id = $this->session_check()['user_id'];
+			$query = mysqli_query($this->connection,"SELECT notification_table.*, user_table.* FROM notification_table
+					 INNER JOIN user_table ON notification_table.user_id = user_table.user_id
+					 WHERE target_id = '$user_id' ORDER BY notif_id DESC");
+			if(mysqli_num_rows($query)>0){
+
+				while($row = mysqli_fetch_assoc($query)){
+					$uname = explode(' ', $row['user_name']);
+
+					switch($row['notif_type']){
+						
+						case 1: 
+							echo '
+								  <div class="col-12 notif1">
+								    <div class="col-2plus profil-img">
+								       <img style="width: 65%;
+								height: 55%;
+								border-radius: 50%;
+								transform: translate(25%,45%);" src="'.$this->base_url().'asset/image/user/'.$row['user_image'].'" alt="">
+								    </div>
+								    <div class="col-9plus profil-img">
+								      <h6 style="     font-size: 12px;
+								color: #00aeea;
+								transform: translate(5px,7px);" class="col-6">Admin</h6>
+								      <h6 style=" font-size: 12px;
+								color: #696969;
+								transform: translate(5px,7px);
+								opacity: .5;" class="col-6">05/05/2015</h6>
+								      <h6 style=" font-size: 12px;
+								color: #008ebf;
+								transform: translate(5px);
+								opacity: .5;" class="col-12">Description only 4 word</h6>
+								    </div>
+								  </div><!-- Notifikasi -->
+							';
+						break;
+						
+						case 2: 
+							echo '
+										<div class="col-12 notif2">
+											<div class="col-2plus profil-img">
+												 <img style="width: 65%;
+								  height: 55%;
+								  border-radius: 50%;
+								  transform: translate(25%,45%);" src="'.$this->base_url().'asset/image/user/'.$row['user_image'].'" alt="">
+											</div>
+											<div class="col-9plus profil-img">
+												<a href="profil.php?userid='.$row['user_id'].'"><h6 style="	    font-size: 12px;
+								  color: #00aeea;
+								  transform: translate(5px,7px);" class="col-6">'.substr($uname[0],0,14).'</h6></a>
+								  			<h6 style="	font-size: 12px;
+								  color: #696969;
+								  transform: translate(5px,7px);
+								  opacity: .5;" class="col-6">'.date('d/m/Y',strtotime($row['notif_date'])).'</h6>
+												<h6 style="	font-size: 12px;
+								  color: #008ebf;
+								  transform: translate(5px);
+								  opacity: .5;" class="col-12"><a id="linktopost" href="view-donate.php?postid='.$row['post_id'].'">Berdonasi Di Postingan Anda</a></h6>
+											</div>
+										</div>
+								
+							';
+						break;
+					}
+				}
+
+			}else{
+				echo '<p style="text-align:center; margin:20px 0px; color:red;">Tidak Ada Notifikasi</p>';
+			}
+
+		}
 //=============================== / USER PAGE============================================================================
 
+//================================USER PAGE==============================================================================
+		public function paymentprocess(){
+			if(!empty($_POST['userpostid'])&&!empty($_POST['postid'])&&!empty($_POST['total'])){
+				$user_id = $this->session_check()['user_id'];
+				$target_id = $_POST['userpostid'];
+				$post_id = $_POST['postid'];
+				$total = $_POST['total'];
+
+				$query = mysqli_query($this->connection,"UPDATE post_table SET post_revenue = post_revenue + '$total' WHERE post_id = '$post_id'");
+
+				$query = mysqli_query($this->connection,"INSERT INTO history_table VALUES (
+					'NULL',
+					'$user_id',
+					'$post_id',
+					'$total',
+					DATE(NOW())
+				)");
+
+				if($query){
+
+					$query = mysqli_query($this->connection,"INSERT INTO notification_table VALUES (
+						'NULL',
+						'$user_id',
+						'$target_id',
+						0,
+						'$post_id',
+						2,
+						DATE(NOW())
+					)");
+
+					if($query){
+						$data['notif'] = 'success';
+						$data['post_id'] = $post_id;
+					}else{
+						$data['notif'] = 'err-db';
+					}
+
+				}else{
+					$data['notif'] = 'err-db';
+				}
+
+			}else{
+				$data['notif'] = 'err-empty';
+			}
+
+			echo json_encode($data);
+		}
+//=============================== / USER PAGE============================================================================
 
 
 	}

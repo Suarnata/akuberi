@@ -6,7 +6,8 @@
 	function redirect(url){
 		window.location = url;
 	}
-
+//==============================AUTHENTICATION===========================================================================
+	
 	//Proses Register
 	$("#notification").hide();
 	$("#registerform").submit(function(e){
@@ -142,6 +143,10 @@
 		});
 	});
 
+//=========================== / AUTHENTICATION===========================================================================
+
+//==============================USER PAGE================================================================================
+	
 	//Proses menyimpan sementara no rekening dan jenis bank pada halaman user
 	var bankid = '';
 	$('.radio-bnk').change(function(){
@@ -151,9 +156,13 @@
 	$("#addpayment").click(function(e){
 		e.preventDefault();
 		var norek = $('input[name=rekening]').val();
+		var jmltarget = $('input[name=target]').val();
+
+		console.log(bankid+" | "+" | ");
+
 		$.ajax({
 			url:action_url+'addpayment',
-			data:{rekening:norek,bank:bankid},
+			data:{rekening:norek,bank:bankid,target:jmltarget},
 			type:'POST',
 			dataType:'json',
 			success:function(data){
@@ -228,10 +237,61 @@
 		}
 	});
 
+	setInterval(function(){
+		$.ajax({	
+			url:action_url+'getnotification',
+			type:'GET',
+			success:function(data){
+				$("#notifsection").html(data);
+			}
+		});
+	},500);
 
+//=========================== / USER PAGE================================================================================
 
+//==============================DONATION PAGE============================================================================
+	
+	$("#paymentform").submit(function(e){
+		e.preventDefault();
+		$.ajax({
+			url:action_url+'paymentprocess',
+			data:new FormData(this),
+			processData:false,
+			contentType:false,
+			type:'POST',
+			dataType:'json',
+			success:function(data){
+				switch(data.notif){
+					
+					case "err-empty":
+						alert("Pastikan Anda Telah Mengisi Jumlah Pembayaran Dengan Benar!");
+					break;
 
+					case "err-db":
+						alert("Terjadi Masalah Ketika Memasukkan Data Ke Database");
+					break;
 
+					case "success":
+						alert("Terima Kasih Telah Berdonasi Di Website Kami, Semoga Tuhan Membalas Budi Anda!");
+						$('input[name="total"]').val("");
+
+						$.ajax({
+							url:action_url+'gettotal',
+							type:'POST',
+							data:{post_id:data.post_id},
+							success:function(data){
+								$("#terkumpultext").html(data);
+							}
+						});
+
+					break;
+				
+				}
+			}
+		});
+	});
+
+//=========================== / DONATION PAGE============================================================================
 
 
 

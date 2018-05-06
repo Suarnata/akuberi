@@ -55,6 +55,7 @@
     </div><!-- Notif Up At Up -->
      
 <div class="col-3 chat-u">
+
   <div class="col-9 chat-u-con1">
   	<div class="col-10plus chat-title-u">
   		<div class="col-2min chat-ttl-u"><a style="font-size: 20px;
@@ -62,34 +63,19 @@
     margin: 7px;
     color: #00aeea;" href="#"><i class="far fa-bell"></i></a>
 		  </div>
-  		<div class="col-10pls chat-ttl-u"><h2 style="    font-size: 18px;
+  		<div class="col-10pls chat-ttl-u"><h2 style="font-size: 18px;
     color: #00aeea;">Notifikasi</h2>
 		</div>
   	</div>
-  	<div class="col-10plus chat-con-u1">
-  		<div class="col-12 notif1">
-  			<div class="col-2plus profil-img">
-  				 <img style="width: 65%;
-    height: 55%;
-    border-radius: 50%;
-    transform: translate(25%,45%);" src="<?php echo $process->base_url(); ?>asset/image/user/defaultuser.jpg" alt="">
-  			</div>
-  			<div class="col-9plus profil-img">
-  				<h6 style="	    font-size: 12px;
-    color: #00aeea;
-    transform: translate(5px,7px);" class="col-6">User Name</h6>
-    			<h6 style="	font-size: 12px;
-    color: #696969;
-    transform: translate(5px,7px);
-    opacity: .5;" class="col-6">4 jam lalu</h6>
-  				<h6 style="	font-size: 12px;
-    color: #008ebf;
-    transform: translate(5px);
-    opacity: .5;" class="col-12">Description only 4 word</h6>
-  			</div>
-  		</div><!-- Notifikasi -->
-     
-  	</div>
+
+    <style type="text/css">
+      #linktopost{
+        color:#3498db;
+      }
+    </style>
+
+  	<div class="col-10plus chat-con-u1" id="notifsection"></div>
+    
   </div>
   
 

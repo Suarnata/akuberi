@@ -61,7 +61,7 @@
           <ul>
             <li> <a href="#">Beranda</a> </li>
             <li> <a href="#">Donasiku</a> </li>
-            <li> <a href="#">Keluar</a> </li>
+            <li style="cursor:pointer;"> <a id="logout-btn" data-token="<?php echo $_COOKIE['ABID']; ?>">Keluar</a> </li>
           </ul>
         </div>
 
