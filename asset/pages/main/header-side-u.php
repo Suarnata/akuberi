@@ -6,9 +6,9 @@
       <div class="col-1 logo-u">
         <img style="width:98.5%;    transform: translate(0%,90%);" src="<?php echo $process->base_url();?>/asset/image/website/logo.png" alt="">
       </div>
-      <div class="col-4 logo-u ">
+      <div class="col-5 logo-u ">
   
-          <input id="searchinput" class="search2" type="text" name="search" value="" placeholder="Cari judul, nama penggalang dana">
+          <input id="searchinput" class="search2" type="text" name="search" value="" placeholder="Cari Berdasarkan Judul, Nama Atau Kategori">
   
       </div>
       <div class="col-6 logo-u2">

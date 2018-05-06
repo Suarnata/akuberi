@@ -30,7 +30,7 @@
 		<div class="col-12 dsc-view">
 			<h1><?php echo $row['post_title']; ?></h1>
 			<h3><a href="	"><?php echo $row['user_name']; ?></a></h3>
-			<h2><?php echo $row['category_name']; ?></h2>
+			<h2><a id="linkkategori" href="user.php?search=<?php echo $row['category_name']; ?>"><?php echo $row['category_name']; ?></a></h2>
 			<p style="font-size:25px;"><?php echo $row['post_desc']; ?></p>
 			<h6 class="col-6">Berakhir Pada: <?php echo date('d/m/Y',strtotime($row['post_due'])); ?></h6>
 			<h5 class="col-6" id="terkumpultext">Terkumpul: Rp <?php echo number_format($row['post_revenue'],2,",","."); ?></h5>

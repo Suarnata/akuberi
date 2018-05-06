@@ -165,7 +165,7 @@
     float: right;
     margin: 4px 4px 0px 0px;
     background-color: #f65061;cursor: pointer;
-    box-shadow: 0px 2px 6px rgba(0,0,0,.5);" class="col-1 val-s1" type="reset" name="button"><i class="fas fa-trash"></i></button>
+    box-shadow: 0px 2px 6px rgba(0,0,0,.5);" class="col-1 val-s1" type="reset" id="reset-btn"><i class="fas fa-trash"></i></button>
        
    
           <button style=" border: none;
