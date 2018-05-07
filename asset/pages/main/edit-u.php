@@ -11,16 +11,22 @@
 			</div>
 			
 			<div class="col-10plus edit-content">
-			 	<div class="col-12 image-edit" id="img-container">
-            <button class="picture-s-edit2" type="button" name="button"></button>
-          		</div>
+
+        <div class="col-12 image-push" id="img-container">
+          <img src="<?php echo $process->base_url() ?>asset/image/website/editmodel.jpg" width="200px" height="145px"/><br/>
+          <button class="picture-s2" type="button">Ubah</button>
+        </div>
           		
-				<form name="" method="" action="">
+				<form id="editpostform" method="POST" enctype="multipart/form-data">
            <div class="col-12"> 
-            <input style="width: 98%;padding: 1%; height: 32px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="" name="" placeholder="Judul Baru...">
+            <input style="width: 98%;padding: 1%; height: 32px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="" name="judul" placeholder="Judul" required>
+            <input type="file" name="image" id="inputfile" hidden/>
+            <input type="hidden" name="postid" value=""/>
+            <input type="hidden" name="imageid" value=""/>
+            <input type="hidden" name="durasiid" value=""/>
            </div> 
            <div class="col-12">
-            <textarea style="width: 98%;padding: 1%; height: 52px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;resize: none;" class="" placeholder="Deskripsi Baru"></textarea>
+            <textarea style="width: 98%;padding: 1%; height: 52px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;resize: none;" name="deskripsi" class="" placeholder="Deskripsi" required></textarea>
            </div>
            <div class="col-12"> 
            <div class="col-6"> 
@@ -31,7 +37,7 @@
     height: 32px;
     margin: 0px 0px;
     color: #696969;
-    font-family: Palanquin;" class="" name="kategori" required>
+    font-family: Palanquin;" class="selectkategori" name="kategori" id="" required>
               <?php
                 $process->showcategories();
               ?>
@@ -39,19 +45,16 @@
             </div>
             <div class="col-6">
             <select style="         width: 100%;outline: none;border: solid 2px #e8e8e8;border-radius: 2px;height: 32px;margin: 0px;color: #696969;font-family: Palanquin;  margin-left: 4px;" class="" name="durasi" required>
-              <option value="3h">3 Hari</option>
-              <option value="1m">1 Minggu</option>
-              <option value="1b">1 Bulan</option>
-              <option value="1t">1 Tahun</option>
-              <option value="10t">10 Tahun</option>
+              <option value="tetap">Waktu Tetap</option>
+              <option value="perpanjang">Perpanjang (3 Hari)</option>
             </select>
             </div>
             </div>
             <div class="col-12">
-              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" min="1000" name="" placeholder="Masukan No Rekening Anda">
+              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" min="1000" name="norek" placeholder="No Rekening" required>
             </div>
             <div class="col-12">
-              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" min="1000" name="" placeholder="Masukan Target Donasi">
+              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" min="1000" name="target" placeholder="Target Donasi (Rp)" required>
             </div>
             <div class="col-12">
              <?php
@@ -71,7 +74,8 @@
     background-color: #00aeea;
     cursor: pointer;
     font-size: 16px;
-    box-shadow: 0px 2px 8px rgba(0,0,0,.3);" class="edit-post-new" type="submit">Edit</button>
+    box-shadow: 0px 2px 8px rgba(0,0,0,.3);" class="edit-post-new" id="submitbtn" type="submit" hidden>Edit</button>
+          <p style="margin: 10px 0px; text-align: center;" id="pesan">Pilih Postingan Dibawah <i class="fa fa-arrow-down"></i></p>
           </form>
 			</div>
 		</div>
@@ -103,15 +107,12 @@
 						<th>Edit</th>
 						<th >Hapus</th>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-6.jpg"></td>
-						<td>Galang Dana Untuk Orang Stres Sedunia</td>
-						
-						<td>Kategori</td>
-						<td><a style="padding:12px 9px; color: #fff; background-color: #00aeea;border-radius: 3px; box-shadow: 0px 1px 10px rgba(0,0,0,.2);" href=""><i class="far fa-edit"></i></a></td>
-						<td><a style="padding:12px 11px; color: #fff; background-color:#f65061;border-radius: 3px; box-shadow: 0px 1px 10px rgba(0,0,0,.2);" href=""><i class="fas fa-trash"></i></a></td>
-					</tr>
+
+          <tbody id="postlistsection">
+          <?php
+            $process->vieweditlist();
+          ?>
+          </tbody>
 
 					
 				</table>
@@ -119,5 +120,30 @@
 		</div><!-- PILIHAN DONASI -->
     <script type="text/javascript">
       $("#mnu-edit").addClass('active-u');
+
+      $(document).on('click','.picture-s2',function(){
+        $('#inputfile').click();
+      });
+
+      function readURL(input) {
+
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function(e) {
+            $("#img-container").html(`
+                <img src="${e.target.result}" width="200px" height="145px"/><br/>
+                <button class="picture-s2" type="button">Ubah</button>
+              `);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      $('#inputfile').change(function(){
+        readURL(this);
+      });
+
     </script>
 <?php include 'chat-footer-u.php';?>

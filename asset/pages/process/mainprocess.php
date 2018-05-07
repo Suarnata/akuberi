@@ -65,6 +65,10 @@
 								case 'updateprofile':
 									$moveurl = "../../../asset/image/user/".$data['image_name'];
 								break;
+
+								case 'editpost':
+									$moveurl = "../../../asset/image/post/".$data['image_name'];
+								break;
 							}
 
 							move_uploaded_file($_FILES['image']['tmp_name'],$moveurl);
@@ -96,6 +100,11 @@
 						$this->img_name = $this->session_check()['user_image'];
 						$data['notif']="success";
 					break;
+
+					case 'editpost':
+						$this->img_name = $_POST['imageid'];
+						$data['notif']="success";
+					break;
 				}
 
 			}
@@ -103,20 +112,44 @@
 				return $data;
 		}
 
-		public function checkallpost(){
+		public function checkpostdue(){
 			$curdate = date('Y-m-d');
 			$user_id = $this->session_check()['user_id'];
+			$arraycount = array();
+			
 			$query = mysqli_query($this->connection,"UPDATE post_table SET post_status = 2 WHERE post_due = '$curdate' AND user_id = '$user_id'");
-			/*$query = mysqli_query($this->connection,"INSERT INTO notification_table VALUES (
-						'NULL',
-						'$user_id',
-						'$target_id',
-						0,
-						'$post_id',
-						2,
-						DATE(NOW())
-					)");*/
 
+			if($query){
+				$query = mysqli_query($this->connection,"SELECT * FROM post_table WHERE post_status = 2 AND user_id = '$user_id'");
+			}
+
+			while($row = mysqli_fetch_assoc($query)){
+
+				array_push($arraycount, $row['post_id']);
+
+			}
+
+			foreach ($arraycount as $key) {
+				$query = mysqli_query($this->connection,"SELECT * FROM notification_table WHERE post_id = '$key' AND target_id = '$user_id'");
+
+				if(mysqli_num_rows($query)==0){
+					 	$query = mysqli_query($this->connection,"INSERT INTO notification_table VALUES (
+								'NULL',
+								'0',
+								'$user_id',
+								0,
+								'".$key."',
+								3,
+								DATE(NOW())
+							)");
+					}
+			}
+
+
+		}
+
+		public function checkpostdone(){
+			
 		}
 
 //==============================AUTHENTICATION======================================================================
@@ -300,7 +333,7 @@
 	        		<div class="col-3 bank1">
 		              <img src="'.$this->base_url().'/asset/image/website/bank/'.$row['bank_image'].'">
 		              <br/>
-		              <input class="radio-bnk" type="radio" name="bank" value="'.$row['bank_id'].'">
+		              <input class="radio-bnk selectbank" id="" type="radio" name="bank" value="'.$row['bank_id'].'">
 		            </div>
 
 	        	';
@@ -397,6 +430,7 @@
 						'".$dt['deskripsi']."',
 						'".$dt['image']."',
 						1,
+						DATE(NOW()),
 						'".$dt['durasi']."',
 						'".$dt['target']."',
 						0,
@@ -616,6 +650,32 @@
 											</div>
 										</div>
 								
+							';
+						break;
+
+						case 3:
+							echo '
+								  <div class="col-12 notif1">
+								    <div class="col-2plus profil-img">
+								       <img style="width: 65%;
+								height: 55%;
+								border-radius: 50%;
+								transform: translate(25%,45%);" src="'.$this->base_url().'asset/image/website/system.png" alt="">
+								    </div>
+								    <div class="col-9plus profil-img">
+								      <h6 style="     font-size: 12px;
+								color: #00aeea;
+								transform: translate(5px,7px);" class="col-6">System</h6>
+								      <h6 style=" font-size: 12px;
+								color: #696969;
+								transform: translate(5px,7px);
+								opacity: .5;" class="col-6">05/05/2015</h6>
+								      <h6 style=" font-size: 12px;
+								color: #008ebf;
+								transform: translate(5px);
+								opacity: .5;" class="col-12"><a id="linktopost" href="view-donate.php?postid='.$row['post_id'].'">Donasimu Mencapai Batas Waktu</a></h6>
+								    </div>
+								  </div><!-- Notifikasi -->
 							';
 						break;
 					}
@@ -1139,6 +1199,126 @@
 		}
 //=========================== / MYDONATION PAGE=====================================================================
 
+//================================EDIT PAGE=========================================================================
+		public function vieweditlist(){
+			$user_id = $this->session_check()['user_id'];
+            $query = mysqli_query($this->connection,"SELECT post_table.*, category_table.* FROM post_table
+                INNER JOIN category_table ON post_table.category_id = category_table.category_id WHERE post_table.post_status<3 AND user_id = '$user_id' ORDER BY post_table.post_id DESC
+              ");
+
+            if(mysqli_num_rows($query)==0){
+              echo '<p style="text-align:center; margin:20px 0px;">Tidak Ada Postingan</p>';
+            }else{
+              $a=1;
+              while($row = mysqli_fetch_assoc($query)){
+                
+                echo '
+                  <tr id="postwrapper-'.$row['post_id'].'">
+                    <td>'.$a.'</td>
+                    <td> <img height="100px" src="'.$this->base_url().'asset/image/post/'.$row['post_img'].'"></td>
+                    <td>'.$row['post_title'].'</td>
+                    
+                    <td>'.$row['category_name'].'</td>
+                    <td><a style="padding:12px 9px; color: #fff; background-color: #00aeea;border-radius: 3px; box-shadow: 0px 1px 10px rgba(0,0,0,.2);" href="#" id="tgr-edit" data-id="'.$row['post_id'].'"><i class="far fa-edit"></i></a></td>
+                    <td><a style="padding:12px 11px; color: #fff; background-color:#f65061;border-radius: 3px; box-shadow: 0px 1px 10px rgba(0,0,0,.2);" href="#" id="tgr-delete" data-id="'.$row['post_id'].'"><i class="fas fa-trash"></i></a></td>
+                  </tr>
+                ';
+
+                $a++;
+              }
+            }
+		}
+
+		public function vieweditpost(){
+			$user_id = $this->session_check()['user_id'];
+			$post_id = $_POST['post_id'];
+			$query = mysqli_query($this->connection,"SELECT * FROM post_table WHERE post_id = '$post_id' AND user_id = '$user_id'");
+
+			if($query){
+				$row = mysqli_fetch_assoc($query);
+				$row['notif'] = 'success';
+			}else{
+				$row['notif'] = 'err-db';
+			}
+			
+			echo json_encode($row);
+		}
+
+		public function validatepost2(){
+			$data = array();
+
+			if(!empty($_POST['judul'])&&!empty($_POST['deskripsi'])&&!empty($_POST['kategori'])&&!empty($_POST['durasi'])&&!empty($_POST['norek'])&&!empty($_POST['bank'])&&!empty($_POST['target'])){
+
+				$data['judul'] = $_POST['judul'];
+				$data['deskripsi'] = $_POST['deskripsi'];
+				$data['kategori'] = $_POST['kategori'];
+				$data['durasi'] = $_POST['durasi'];
+				$data['durasiid'] = $_POST['durasiid'];
+				$data['norek'] = $_POST['norek'];
+				$data['bank'] = $_POST['bank'];
+				$data['target'] = $_POST['target'];
+				$data['notif'] = "success";
+				$data['post_id'] = $_POST['postid'];
+
+				switch($data['durasi']){
+					case 'tetap':
+						$date = $data['durasiid'];
+					break;
+
+					case 'perpanjang':
+						$date = date('Y-m-d',strtotime($data['durasiid'] . " +3 day"));
+					break;
+
+				}
+
+				$data['durasi'] = $date;
+
+			}else{
+				$data['notif'] = 'err-empty';
+			}
+
+
+			return $data;
+		}
+
+		public function editpost($image){
+			$dt = $this->validatepost2();
+			$dt['image'] = $image;
+			$dt['userid'] = $this->session_check()['user_id'];
+			$data = array();
+
+			switch($dt['notif']){
+
+				case 'success':
+					
+					$query = mysqli_query($this->connection,"UPDATE post_table SET
+ 						category_id = '".$dt['kategori']."',
+ 						post_title = '".$dt['judul']."',
+ 						post_desc = '".$dt['deskripsi']."',
+ 						post_img = '$image',
+ 						post_due = '".$dt['durasi']."',
+ 						post_target = '".$dt['target']."',
+ 						bank_id = '".$dt['bank']."',
+ 						post_rek = '".$dt['norek']."'
+
+ 						WHERE post_id = '".$dt['post_id']."' AND user_id = '".$dt['userid']."'
+				");
+
+					if($query){
+						$data['notif'] = 'success';
+					}else{
+						$data['notif'] = 'err-db';
+					}
+
+				break;
+
+				default:
+				$data['notif'] = $dt['notif'];
+			}
+
+			echo json_encode($data);
+		}
+//============================= / EDIT PAGE=========================================================================
 	}
 
 ?>

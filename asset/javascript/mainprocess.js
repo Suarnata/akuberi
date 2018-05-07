@@ -511,6 +511,150 @@
 
 //=========================== / SETTINGS PAGE============================================================================
 
+//==============================EDIT PAGE================================================================================
+	
+	$(document).on('click','#tgr-delete',function(e){
+		e.preventDefault();
+		var postid = $(this).data('id');
+		if(confirm("Apakah Anda Ingin Menghapus Postingan Ini?, Anda Tidak Dapat Mengembalikan Postingan Anda Setelah Menghapus")){
+			
+			$.ajax({
+				url:action_url+'deletepost',
+				type:'POST',
+				dataType:'json',
+				data:{post_id:postid},
+				success:function(data){
+
+					switch(data.notif){
+						case 'err-db':
+							alert("Terjadi Kesalahan Berhubungan Dengan Database!");
+						break;
+
+						case 'success':
+							alert("Postingan Telah Berhasil Dihapus!");
+							$("#postwrapper-"+postid).fadeOut();
+						break;
+					}
+				}
+			});
+
+		}
+	});
+
+	$(document).on('click','#tgr-edit',function(e){
+		e.preventDefault();
+		var postid = $(this).data('id');
+
+		$.ajax({
+			url:action_url+'vieweditpost',
+			type:'POST',
+			dataType:'json',
+			data:{post_id:postid},
+			success:function(data){
+
+				switch(data.notif){
+					case 'err-db':
+						alert("Terjadi Kesalahan Berhubungan Dengan Database!");
+					break;
+
+					case 'success':
+						$("#submitbtn").fadeIn();
+						$("#pesan").fadeOut();
+						$("#inputfile").val("");
+						$('input[name=postid]').val(data.post_id);
+						$('input[name=imageid]').val(data.post_img);
+						$('input[name=judul]').val(data.post_title);
+						$('textarea[name=deskripsi]').html(data.post_desc);
+						$('input[name=norek]').val(data.post_rek);
+						$('input[name=target]').val(data.post_target);
+						$('input[name=durasiid]').val(data.post_due);
+						$('.selectkategori option[value="'+data.category_id+'"]').prop("selected", "selected");
+						$('.selectbank[value="'+data.bank_id+'"]').prop("checked", "checked");
+						$('#img-container').html(`
+						<img src="../../../asset/image/post/${data.post_img}" width="200px" height="145px"/><br/>
+          				<button class="picture-s2" type="button">Ubah</button>
+							`);
+						/*$('html body').animate({
+							scrollTop: 0,
+						},800);*/
+					break;
+				}
+			}
+		});
+
+	});
+
+	$("#editpostform").submit(function(e){
+		e.preventDefault();
+		
+		$.ajax({
+			url:action_url+'editpost',
+			data:new FormData(this),
+			processData:false,
+			contentType:false,
+			type:'POST',
+			dataType:'json',
+			success:function(data){
+				switch(data.notif){
+					case "err-ext":
+						alert("Gambar Hanya Boleh Berupa .jpg, .png, dan .gif!");
+					break;
+
+					case "err-size":
+						alert("Gambar Tidak Boleh Melebihi 100Mb");
+					break;
+
+					case "err-img":
+						alert("Terjadi Kesalahan Dalam Memproses Gambar Anda, Silahkan Ganti Gambar");
+					break;
+
+					case "err-account":
+						alert("Anda Belum Memasukkan Informasi Rekening , Silahkan Masukkan Dengan Menekan Tombol Media");
+					break;
+
+					case "err-empty":
+						alert("Pastikan Anda Telah Mengisi Semua Informasi Pada Formulir!");
+					break;
+
+					case "err-db":
+						alert("Terjadi Kesalahan Dengan Database!");
+					break;
+
+					case "success":
+						$.ajax({
+							url:action_url+'vieweditlist',
+							type:'GET',
+							success:function(data){
+								alert("Postingan Anda Telah Berhasil Diperbaharui!");
+								$("#postlistsection").html(data);
+
+								$("#submitbtn").fadeOut();
+								$("#pesan").fadeIn();
+								$("#inputfile").val("");
+								$('input[name=postid]').val("");
+								$('input[name=imageid]').val("");
+								$('input[name=judul]').val("");
+								$('textarea[name=deskripsi]').html("");
+								$('input[name=norek]').val("");
+								$('input[name=target]').val("");
+								$('input[name=durasiid]').val("");
+								$('.selectkategori option[value="1"]').prop("selected", "selected");
+								$('.selectbank').prop("checked", false);
+								$('#img-container').html(`
+								<img src="../../../asset/image/website/editmodel.jpg" width="200px" height="145px"/><br/>
+		          				<button class="picture-s2" type="button">Ubah</button>
+									`);
+
+							}
+						});
+					break;
+				}
+			}
+		});
+
+	});
+
+//=========================== / EDIT PAGE==================================================================================
 
 
 

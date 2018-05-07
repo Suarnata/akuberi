@@ -8,7 +8,8 @@
     header("Location:login.php");
   }
 
-  $process->checkallpost();
+  $process->checkpostdue();
+  $process->checkpostdone();
 ?>
 
 <!DOCTYPE html>

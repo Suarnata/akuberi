@@ -79,6 +79,22 @@
 				$process->deletepost();
 			break;
 
+			case 'vieweditpost':
+				$process->vieweditpost();
+			break;
+
+			case 'editpost':
+				if($process->image_process("editpost")['notif']=="success"){
+					$process->editpost($process->get_imgname());
+				}else{
+					echo json_encode($process->image_process("updateprofile"));
+				}
+			break;
+
+			case 'vieweditlist':
+				$process->vieweditlist();
+			break;
+
 		}
 
 	}else{
