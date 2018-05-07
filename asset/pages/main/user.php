@@ -1,6 +1,6 @@
 <?php include 'header-side-u.php'; ?>
    
-   <div class="col-12 edit">
+  <!-- <div class="col-12 edit">
       <div class="edit-form">
         <div class="col-12 form-edit">
            <button class="cancle-edit" type="button">
@@ -70,7 +70,7 @@
         </div>
       </div>
       </div>      
-   </div><!-- Edit -->
+   </div> Edit -->
 
     <div class="col-6 posting-u ">
       <div class="col-12 banner-u"> 

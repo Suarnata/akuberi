@@ -1,4 +1,4 @@
-<div class="notif-up">
+<!--<div class="notif-up">
         <div class="notif-up-con">
           
               <button class="cancle-notif" type="button">
@@ -52,7 +52,7 @@
                 </div>
                </div> 
         </div>
-    </div><!-- Notif Up At Up -->
+    </div> Notif Up At Up -->
      
 <div class="col-9 chat-u-con1">
     <div class="col-10plus chat-title-u">
@@ -103,9 +103,14 @@
     </div>
   </div>
 </div><!-- Chat In User -->
+
+
+
+
 </div>
 </div>
 
 </div>
 </div>
+
 <?php include 'footer.php';?>
