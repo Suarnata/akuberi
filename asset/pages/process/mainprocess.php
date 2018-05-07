@@ -433,13 +433,13 @@
 				          </div>
 
 				          <style type="text/css">
-				          	.bullet-menu-'.$row['post_id'].'{position: absolute; width: 100px;height: 135px; background-color: #fff;box-shadow: 0px 1px 10px rgba(0,0,0,.3); transform: translate(345px,50px);z-index: 1; display: none;}
+				          	.bullet-menu-'.$row['post_id'].'{position: absolute; width: 100px;height: 95px; background-color: #fff;box-shadow: 0px 1px 10px rgba(0,0,0,.3); transform: translate(345px,50px);z-index: 1; display: none;}
 				          	.bullet-menu-'.$row['post_id'].' ul{width: 100%; height: 100%;overflow: hidden;}
-				          	.bullet-menu-'.$row['post_id'].' ul li{display: block; list-style: none; width: 100%;height:33%; border-bottom: solid 1px #e8e8e8;}
+				          	.bullet-menu-'.$row['post_id'].' ul li{display: block; list-style: none; width: 100%;height:50%; border-bottom: solid 1px #e8e8e8;}
 				          	.bullet-menu-'.$row['post_id'].' ul li a{display: block;text-decoration: none; line-height: 45px;color: #696969;font-size: 16px; font-family: Palanquin; text-align: center;}
-				          	.bullet-menu-'.$row['post_id'].' ul li h1{cursor:pointer;display: block;text-decoration: none; line-height: 45px;color: #696969;font-size: 16px; font-family: Palanquin; text-align: center;}
+				          	16px; font-family: Palanquin; text-align: center;}
 				          	.bullet-menu-'.$row['post_id'].' ul li a:hover{background-color: #e8e8e8;}
-				          	.bullet-menu-'.$row['post_id'].' ul li h1:hover{background-color: #e8e8e8;}
+				         
 				          	
 				          	.bullet-menu-'.$row['post_id'].':before{content:"";position: absolute; width: 20px;height: 20px; background-color: #fff; transform: rotate(45deg); z-index: -2;top:-10px; right: 8px;}
 				          </style>

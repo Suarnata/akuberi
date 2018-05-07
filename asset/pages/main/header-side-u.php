@@ -79,7 +79,10 @@
             <li id="mnu-beranda"> <a href="user.php"><i class="fas fa-columns"></i>&nbsp; &nbsp; Beranda</a> </li>
             <li id="mnu-donasi"> <a href="donasiku-u.php"><i class="fas fa-ambulance"></i>&nbsp; &nbsp;Donasiku</a> </li>
             <li id="mnu-profil"> <a href="profil.php"><i class="fas fa-user"></i> &nbsp; &nbsp; Profil</a> </li>
+             <li id="mnu-edit"> <a href="edit-u.php"><i class="far fa-edit"></i> &nbsp; &nbsp; Edit Post</a> </li>
             <li id="mnu-pengaturan"> <a href="pengaturan-user.php"><i class="fas fa-cog"></i> &nbsp; &nbsp; Pengaturan</a> </li>
+
+
           </ul>
         </div>
       </div>
