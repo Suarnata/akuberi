@@ -430,7 +430,7 @@
 
 				  while($row = mysqli_fetch_assoc($query)){
 				    echo '
-				    <div class="col-12 post-u">
+				    <div class="col-12 post-u" id="postwrapper-'.$row['post_id'].'">
 				      <div class="col-12 box-post-u">
 				        <div class="col-4 box-post-con bg-color1">
 				          <img style="width: 100%; height:  100%;" src="'.$this->base_url().'/asset/image/post/'.$row['post_img'].'">
@@ -464,13 +464,13 @@
 				            <ul>';
 				             
 				            if($row['user_id']==$this->session_check()['user_id']){
-				             echo '<li class="edit-show"><h1>Edit</h1></li>';	
+				             echo '<li class="edit-show"><h1>Edit</h1></li>';
+				             echo '<li><a id="deletepost" data-id="'.$row['post_id'].'" href="#"><h1>Hapus</h1></a></li>';	
 				            }
 				              
 
 				          echo '
-				              <li><a href="">Bagikan</a></li>
-				              <li><a href="">Hilangkan</a></li>
+				              <li><a id="removeview" data-id="'.$row['post_id'].'" href="#">Hilangkan</a></li>
 				            </ul>
 				           </div> 
 
@@ -654,7 +654,7 @@
 
 											<h6 style="    font-size: 12px;
 							  transform: translate(5px,2px);
-							  line-height: 16px;border-top: solid 1px #f0f0f0;  opacity: .7;margin: 7% 0%;padding: 3% 0% 0%;" class="col-10plus"><span style="color: #f0f0f0;">'.date('h:i',strtotime($row['chat_date'])).'</span>&nbsp;&nbsp;<a style="" href="">Hapus</a></h6>
+							  line-height: 16px;border-top: solid 1px #f0f0f0;  opacity: .7;margin: 7% 0%;padding: 3% 0% 0%;" class="col-10plus"><span style="color: #f0f0f0;">'.date('h:i',strtotime($row['chat_date'])).'</span>&nbsp;&nbsp;<a data-chatid='.$row['chat_id'].' id="chatdel-btn" href="#">Hapus</a></h6>
 										</div>
 
 
@@ -696,6 +696,47 @@
 				echo '<p style="text-align:center; font-size:13px; margin:10px 0px;">Chat Kosong, Mulai Ketik Pesan!</p>';
 			}
 
+		}
+
+		public function deletechat(){
+			$user_id = $this->session_check()['user_id'];
+			$chat_id = $_POST['chat_id'];
+			$data = [];
+
+			$query = mysqli_query($this->connection,"DELETE FROM chat_table WHERE chat_id = '$chat_id' AND user_id = '$user_id'");
+
+			if($query){
+				$data['notif'] = 'success';
+			}else{
+				$data['notif'] = 'err-db';
+			}
+
+			echo json_encode($data);
+		}
+
+		public function deletepost(){
+			$user_id = $this->session_check()['user_id'];
+		    $post_id = $_POST['post_id'];
+			$data = [];
+
+			$query = mysqli_query($this->connection,"DELETE FROM post_table WHERE post_id = '$post_id' AND user_id = '$user_id'");
+			if($query){
+				$query = mysqli_query($this->connection,"DELETE FROM history_table WHERE post_id = '$post_id'");
+				if($query){
+					$query = mysqli_query($this->connection,"DELETE FROM notification_table WHERE post_id = '$post_id'");
+					if($query){
+						$data['notif'] = 'success';
+					}else{
+						$data['notif'] = 'err-db';
+					}
+				}else{
+					$data['notif'] = 'err-db';
+				}
+			}else{
+				$data['notif'] = 'err-db';	
+			}
+
+			echo json_encode($data);
 		}
 //=============================== / USER PAGE============================================================================
 

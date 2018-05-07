@@ -71,6 +71,14 @@
 				$process->getchat();
 			break;
 
+			case 'deletechat':
+				$process->deletechat();
+			break;
+
+			case 'deletepost':
+				$process->deletepost();
+			break;
+
 		}
 
 	}else{
