@@ -7,6 +7,8 @@
   }else{
     header("Location:login.php");
   }
+
+  $process->checkallpost();
 ?>
 
 <!DOCTYPE html>

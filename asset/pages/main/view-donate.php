@@ -8,7 +8,7 @@
 				    INNER JOIN category_table ON post_table.category_id = category_table.category_id 
 				    INNER JOIN user_table ON post_table.user_id = user_table.user_id
 				    INNER JOIN bank_table ON post_table.bank_id = bank_table.bank_id
-				    WHERE post_table.post_id = '$post_id' AND post_table.post_status=1
+				    WHERE post_table.post_id = '$post_id' AND post_table.post_status<3
 				  ");
 		
 		if(mysqli_num_rows($query)==1){
@@ -36,29 +36,50 @@
 			<h5 class="col-6" id="terkumpultext">Terkumpul: Rp <?php echo number_format($row['post_revenue'],2,",","."); ?></h5>
 			<h5 class="col-6">Target: Rp <?php echo number_format($row['post_target'],2,",","."); ?></h5>
 		</div>
-		<div class="col-12 donasi-form">
-			<h5 style="text-align:center;">Silahkan Berdonasi Dengan Mentransfer Ke Rekening Berikut</h5>
-			<h3 style="text-align:center;"><img src="<?php echo $process->base_url();?>/asset/image/website/bank/<?php echo $row['bank_image']; ?>" width="70px" height="70px" /> <?php echo $row['post_rek']; ?></h3>
-			<form id="paymentform" method="POST">
-				<input type="hidden" name="userpostid" value="<?php echo $row['user_id']; ?>">
-				<input type="hidden" name="postid" value="<?php echo $row['post_id']; ?>">
-				<input class="col-10 norek" step="1000" min="1000" class="norek" type="number" name="total" placeholder=" Masukan Jumlah Donasi Anda (Rp)... ">
-        
-				<button style="      transform: translate(40px,5px);
-    border: none;
-    outline: none;
-    width: 595px;
-    height: 45px;
-    font-family: palanquin;
-    border-radius: 3px;
-    color: #fff;
-    background-color: #00aeea;
-    cursor: pointer;
-    font-size: 16px;
-    box-shadow: 0px 2px 8px rgba(0,0,0,.3);"
-    class="" type="submit">Donasi</button>
-			</form>
-		</div>
+
+		<?php 
+
+			if($row['post_status']==1){
+		?>
+				
+							<div class="col-12 donasi-form">
+								<h5 style="text-align:center;">Silahkan Berdonasi Dengan Mentransfer Ke Rekening Berikut</h5>
+								<h3 style="text-align:center;"><img src="<?php echo $process->base_url();?>/asset/image/website/bank/<?php echo $row['bank_image']; ?>" width="70px" height="70px" /> <?php echo $row['post_rek']; ?></h3>
+								<form id="paymentform" method="POST">
+									<input type="hidden" name="userpostid" value="<?php echo $row['user_id']; ?>">
+									<input type="hidden" name="postid" value="<?php echo $row['post_id']; ?>">
+									<input class="col-10 norek" step="1000" min="1000" class="norek" type="number" name="total" placeholder=" Masukan Jumlah Donasi Anda (Rp)... ">
+					        
+									<button style="      transform: translate(40px,5px);
+					    border: none;
+					    outline: none;
+					    width: 595px;
+					    height: 45px;
+					    font-family: palanquin;
+					    border-radius: 3px;
+					    color: #fff;
+					    background-color: #00aeea;
+					    cursor: pointer;
+					    font-size: 16px;
+					    box-shadow: 0px 2px 8px rgba(0,0,0,.3);"
+					    class="" type="submit">Donasi</button>
+								</form>
+							</div>
+			
+			<?php		
+			
+			}else if($row['post_status']==2){
+
+			?>
+
+			<h4 style="color:green; margin: 50px 0px;">Penggalangan Dana Telah Mencapai Batas Waktu</h4>
+
+			<?php
+
+			}
+
+		?>
+
 	</div>
 	<script type="text/javascript">
 		$("#mnu-beranda").addClass('active-u');
