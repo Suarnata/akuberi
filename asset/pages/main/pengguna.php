@@ -4,6 +4,9 @@
   if($userInfo['user_level']!=1){
     header("Location:".$process->base_url().'asset/pages/main/login.php');
   }
+
+  $user_id = $userInfo['user_id'];
+  $query = mysqli_query($process->connection,"SELECT * FROM user_table WHERE user_id != $user_id");
 ?>
 
           <div class="col-12 col-s-12 content-post-a1">
@@ -39,36 +42,53 @@
 
                   <div class="grafik bg-color3" style="height: auto;">
                     <div class="data-table-pengguna">
-                      <table id="tabel-data-pengguna" class="table table-striped table-dark" width="100%" cellspacing="0">
+                      <table id="tabel-data-pengguna" class="table table-striped table-dark" width="1000px" cellspacing="0">
                        <thead>
                           <tr>
-                              <th>Name</th>
-                              <th>Position</th>
-                              <th>Office</th>
-                              <th>Age</th>
-                              <th>Start date</th>
-                              <th>Salary</th>
+                              <th>No</th>
+                              <th>Nama</th>
+                              <th>Email</th>
+                              <th>Alamat</th>
+                              <th>No Telp</th>
+                              <th>Gambar</th>
+                              <th>Level</th>
+                              <th>Status</th>
                           </tr>
                       </thead>
                       <tfoot>
                           <tr>
-                              <th>Name</th>
-                              <th>Position</th>
-                              <th>Office</th>
-                              <th>Age</th>
-                              <th>Start date</th>
-                              <th>Salary</th>
+                              <th>No</th>
+                              <th>Nama</th>
+                              <th>Email</th>
+                              <th>Alamat</th>
+                              <th>No Telp</th>
+                              <th>Gambar</th>
+                              <th>Level</th>
+                              <th>Status</th>
                           </tr>
                       </tfoot>
                       <tbody>
-                          <tr>
-                              <td>Tiger Nixon</td>
-                              <td>System Architect</td>
-                              <td>Edinburgh</td>
-                              <td>61</td>
-                              <td>2011/04/25</td>
-                              <td>$320,800</td>
-                          </tr>
+
+                        <?php
+                          $a = 1;
+                          while($row = mysqli_fetch_assoc($query)){
+                            echo '
+                              <tr>
+                                  <td>'.$a.'</td>
+                                  <td>'.$row['user_name'].'</td>
+                                  <td>'.$row['user_email'].'</td>
+                                  <td>'.$row['user_address'].'</td>
+                                  <td>'.$row['user_phone'].'</td>
+                                  <td><img src="'.$process->base_url().'asset/image/user/'.$row['user_image'].'" width="100px" height="100px" /></td>
+                                  <td>'.$row['user_level'].'</td>
+                                  <td>'.$row['user_status'].'</td>
+                              </tr>
+                            ';
+
+                            $a++;
+                          }
+                        ?>
+
                         </tbody>
                       </table>
                     </div>

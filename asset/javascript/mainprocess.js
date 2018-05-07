@@ -284,6 +284,57 @@
 		}
 	});
 
+	$(document).on('click',"#chatdel-btn",function(e){
+		e.preventDefault();
+		var chatid = $(this).data('chatid');
+		$.ajax({
+			url:action_url+'deletechat',
+			type:'POST',
+			dataType:'json',
+			data:{chat_id:chatid},
+			success:function(data){
+
+				if(data.notif=='err-db'){
+					alert("Terjadi Kesalahan Dengan Database!");
+				}
+			}
+		});
+	});
+
+	$(document).on('click','#removeview',function(e){
+		e.preventDefault();
+		var postid = $(this).data('id');
+		$("#postwrapper-"+postid).fadeOut();
+	});
+
+	$(document).on('click','#deletepost',function(e){
+		e.preventDefault();
+		var postid = $(this).data('id');
+		if(confirm("Apakah Anda Ingin Menghapus Postingan Ini?, Anda Tidak Dapat Mengembalikan Postingan Anda Setelah Menghapus")){
+			
+			$.ajax({
+				url:action_url+'deletepost',
+				type:'POST',
+				dataType:'json',
+				data:{post_id:postid},
+				success:function(data){
+
+					switch(data.notif){
+						case 'err-db':
+							alert("Terjadi Kesalahan Berhubungan Dengan Database!");
+						break;
+
+						case 'success':
+							alert("Postingan Telah Berhasil Dihapus!");
+							$("#postwrapper-"+postid).fadeOut();
+						break;
+					}
+				}
+			});
+
+		}
+	});
+
 //=========================== / USER PAGE================================================================================
 
 //==============================DONATION PAGE============================================================================

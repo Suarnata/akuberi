@@ -54,51 +54,32 @@
         </div>
     </div><!-- Notif Up At Up -->
      
-<div class="col-3 chat-u">
-  <div class="col-9 chat-u-con1">
+<div class="col-9 chat-u-con1">
     <div class="col-10plus chat-title-u">
       <div class="col-2min chat-ttl-u"><a style="font-size: 20px;
     position: absolute;
     margin: 7px;
     color: #00aeea;" href="#"><i class="far fa-bell"></i></a>
       </div>
-      <div class="col-10pls chat-ttl-u"><h2 style="    font-size: 18px;
+      <div class="col-10pls chat-ttl-u"><h2 style="font-size: 18px;
     color: #00aeea;">Notifikasi</h2>
     </div>
     </div>
-    <div class="col-10plus chat-con-u1">
-      <div class="col-12 notif1">
-        <div class="col-2plus profil-img">
-           <img style="width: 65%;
-    height: 55%;
-    border-radius: 50%;
-    transform: translate(25%,45%);" src="<?php echo $process->base_url(); ?>asset/image/user/defaultuser.jpg" alt="">
-        </div>
-        <div class="col-9plus profil-img">
-          <h6 style="     font-size: 12px;
-    color: #00aeea;
-    transform: translate(5px,7px);" class="col-6">User Name</h6>
-          <h6 style=" font-size: 12px;
-    color: #696969;
-    transform: translate(5px,7px);
-    opacity: .5;" class="col-6">05/05/2015</h6>
-          <h6 style=" font-size: 12px;
-    color: #008ebf;
-    transform: translate(5px);
-    opacity: .5;" class="col-12">Description only 4 word Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h6>
-        </div>
-      </div><!-- Notifikasi -->
-     
-    </div>
+
+    <style type="text/css">
+      #linktopost{
+        color:#3498db;
+      }
+    </style>
+
+    <div class="col-10plus chat-con-u1" id="notifsection"></div>
+    
   </div>
   
 
 <!--PERBATASAN NOTIF CHAT-->
+
+  <!--PERBATASAN NOTIF CHAT-->
 
   <div class="col-9 chat-u-con1">
     <div class="col-10plus chat-title-u">
@@ -111,62 +92,20 @@
     color: #00aeea;">Multi Chat</h2>
     </div>
     </div>
-    <div class="col-10plus chat-con-u2">
-      <div class="col-12 chat-lawan">
-        <div class="col-2plus">
-           <img style="width: 65%;
-    height: 55%;
-    border-radius: 50%;
-    transform: translate(25%,45%);" src="<?php echo $process->base_url(); ?>asset/image/user/defaultuser.jpg" alt="">
-        </div>
-        <div class="col-8 chat-msg">  
-          <h6 style="    font-size: 12px;
-    color: #00aeea;
-    transform: translate(5px,0px);
-    border-bottom: solid 1px #e8e8e8;" class="col-10plus">User Name &nbsp;&nbsp;<span style="color:#696969; opacity: .4;">10.45</span></h6>
-          <h6 style="    font-size: 12px;
-    color: #00aeea;
-    transform: translate(5px,2px);
-    line-height: 16px;" class="col-10plus">Aku Mau chat tapi ngga mau ah Aku Mau chat tapi ngga mau ah Aku Mau chat tapi ngga mau ah Aku Mau chat tapi ngga mau ah Aku Mau chat tapi ngga mau ah</h6>
-        </div>    
-      </div>
 
-      <div class="col-12 chat-me">
-        
-        <div class="col-8 chat-msg-u">  
-          <!--<h6 style="    font-size: 12px;
-    color: #f0f0f0;
-    transform: translate(5px,0px);
-    border-bottom: solid 1px #f0f0f0; opacity: .7;margin: 3% 0%;" class="col-10plus">10.46</h6>-->
-          <h6 style="    font-size: 12px;
-    color: #fff;
-    transform: translate(5px,2px);
-    line-height: 16px;margin: 0% 0%;" class="col-10plus">Aku Mau chat tapi ngga mau ah</h6>
+    <!-- loop start -->
+    <div class="col-10plus chat-con-u2" id="chatsection"></div>
 
-          <h6 style="    font-size: 12px;
-    transform: translate(5px,2px);
-    line-height: 16px;border-top: solid 1px #f0f0f0;  opacity: .7;margin: 7% 0%;padding: 3% 0% 0%;" class="col-10plus"><span style="color: #f0f0f0;">10.45</span>&nbsp;&nbsp;<a style="" href="">Hapus</a></h6>
-        </div>
-
-
-        <div class="col-2plus">
-           <img style="width: 65%;
-    height: 55%;
-    border-radius: 50%;
-    transform: translate(25%,45%);" src="<?php echo $process->base_url(); ?>asset/image/user/defaultuser.jpg" alt="">
-        </div>
-      </div>
-    </div>
     <div class="col-10plus chat-con-u3">
       <form>
-      <textarea class="col-12 keypad" placeholder="Ketik Pesan"></textarea>
+      <textarea class="col-12 keypad" id="sendchat" placeholder="Ketik Pesan"></textarea>
       </form>
     </div>
   </div>
 </div><!-- Chat In User -->
+</div>
+</div>
 
-</div>
-</div>
 </div>
 </div>
 <?php include 'footer.php';?>
