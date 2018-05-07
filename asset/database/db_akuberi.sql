@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+
 -- Generation Time: May 06, 2018 at 04:55 PM
+
+-- Generation Time: May 06, 2018 at 05:44 PM
+
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -92,10 +96,46 @@ INSERT INTO `category_table` (`category_id`, `category_name`) VALUES
 CREATE TABLE `chat_table` (
   `chat_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `target_id` int(11) NOT NULL,
   `chat_data` text NOT NULL,
   `chat_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chat_table`
+--
+
+INSERT INTO `chat_table` (`chat_id`, `user_id`, `chat_data`, `chat_date`) VALUES
+(1, 5, 'Hi Ganteng\n', '2018-05-06 23:34:29'),
+(2, 3, 'Apa Cantik\n', '2018-05-06 23:34:36'),
+(3, 3, 'eh besok jalan kuy\n', '2018-05-06 23:36:27'),
+(4, 5, 'jalan kemana?\n', '2018-05-06 23:37:07'),
+(5, 3, 'Kemana mana\n', '2018-05-06 23:37:15'),
+(6, 1, 'Astagfirullah saya band kau anak2 pantek\n', '2018-05-06 23:42:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history_table`
+--
+
+CREATE TABLE `history_table` (
+  `history_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `history_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `history_table`
+--
+
+INSERT INTO `history_table` (`history_id`, `user_id`, `post_id`, `total`, `history_date`) VALUES
+(1, 1, 3, 1100000, '2018-05-06'),
+(2, 5, 3, 100000, '2018-05-06'),
+(3, 3, 3, 300000, '2018-05-06'),
+(4, 5, 4, 9000, '2018-05-06'),
+(5, 3, 5, 100000, '2018-05-06');
 
 -- --------------------------------------------------------
 
@@ -144,7 +184,13 @@ INSERT INTO `notification_table` (`notif_id`, `user_id`, `target_id`, `broadcast
 (1, 1, 3, 0, 3, 2, '2018-05-06'),
 (2, 1, 3, 0, 3, 2, '2018-05-06'),
 (3, 5, 3, 0, 3, 2, '2018-05-06'),
+
 (4, 3, 3, 0, 3, 2, '2018-05-06');
+=======
+(4, 3, 3, 0, 3, 2, '2018-05-06'),
+(5, 5, 3, 0, 4, 2, '2018-05-06'),
+(6, 3, 1, 0, 5, 2, '2018-05-06');
+
 
 -- --------------------------------------------------------
 
@@ -175,8 +221,13 @@ INSERT INTO `post_table` (`post_id`, `user_id`, `category_id`, `post_title`, `po
 (1, 1, 5, 'Kerasukan Roh Kotak Amal', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\n tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\n  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\n consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\n cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\n proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'e43e8871a92e6c15_230461.jpg', 1, '2019-05-06', 1000000000, 0, 5, '611597263451'),
 (2, 1, 3, 'Gila Karena Kesetrum Hairdryer Ibu Kandungnya Sendiri', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '509005e5ccac5ccc_295691.jpg', 1, '2018-06-06', 30000000, 0, 3, '611725317262'),
 (3, 3, 5, 'Cedera Bibir Karena Mengikuti Adegan Ciuman Drakor', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'b2004005ae086073_26484.jpg', 1, '2018-05-13', 5000000, 1500000, 2, '61125315412'),
+
 (4, 3, 7, 'Stroke Karena Kebanyakan Makan Samyang', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'a6afa64e125fef13_295694.jpg', 1, '2018-06-06', 700000000, 0, 4, '6112361284172'),
 (5, 1, 7, 'Autis Karena Kepentok Pintu Hidayah', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '93832d118436f35b_230470.jpg', 1, '2018-06-06', 8000000, 0, 3, '611523615623'),
+
+(4, 3, 7, 'Stroke Karena Kebanyakan Makan Samyang', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'a6afa64e125fef13_295694.jpg', 1, '2018-06-06', 700000000, 9000, 4, '6112361284172'),
+(5, 1, 7, 'Autis Karena Kepentok Pintu Hidayah', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '93832d118436f35b_230470.jpg', 1, '2018-06-06', 8000000, 100000, 3, '611523615623'),
+
 (6, 3, 2, 'Perempuan Cantik Nan Malang Ingin Kawin', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'bf99e14e8151a27f_bae.jpg', 1, '2018-06-06', 9000000, 0, 5, '61123616412'),
 (7, 3, 1, 'Kakek Sakti Membuat Ramuan Cinta', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'abf156f9daebd68c_15232237_336819720021836_1149907823280608853_n.jpg', 1, '2018-05-13', 80000000, 0, 3, '61235125412'),
 (8, 3, 3, 'Anak Terlantar Daerah Jonggol Raya', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '5a1f7ce2d400243d_download.jpg', 1, '2019-05-06', 90000000, 0, 3, '61115231524312'),
@@ -206,8 +257,13 @@ INSERT INTO `token_table` (`token_id`, `user_id`, `token_code`) VALUES
 (8, 3, '155bfd9504ca1c4d8bb816aa4bcc49945ba51d81'),
 (10, 5, 'f6cbff90396159a9a7715525fd007fc316e3246a'),
 (12, 3, 'f2c7d75fa54e9d60d5cbc8936424e47486866c0e'),
+
 (16, 3, 'df7e47ff9a015a4487b4ca2d2ce3f0a7d3b76eb3'),
 (25, 3, '44b8a039b784570c7a5a63459c7a85f1ce157d61');
+
+(25, 3, '44b8a039b784570c7a5a63459c7a85f1ce157d61'),
+(27, 1, 'e977ad8796d557f15076afc106914f62d881190b');
+
 
 -- --------------------------------------------------------
 
@@ -236,7 +292,7 @@ INSERT INTO `user_table` (`user_id`, `user_name`, `user_email`, `user_password`,
 (2, 'User Akuberi', 'user@user.com', 'ee11cbb19052e40b07aac0ca060c23ee', 'Jl.Serpong Raya', '08123456789', 2, 1, 'defaultuser.jpg'),
 (3, 'Russell  Raimundo', 'raimundorussell@gmail.com', 'fece7a3025a1cfdaaa5b864fa10b3e96', 'Jl. Serma Durna No.5A Denpasar', '08123123123', 2, 1, '9dddf6135531703f_bae.jpg'),
 (4, 'Roger Marino', 'roger@gmail.com', 'fece7a3025a1cfdaaa5b864fa10b3e96', 'Jl.Sermasdasdasds', '081316105021', 2, 1, 'defaultuser.jpg'),
-(5, 'Felly  Zefanya', 'felly@gmail.com', 'fece7a3025a1cfdaaa5b864fa10b3e96', 'aseloleeeeeeeasdasd as asdas ds', '0811312312', 2, 1, 'defaultuser.jpg');
+(5, 'Felly  Zefanya', 'felly@gmail.com', 'fece7a3025a1cfdaaa5b864fa10b3e96', 'aseloleeeeeeeasdasd as asdas ds', '0811312312', 2, 1, '40635bd6eda49441_00125300.jpg');
 
 --
 -- Indexes for dumped tables
@@ -322,7 +378,13 @@ ALTER TABLE `category_table`
 -- AUTO_INCREMENT for table `chat_table`
 --
 ALTER TABLE `chat_table`
-  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `history_table`
+--
+ALTER TABLE `history_table`
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `history_table`
@@ -334,7 +396,11 @@ ALTER TABLE `history_table`
 -- AUTO_INCREMENT for table `notification_table`
 --
 ALTER TABLE `notification_table`
+
   MODIFY `notif_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+  MODIFY `notif_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 
 --
 -- AUTO_INCREMENT for table `post_table`
@@ -346,7 +412,11 @@ ALTER TABLE `post_table`
 -- AUTO_INCREMENT for table `token_table`
 --
 ALTER TABLE `token_table`
+
   MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+  MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
 
 --
 -- AUTO_INCREMENT for table `user_table`

@@ -61,6 +61,10 @@
 								case 'storepost':
 									$moveurl = "../../../asset/image/post/".$data['image_name'];
 								break;
+
+								case 'updateprofile':
+									$moveurl = "../../../asset/image/user/".$data['image_name'];
+								break;
 							}
 
 							move_uploaded_file($_FILES['image']['tmp_name'],$moveurl);
@@ -85,6 +89,11 @@
 				switch($type){
 					case 'storepost':
 						$this->img_name = "defaultpost.jpg";
+						$data['notif']="success";
+					break;
+
+					case 'updateprofile':
+						$this->img_name = $this->session_check()['user_image'];
 						$data['notif']="success";
 					break;
 				}
@@ -403,13 +412,14 @@
 				$query = mysqli_query($this->connection,"SELECT post_table.*, category_table.*, user_table.*  FROM post_table
 				    INNER JOIN category_table ON post_table.category_id = category_table.category_id 
 				    INNER JOIN user_table ON post_table.user_id = user_table.user_id
-				    WHERE post_table.post_title LIKE '$search' OR user_table.user_name LIKE '$search' AND post_table.post_status=1
+				    WHERE post_table.post_title LIKE '$search' OR user_table.user_name LIKE '$search' OR category_table.category_name LIKE '$search' AND post_table.post_status=1
 				    ORDER BY post_table.post_id DESC
 				  ");
 			}else{
 				$query = mysqli_query($this->connection,"SELECT post_table.*, category_table.*, user_table.*  FROM post_table
 				    INNER JOIN category_table ON post_table.category_id = category_table.category_id
-				    INNER JOIN user_table ON post_table.user_id = user_table.user_id AND post_table.post_status=1
+				    INNER JOIN user_table ON post_table.user_id = user_table.user_id 
+				    WHERE post_table.post_status=1
 				    ORDER BY post_table.post_id DESC
 				  ");
 			}
@@ -468,7 +478,7 @@
 				            <h2 style="     font-size: 17px;
 				  width: 85%;
 				  transform: translate(25px,15px);
-				  opacity: 0.5;">'.$row['category_name'].'</h2>
+				  opacity: 0.5;"><a id="linkkategori" href="user.php?search='.$row['category_name'].'">'.$row['category_name'].'</h2>
 				          </div>
 				            
 				        
@@ -600,9 +610,96 @@
 			}
 
 		}
+
+		public function sendchat(){
+			$chat = $_POST['chat'];
+			$user_id = $this->session_check()['user_id'];
+			$data = [];
+			if(!empty($chat)){
+
+				$query = mysqli_query($this->connection,"INSERT INTO chat_table VALUES(
+					'NULL',
+					'$user_id',
+					'$chat',
+					NOW()
+				)");
+
+				if($query){
+					$data['notif'] = 'success';
+				}else{
+					$data['notif'] = 'err-db';
+				}
+
+			}else{
+				$data['notif'] = 'err-empty';
+			}
+
+			echo json_encode($data);
+		}
+
+		public function getchat(){
+			$query = mysqli_query($this->connection,"SELECT chat_table.*, user_table.* FROM chat_table INNER JOIN user_table ON chat_table.user_id = user_table.user_id ORDER BY chat_id ASC");
+			if(mysqli_num_rows($query)!=0){
+				while($row = mysqli_fetch_assoc($query)){
+					$uname = explode(' ', $row['user_name']);
+					if($row['user_id']==$this->session_check()['user_id']){
+					
+						echo '
+									<div class="col-12 chat-me">
+										<div class="col-8 chat-msg-u">	
+											<h6 style="    font-size: 12px;
+							  color: #fff;
+							  transform: translate(5px,2px);
+							  line-height: 16px;margin: 0% 0%;" class="col-10plus">'.$row['chat_data'].'</h6>
+
+											<h6 style="    font-size: 12px;
+							  transform: translate(5px,2px);
+							  line-height: 16px;border-top: solid 1px #f0f0f0;  opacity: .7;margin: 7% 0%;padding: 3% 0% 0%;" class="col-10plus"><span style="color: #f0f0f0;">'.date('h:i',strtotime($row['chat_date'])).'</span>&nbsp;&nbsp;<a style="" href="">Hapus</a></h6>
+										</div>
+
+
+										<div class="col-2plus">
+											 <img style="width: 65%;
+							  height: 55%;
+							  border-radius: 50%;
+							  transform: translate(25%,45%);" src="'.$this->base_url().'asset/image/user/'.$row['user_image'].'" alt="">
+										</div>
+									</div>
+						';
+					
+					}else{
+					
+						echo '
+									<div class="col-12 chat-lawan">
+										<div class="col-2plus">
+											 <img style="width: 65%;
+							  height: 55%;
+							  border-radius: 50%;
+							  transform: translate(25%,45%);" src="'.$this->base_url().'asset/image/user/'.$row['user_image'].'" alt="">
+										</div>
+										<div class="col-8 chat-msg">	
+											<h6 style="    font-size: 12px;
+							  color: #00aeea;
+							  transform: translate(5px,0px);
+							  border-bottom: solid 1px #e8e8e8;" class="col-10plus">'.substr($uname[0],0,14).' &nbsp;&nbsp;<span style="color:#696969; opacity: .4;">'.date('h:i',strtotime($row['chat_date'])).'</span></h6>
+											<h6 style="    font-size: 12px;
+							  color: #00aeea;
+							  transform: translate(5px,2px);
+							  line-height: 16px;" class="col-10plus">'.$row['chat_data'].'</h6>
+										</div>		
+									</div>
+						';
+					
+					}
+				}
+			}else{
+				echo '<p style="text-align:center; font-size:13px; margin:10px 0px;">Chat Kosong, Mulai Ketik Pesan!</p>';
+			}
+
+		}
 //=============================== / USER PAGE============================================================================
 
-//================================USER PAGE==============================================================================
+//================================DONATION PAGE==========================================================================
 		public function paymentprocess(){
 			if(!empty($_POST['userpostid'])&&!empty($_POST['postid'])&&!empty($_POST['total'])){
 				$user_id = $this->session_check()['user_id'];
@@ -612,13 +709,21 @@
 
 				$query = mysqli_query($this->connection,"UPDATE post_table SET post_revenue = post_revenue + '$total' WHERE post_id = '$post_id'");
 
-				$query = mysqli_query($this->connection,"INSERT INTO history_table VALUES (
-					'NULL',
-					'$user_id',
-					'$post_id',
-					'$total',
-					DATE(NOW())
-				)");
+				$query = mysqli_query($this->connection,"SELECT * FROM history_table WHERE user_id = '$user_id' AND post_id = '$post_id'");
+
+				if(mysqli_num_rows($query)==0){
+					$query = mysqli_query($this->connection,"INSERT INTO history_table VALUES (
+						'NULL',
+						'$user_id',
+						'$post_id',
+						'$total',
+						DATE(NOW())
+					)");
+				}else{
+					$query = mysqli_query($this->connection,"UPDATE history_table SET
+						total = total+'$total' WHERE user_id = '$user_id' AND post_id = '$post_id'
+						");
+				}
 
 				if($query){
 
@@ -649,8 +754,333 @@
 
 			echo json_encode($data);
 		}
-//=============================== / USER PAGE============================================================================
+//============================= / DONATION PAGE==========================================================================
 
+//================================SETTINGS PAGE==========================================================================
+		public function updateprofile($image){
+
+			$data = [];
+
+			if(!empty($_POST['email'])&&!empty($_POST['nama'])&&!empty($_POST['telp'])&&!empty($_POST['alamat'])){
+				
+				$user_id = $this->session_check()['user_id'];
+				$name = $_POST['nama'];
+				$email = $_POST['email'];
+				$phone = $_POST['telp'];
+				$alamat = $_POST['alamat'];
+
+				if(!preg_match("/^[a-zA-Z ]*$/",$name)){
+					$data['notif'] = 'err-name';
+				}else{
+
+					if(!is_numeric($phone)){
+						$data['notif'] = 'err-telp';
+					}else{
+						
+						if($this->session_check()['user_image']!='defaultuser.jpg'&&$image!=$this->session_check()['user_image']){
+							unlink('../../image/user/'.$this->session_check()['user_image']);
+						}
+
+						$query = mysqli_query($this->connection,"UPDATE user_table SET 
+							user_name = '$name',
+							user_email = '$email',
+							user_address = '$alamat',
+							user_phone = '$phone',
+							user_image = '$image'
+							WHERE user_id = '$user_id'
+							");
+						if($query){
+							$data['notif'] = 'success';
+						}else{
+							$data['notif'] = 'err-db';
+						}
+					}
+				}
+
+			}else{
+				$data['notif'] = 'err-empty';
+			}
+
+			echo json_encode($data);
+		}
+
+		public function updatepass(){
+
+			$data = [];
+
+			if(!empty($_POST['pass-lm'])&&!empty($_POST['pass-br'])&&!empty($_POST['pass-ul'])){
+				$user_id = $this->session_check()['user_id'];
+				$pw_lm = md5($_POST['pass-lm']);
+				$pw_br = md5($_POST['pass-br']);
+				$pw_ul = md5($_POST['pass-ul']);
+
+				$query = mysqli_query($this->connection,"SELECT user_password FROM user_table WHERE user_password = '$pw_lm' AND user_id = '$user_id'");
+
+				if(mysqli_num_rows($query)==1){
+
+					if($pw_br==$pw_ul){
+						
+						$query = mysqli_query($this->connection,"UPDATE user_table SET user_password = '$pw_br' WHERE user_id = '$user_id'");
+
+						if($query){
+							$data['notif'] = 'success';
+						}else{
+							$data['notif'] = 'err-db';	
+						}
+
+					}else{
+						$data['notif'] = 'err-wrongrepeat';	
+					}
+
+				}else{
+					$data['notif'] = 'err-wrong';
+				}
+
+			}else{
+				$data['notif'] = 'err-empty';
+			}
+
+			echo json_encode($data);
+		}
+//============================= / SETTINGS PAGE==========================================================================
+
+//==============================MYDONATION PAGE==========================================================================
+		public function donasiku_showpost($type){
+			$user_id = $this->session_check()['user_id'];
+
+			switch($type){
+				case 'all':
+					$query = mysqli_query($this->connection,"SELECT post_table.*, category_table.*, user_table.*  FROM post_table
+						    INNER JOIN category_table ON post_table.category_id = category_table.category_id
+						    INNER JOIN user_table ON post_table.user_id = user_table.user_id 
+						    WHERE user_table.user_id = '$user_id' AND post_table.post_status=1
+						    ORDER BY post_table.post_id DESC
+						  ");
+				break;
+
+				case 'history':
+					$query = mysqli_query($this->connection,"SELECT history_table.*,post_table.*,user_table.*,category_table.* FROM history_table
+						INNER JOIN post_table ON history_table.post_id = post_table.post_id
+						INNER JOIN category_table ON post_table.category_id = category_table.category_id
+						INNER JOIN user_table ON post_table.user_id = user_table.user_id
+						WHERE history_table.user_id = '$user_id'
+						");
+				break;
+			}
+
+			if(mysqli_num_rows($query)==0){
+				echo '<p style="color:#c0392b; font-size:20px; text-align:center; font-weight:bold; margin:50px 0px;">Donasi Atau Penggalangan Dana Tidak Ditemukan, Ayo Mulai Berdonasi <a href="user.php">Donasi</a></p>';
+			}else{
+
+				  while($row = mysqli_fetch_assoc($query)){
+				    echo '
+				    <div class="col-12 post-u">
+				      <div class="col-12 box-post-u">
+				        <div class="col-4 box-post-con bg-color1">
+				          <img style="width: 100%; height:  100%;" src="'.$this->base_url().'/asset/image/post/'.$row['post_img'].'">
+				        </div>
+				        <div class="col-8 box-post-con">
+				          <div class="col-6">
+				            <h1 style="    font-size: 20px;
+				  transform: translate(25px, 15px);
+				  color: #00aeea;line-height:30px;">'.substr($row['post_title'],0,30).'...</h1>       
+				          </div>
+
+				          <style type="text/css">
+				          	.bullet-menu-'.$row['post_id'].'{position: absolute; width: 100px;height: 135px; background-color: #fff;box-shadow: 0px 1px 10px rgba(0,0,0,.3); transform: translate(345px,50px);z-index: 1; display: none;}
+				          	.bullet-menu-'.$row['post_id'].' ul{width: 100%; height: 100%;overflow: hidden;}
+				          	.bullet-menu-'.$row['post_id'].' ul li{display: block; list-style: none; width: 100%;height:33%; border-bottom: solid 1px #e8e8e8;}
+				          	.bullet-menu-'.$row['post_id'].' ul li a{display: block;text-decoration: none; line-height: 45px;color: #696969;font-size: 16px; font-family: Palanquin; text-align: center;}
+				          	.bullet-menu-'.$row['post_id'].' ul li h1{cursor:pointer;display: block;text-decoration: none; line-height: 45px;color: #696969;font-size: 16px; font-family: Palanquin; text-align: center;}
+				          	.bullet-menu-'.$row['post_id'].' ul li a:hover{background-color: #e8e8e8;}
+				          	.bullet-menu-'.$row['post_id'].' ul li h1:hover{background-color: #e8e8e8;}
+				          	
+				          	.bullet-menu-'.$row['post_id'].':before{content:"";position: absolute; width: 20px;height: 20px; background-color: #fff; transform: rotate(45deg); z-index: -2;top:-10px; right: 8px;}
+				          </style>
+
+				          <div class="col-6">
+				             <button class="bullet" data-id='.$row['post_id'].' type="button">
+				               <span></span>
+				             </button>
+				           
+				          </div>
+				           <div class="bullet-menu-'.$row['post_id'].'">
+				            <ul>';
+				             
+				            if($row['user_id']==$this->session_check()['user_id']){
+				             echo '<li class="edit-show"><h1>Edit</h1></li>';	
+				            }
+				              
+
+				          echo '
+				              <li><a href="">Bagikan</a></li>
+				              <li><a href="">Hilangkan</a></li>
+				            </ul>
+				           </div> 
+
+				          <div class="col-12">
+				            <h2 style="     font-size: 17px;
+				  width: 85%;
+				  transform: translate(25px,15px);
+				  opacity: 0.5;"><a id="linkkategori" href="user.php?search='.$row['category_name'].'">'.$row['category_name'].'</a></h2>
+				          </div>
+				            
+				        
+				          <div class="col-12">
+				            <h2 style="     font-size: 12px;
+				  width: 85%;
+				  transform: translate(25px,10px);
+				  opacity: 0.5;"><a style="color:#696969;" href="profil.php?userid='.$row['user_id'].'">'.$row['user_name'].'</a></h2>
+				          </div>
+				          <div class="col-12">
+				            <h2 style="      opacity: .8;
+				  font-size: 14px;
+				  width: 90%;
+				  transform: translate(25px,10px);">'.substr($row['post_desc'],0,110).'...</h2>
+				          </div>
+				          <div class="col-3">
+				            <h2 style="     font-size: 17px;
+				  transform: translate(25px,15px);
+				  opacity: .7;">'.date('d/m/Y',strtotime($row['post_due'])).'</h2>
+				          </div>
+				          <div class="col-9">
+				          <h2 style="    font-size: 17px;
+				  transform: translate(25px,15px);
+				  opacity: .7;"> Rp '.number_format($row['post_revenue'],2,",",".").'</h2>
+				          </div>
+				          <div class="col-12">
+				            
+				              <div class="col-3 donate">
+				            <h2 style="    font-size: 14px;transform: translate(25px,35px);"><a style="    background-color:#00aeea;
+				  text-decoration: none;
+				  color: #fff;
+				  padding: 5px 25px;
+				  
+				  box-shadow: 0px 2px 6px rgba(0,0,0,.5);" href="view-donate.php?postid='.$row['post_id'].'"> Donasi</a></h2>
+				              </div>
+				              <div class="col-9 look">
+				            <h2 style="    font-size: 14px;transform: translate(15px,35px);"><a style="    background-color:#fff ;
+				  text-decoration: none;
+				  color: #808080;
+				  padding: 5px 25px;
+				  box-shadow: 0px 2px 6px rgba(0,0,0,.5);
+				  " href="view-donate.php?postid='.$row['post_id'].'">Lihat <i class="fas fa-eye"></i></a></h2>
+				              </div>
+
+				          </div>
+				     
+				           
+				        </div>
+				      </div>
+				    </div>
+
+				  ';
+
+				}
+
+			}
+
+		}
+
+		public function donasiku_popular(){
+			$user_id = $this->session_check()['user_id'];
+
+			$query = mysqli_query($this->connection,"SELECT post_table.*, category_table.*, user_table.*  FROM post_table
+				    INNER JOIN category_table ON post_table.category_id = category_table.category_id
+				    INNER JOIN user_table ON post_table.user_id = user_table.user_id 
+				    WHERE user_table.user_id = '$user_id' AND post_table.post_status=1
+				    ORDER BY post_table.post_revenue DESC LIMIT 0,1
+				  ");
+
+			if(mysqli_num_rows($query)==0){
+				echo '<p style="color:#c0392b; font-size:20px; text-align:center; font-weight:bold; margin:50px 0px;">Penggalangan Dana Terpopuler Tidak Ditemukan</p>';
+			}else{
+
+				  while($row = mysqli_fetch_assoc($query)){
+				    echo '
+				    <div class="col-12 bg-color3 post-now">
+				    		<div class="col-6 bg-color1 post-now-pict">
+				    			<img style="width: 100%; height: 100%;" src="'.$this->base_url().'/asset/image/post/'.$row['post_img'].'">
+				    		</div>
+				    		<div class="col-6">
+				    			<div class="col-6">	
+				                  <h1 style="    font-size: 20px;
+				        transform: translate(25px, 10px);
+				        color: #00aeea;">'.substr($row['post_title'],0,20).'...</h1>       
+				            	</div>
+				                <div class="col-2plus">
+				                   <button style="margin-left: 130px" class="bullet" type="button">
+				                     <span></span>
+				                   </button>
+				                </div>
+				                 <div class="col-12">
+				                  <h2 style="     font-size: 17px;
+				        width: 85%;
+				        transform: translate(25px,2px);
+				        opacity: 0.5;"><a id="linkkategori" href="user.php?search='.$row['category_name'].'">'.$row['category_name'].'</a></h2>
+				                </div>
+				                <div class="col-12">
+				                  <h2 style="     font-size: 11px;
+				        width: 85%;
+				        transform: translate(25px,0px);
+				        opacity: 0.5;"><a href="profil.php?userid='.$row['user_id'].'">'.$row['user_name'].'</a></h2>
+				                </div>
+				                <div class="col-12">
+				                  <h2 style="     margin-top: 20px;
+				        opacity: .8;
+				        font-size: 14px;
+				        width: 80%;
+				        transform: translate(25px,10px);">'.substr($row['post_desc'],0,200).'...</h2>
+				                </div>
+				                <div class="col-12">
+				                	<div class="col-2plus">
+				                  <h2 style="     font-size: 17px;
+				                      margin: 12px 0px;
+				        transform: translate(25px,24px);
+				        opacity: .7;">'.date('d/m/Y',strtotime($row['post_due'])).'</h2>
+				                </div>
+				                <div class="col-4plus">
+				                <h2 style="    font-size: 17px;
+				                    margin: 12px 0px;
+				        transform: translate(25px,24px);
+				        opacity: .7;"> Rp '.number_format($row['post_revenue'],2,",",".").'</h2>
+				                </div>
+				                </div>
+				              <div class="col-12">
+				                  
+				                  <div class="col-3 donate">
+				                  <h2 style="    font-size: 14px;transform: translate(25px,35px);"><a style="    background-color:#00aeea;
+				        text-decoration: none;
+				        color: #fff;
+				        padding: 5px 25px;
+				        
+				        box-shadow: 0px 2px 6px rgba(0,0,0,.5);
+				        " href=""> Donasi</a></h2>
+				                    </div>
+				                    <div class="col-9 look">
+				                  <h2 style="    font-size: 14px;transform: translate(40px,35px);"><a style="    background-color:#fff ;
+				        text-decoration: none;
+				        color: #808080;
+				        padding: 5px 25px;
+				        box-shadow: 0px 2px 6px rgba(0,0,0,.5);
+				        " href="">Lihat <i class="fas fa-eye"></i></a></h2>
+				                    </div>
+
+				                </div>
+
+				                
+				            </div>   
+
+				    	</div> <!-- GALANG DANA NOW -->
+
+				  ';
+
+				}
+
+			}
+
+		}
+//=========================== / MYDONATION PAGE==========================================================================
 
 	}
 

@@ -167,8 +167,9 @@
 			dataType:'json',
 			success:function(data){
 				if(data.notif=='success'){
-					alert("No Rekening Anda Sudah Ditambahkan Silahkan Lanjutkan Pengisian Formulir Penggalangan Dana Kemudian Klik Tombol Post");
 					$('input[name=judul]').focus();
+					alert("No Rekening Anda Sudah Ditambahkan Silahkan Lanjutkan Pengisian Formulir Penggalangan Dana Kemudian Klik Tombol Post");
+					$('html body').css({'overflow-y':'auto'});
 				}else if(data.notif=='empty'){
 					alert("Gagal!, Pastikan Anda Telah Mengisi Semua Informasi Dengan Benar!");
 				}else{
@@ -215,12 +216,17 @@
 					break;
 
 					case "success":
-						alert("Selamat, Penggalangan Dana Telah Berhasil Dibuat!, Anda Dapat Melihatnya Di Beranda Atau Di Halaman Donasiku");
 						$.ajax({
 							url:action_url+'showposts',
 							type:'GET',
 							success:function(data){
 								$("#postsection").html(data);
+								alert("Selamat, Penggalangan Dana Telah Berhasil Dibuat!, Anda Dapat Melihatnya Di Beranda Atau Di Halaman Donasiku");
+								$("#img-container").html(`
+					                <button class="picture-s" type="button" name="button"></button>
+					             `);
+								$('input[name=image]').val("");
+								$('#reset-btn').click();
 							}
 						});
 					break;
@@ -245,7 +251,38 @@
 				$("#notifsection").html(data);
 			}
 		});
-	},500);
+	},1000);
+
+	setInterval(function(){
+		$.ajax({	
+			url:action_url+'getchat',
+			type:'GET',
+			success:function(data){
+				$("#chatsection").html(data);
+			}
+		});
+	},1000);
+
+	$("#sendchat").keyup(function(e){
+		e.preventDefault();
+		if(e.keyCode==13){
+			var chatdata = $(this).val();
+			$.ajax({
+				url:action_url+'sendchat',
+				type:'POST',
+				dataType:'json',
+				data:{chat:chatdata},
+				success:function(data){
+					
+					if(data.notif=='err-db'){
+						alert("Terjadi Kesalahan Dengan Database!");
+					}
+
+					$("#sendchat").val("");
+				}
+			});
+		}
+	});
 
 //=========================== / USER PAGE================================================================================
 
@@ -293,7 +330,135 @@
 
 //=========================== / DONATION PAGE============================================================================
 
+//==============================SETTINGS PAGE============================================================================
+	
+	$("#editprofileform").submit(function(e){
+		e.preventDefault();
 
+		$.ajax({
+			url:action_url+'updateprofile',
+			data:new FormData(this),
+			processData:false,
+			contentType:false,
+			type:'POST',
+			dataType:'json',
+			success:function(data){
+				switch(data.notif){
+					
+					case "err-ext":
+						alert("Gambar Hanya Boleh Berupa .jpg, .png, dan .gif!");
+					break;
+
+					case "err-size":
+						alert("Gambar Tidak Boleh Melebihi 100Mb");
+					break;
+
+					case "err-img":
+						alert("Terjadi Kesalahan Dalam Memproses Gambar Anda, Silahkan Ganti Gambar");
+					break;
+
+					case "err-empty":
+						$("#notif").html("Masih Terdapat Kolom Yang Kosong!");
+						$("#notif").addClass('notiferr');
+					break;
+
+					case "err-name":
+						$("#notif").html("Nama Hanya Boleh Berupa Huruf!");
+						$("#notif").addClass('notiferr');
+						$("input[name=nama]").css({'border':'2px solid #e74c3c'});
+						$("input[name=nama]").focus();
+					break;
+
+					case "err-telp":
+						$("#notif").html("No Telp Hanya Boleh Berupa Angka!");
+						$("#notif").addClass('notiferr');
+						$("input[name=telp]").css({'border':'2px solid #e74c3c'});
+						$("input[name=telp]").focus();
+					break;
+
+					case "err-db":
+						$("#notif").html("Terjadi Kesalahan Ketika Memasukkan Data Ke Database!");
+						$("#notif").addClass('notiferr');
+					break;
+
+					case 'success':
+						$("#notif").html(`
+							Informasi Anda Telah Berhasil Diperbaharui!<br/>
+							<a href="profil.php">Lihat Profil</a>
+							`);
+						$("#notif").addClass('notifsuc');
+					break;
+				}
+			}
+		});
+	});
+
+	$("#editprofileform").keyup(function(){
+		$("#notif").html("");
+		$("#notif").removeClass('notiferr');
+		$("#notif").removeClass('notifsuc');
+		$("input[name=nama]").css({'border':'2px solid grey'});
+		$("input[name=email]").css({'border':'2px solid grey'});
+		$("input[name=telp]").css({'border':'2px solid grey'});
+	});
+
+	$("#updatepassform").submit(function(e){
+		e.preventDefault();
+
+		$.ajax({
+			url:action_url+'updatepass',
+			data:new FormData(this),
+			processData:false,
+			contentType:false,
+			type:'POST',
+			dataType:'json',
+			success:function(data){
+				switch(data.notif){
+					case 'err-empty':
+						$("#notifpw").html("Masih Terdapat Kolom Yang Kosong!");
+						$("#notifpw").addClass('notiferr');
+					break;
+
+					case 'err-wrong':
+						$("#notifpw").html("Password Lama Anda Salah!");
+						$("#notifpw").addClass('notiferr');
+						$("input[name=pass-lm]").css({'border':'2px solid #e74c3c'});
+						$("input[name=pass-lm]").focus();
+					break;
+
+					case 'err-wrongrepeat':
+						$("#notifpw").html("Penulisan Ulang Password Tidak Sama!");
+						$("#notifpw").addClass('notiferr');
+						$("input[name=pass-br]").css({'border':'2px solid #e74c3c'});
+						$("input[name=pass-ul]").css({'border':'2px solid #e74c3c'});
+						$("input[name=pass-br]").focus();
+					break;
+
+					case 'err-db':
+						$("#notifpw").html("Terjadi Kesalahan Ketika Memasukkan Data Ke Database!");
+						$("#notifpw").addClass('notiferr');
+					break;
+
+					case 'success':
+						$("#notifpw").html("Password Telah Berhasil Diperbaharui!");
+						$("#notifpw").addClass('notifsuc');
+					break;
+				}
+			}
+		});
+
+	});
+
+	$("#updatepassform").keyup(function(){
+		$("#notifpw").html("");
+		$("#notifpw").removeClass('notiferr');
+		$("#notifpw").removeClass('notifsuc');
+		$("input[name=pass-lm]").css({'border':'2px solid grey'});
+		$("input[name=pass-br]").css({'border':'2px solid grey'});
+		$("input[name=pass-ul]").css({'border':'2px solid grey'});
+	});
+
+//=========================== / SETTINGS PAGE============================================================================
 
 
 

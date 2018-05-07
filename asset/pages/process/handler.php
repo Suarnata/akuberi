@@ -51,6 +51,26 @@
 				$process->getnotification();
 			break;
 
+			case 'updateprofile':
+				if($process->image_process("updateprofile")['notif']=="success"){
+					$process->updateprofile($process->get_imgname());
+				}else{
+					echo json_encode($process->image_process("updateprofile"));
+				}
+			break;
+
+			case 'updatepass':
+				$process->updatepass();
+			break;
+
+			case 'sendchat':
+				$process->sendchat();
+			break;
+
+			case 'getchat':
+				$process->getchat();
+			break;
+
 		}
 
 	}else{
