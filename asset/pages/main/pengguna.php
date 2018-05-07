@@ -40,7 +40,7 @@
                 <br/>
                 <h3 style="    font-size: 24px;transform: translate(9.5%,5%);color: #00aeea;">Data Table User</h3>
 
-                  <div class="grafik bg-color3" style="height: auto;">
+                  <div class="grafik-list bg-color3" style="height: auto;">
                     <div class="data-table-pengguna">
                       <table id="tabel-data-pengguna" class="table table-striped table-dark" width="1000px" cellspacing="0">
                        <thead>

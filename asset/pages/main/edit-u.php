@@ -1,34 +1,9 @@
 <?php include 'header-side-u.php'; ?>
 	<div class="col-6 posting-u "> 
-		<div class="col-12 pilih-donasi">
-			<div class="col-10plus edit-title">
-				<h1 style="font-size: 24px; color: #00aeea;"><i class="far fa-edit"></i> Pilih Post</h1>  
-			</div>
-			<div class="col-11plus pilih-donasi-con">
-				<table class="pilih-edit-table">
-					<tr>
-						<th >No</th>
-						<th >Foto Donasi</th>
-						<th >Judul Galang Dana</th>
-					
-						<th>Kategori</th>
-						<th>Edit</th>
-						<th >Hapus</th>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-6.jpg"></td>
-						<td>Galang Dana Untuk Orang Stres Sedunia</td>
-						
-						<td>Kategori</td>
-						<td><a style="padding:12px 9px; color: #fff; background-color: #00aeea;border-radius: 3px; box-shadow: 0px 1px 10px rgba(0,0,0,.2);" href=""><i class="far fa-edit"></i></a></td>
-						<td><a style="padding:12px 11px; color: #fff; background-color:#f65061;border-radius: 3px; box-shadow: 0px 1px 10px rgba(0,0,0,.2);" href=""><i class="fas fa-trash"></i></a></td>
-					</tr>
+		
 
-					
-				</table>
-			</div>	
-		</div>
+
+
 		<div class="col-12 edit-post">
 
 			<div class="col-10plus edit-title">
@@ -100,7 +75,48 @@
           </form>
 			</div>
 		</div>
+
+
+
+
+
+
+
+
+
+
+
+
     </div><!-- Content Postingan Tengah -->
+    <div class="col-12 pilih-donasi">
+			<div class="col-10plus edit-title">
+				<h1 style="font-size: 24px; color: #00aeea;"><i class="far fa-edit"></i> Pilih Post</h1>  
+			</div>
+			<div class="col-11plus pilih-donasi-con">
+				<table class="pilih-edit-table">
+					<tr>
+						<th >No</th>
+						<th >Foto Donasi</th>
+						<th >Judul Galang Dana</th>
+					
+						<th>Kategori</th>
+						<th>Edit</th>
+						<th >Hapus</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td> <img src="<?php echo $process->base_url(); ?>asset/image/website/iklan-6.jpg"></td>
+						<td>Galang Dana Untuk Orang Stres Sedunia</td>
+						
+						<td>Kategori</td>
+						<td><a style="padding:12px 9px; color: #fff; background-color: #00aeea;border-radius: 3px; box-shadow: 0px 1px 10px rgba(0,0,0,.2);" href=""><i class="far fa-edit"></i></a></td>
+						<td><a style="padding:12px 11px; color: #fff; background-color:#f65061;border-radius: 3px; box-shadow: 0px 1px 10px rgba(0,0,0,.2);" href=""><i class="fas fa-trash"></i></a></td>
+					</tr>
+
+					
+				</table>
+			</div>	
+		</div><!-- PILIHAN DONASI -->
     <script type="text/javascript">
       $("#mnu-edit").addClass('active-u');
     </script>

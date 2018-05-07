@@ -31,7 +31,7 @@
             </a>
             <div class="col-4 header-a-l exit">
               <div class="col-4 header-a-l">
-              <a href="#"> <i style="    color: #00aeea;font-size: 28px;transform: translate(20px,15px);" class="far fa-bell"></i></a>
+              
               </div>
               <div class="col-8 header-a-l">
                 <h3 style="       font-size: 16px;text-align: right;color: #00aeea;transform: translate(-5%,15%);"><?php echo $userInfo['user_name']; ?></h3>

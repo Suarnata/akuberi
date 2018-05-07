@@ -27,7 +27,7 @@
                 <br/>
                 <h3 style="    font-size: 24px;transform: translate(9.5%,5%);color: #00aeea;">Data Table User</h3>
 
-                  <div class="grafik bg-color3" style="height: auto;">
+                  <div class="grafik-list  bg-color3" style="height: auto;">
                     <div class="data-table-pengumuman">
                       <table id="tabel-data-pengumuman" class="table table-striped table-bordered" width="100%" cellspacing="0">
                        <thead>
