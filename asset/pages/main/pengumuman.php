@@ -75,6 +75,7 @@
 
     <script type="text/javascript">
       $("#menu-pengumuman").addClass('sb-active');
+      $("#adminpagetitle").html("Pengumuman");
     </script>
 
 <?php include 'footer.php';?>

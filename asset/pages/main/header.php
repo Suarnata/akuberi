@@ -9,7 +9,7 @@
   }
 
   $process->checkpostdue();
-  $process->checkpostdone();
+  //$process->checkpostdone();
 ?>
 
 <!DOCTYPE html>

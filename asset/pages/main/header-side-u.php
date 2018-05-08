@@ -33,7 +33,7 @@
           <div class="col-8plus name-profil">
             <h3 style="      font-size: 18px;
     transform: translate(-10%,40%);
-    text-align: right;"><a href="#" style="text-decoration: none;color: #00aeea;"><?php echo substr($userInfo['user_name'],0,8); ?></a></h3>
+    text-align: right;"><a href="profil.php" style="text-decoration: none;color: #00aeea;"><?php echo substr($userInfo['user_name'],0,8); ?></h3>
             <h5 style="  font-size: 12px;
     text-align: right;
     transform: translate(-10%,5%);
@@ -47,6 +47,7 @@
     transform: translate(35%,70%);" src="<?php echo $process->base_url(); ?>asset/image/user/<?php echo $userInfo['user_image']; ?>" alt="">
           </div>
         </div>
+        </a>
         <div class="col-1pluss bar">
          <button class="burger1" type="button" name="button">
             <span></span>

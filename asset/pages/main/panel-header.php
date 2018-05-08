@@ -20,15 +20,15 @@
         <div class="col-10 col-s-12 header-a">
           <div class="col-6 header-a-l ">
             <form class="" action="index.html" method="post">
-              <input class="search" type="text" name="" value="" placeholder="Search">
+              <input id="searchinput" class="search" type="text" name="" value="" placeholder="Cari Berdasarkan Judul, Nama Atau Kategori">
             </form>
           </div>
           <div class="col-6 header-a-l  ">
-            <a href="#">
+            <a href="profil.php">
             <div class="col-1plus header-a-l exit exit-a">
               <img style="    width: 60%;height: auto;border-radius: 50%;transform: translate(12px,8px);" src="<?php echo $process->base_url(); ?>asset/image/user/<?php echo $userInfo['user_image']; ?>" alt="">
             </div>
-            </a>
+            
             <div class="col-4 header-a-l exit">
               <div class="col-4 header-a-l">
               
@@ -38,16 +38,17 @@
                 <h5 style="  font-size: 12px;text-align: right;color: #00aeea;transform: translate(-5%,-15%);opacity: .6;  ">Admin</h5>
               </div>
             </div>
+            </a>
           </div>
         </div>  <!-- Header -->
         <div class="col-10 col-s-12 content-a-1 ">
           <div class="col-12 col-s-11 content-post-a">
             <div class="col-6 col-s-12 title">
-              <h3 style="    font-size: 24px;transform: translate(13.5%,5%);color: #00aeea;">Dashboard</h3>
+              <h3 style="    font-size: 24px;transform: translate(13.5%,5%);color: #00aeea;" id="adminpagetitle"></h3>
             </div>
             <div class="col-6 col-s-12 title title1">
-              <h3 style="    padding: 0% 5%;margin-right: 1%;" class="bg-color1"> <a href="#">User</a> </h3>
-              <h3 style="    padding: 0% 3%;" class="bg-color3"> <a style="color:#00aeea;" href="#">Donate</a> </h3>
+              <h3 style="    padding: 0% 5%;margin-right: 1%;" class="bg-color1"> <a href="user.php">User</a> </h3>
+              <h3 style="    padding: 0% 3%;" class="bg-color3"> <a style="color:#00aeea;" href="user.php">Donate</a> </h3>
               <h3 style="    padding: 0% 4%;transform: translate(225%,35%); cursor:pointer ;" class="bg-color2"> <a id="logout-btn" data-token="<?php echo $_COOKIE['ABID']; ?>">Sign - Out</a> </h3>
             </div>
           </div> <!-- Judul Title yang isi Tulisan Dashboard -->

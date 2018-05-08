@@ -6,7 +6,17 @@
   }
 
   $user_id = $userInfo['user_id'];
-  $query = mysqli_query($process->connection,"SELECT * FROM user_table WHERE user_id != $user_id");
+
+  $query = mysqli_query($process->connection,"SELECT SUM(total) AS total FROM history_table");
+  $total = mysqli_fetch_assoc($query);
+
+  $query = mysqli_query($process->connection,"SELECT * FROM post_table");
+  $kampanye = mysqli_num_rows($query);
+
+  $query = mysqli_query($process->connection,"SELECT * FROM history_table");
+  $donatur = mysqli_num_rows($query);
+
+  $query = mysqli_query($process->connection,"SELECT * FROM user_table WHERE user_id != $user_id AND user_id > 0");
 ?>
 
           <div class="col-12 col-s-12 content-post-a1">
@@ -19,19 +29,19 @@
                 <div style="box-shadow: none;" class="col-4plus col-s-11 news1 ">
                   <table style="color: #00aeea">
                     <tr>
-                      <td><h5>Jumlah</h5></td>
+                      <td><h5>Dana Total</h5></td>
                       <td><h5>&nbsp;:&nbsp;</h5></td>
-                      <td><h5>Rp. 1000.000</h5></td>
+                      <td><h5>Rp <?php echo number_format($total['total'],2,",","."); ?></h5></td>
                     </tr>
                     <tr>
                       <td><h5>Kampanye</h5></td>
                       <td><h5>&nbsp;:&nbsp;</h5></td>
-                      <td><h5>Gak tau</h5></td>
+                      <td><h5><?php echo $kampanye; ?> Postingan</h5></td>
                     </tr>
                     <tr>
                       <td><h5>Donasi</h5></td>
                       <td><h5>&nbsp;:&nbsp;</h5></td>
-                      <td><h5>Rp. 100.000</h5></td>
+                      <td><h5><?php echo $donatur; ?> Kali</h5></td>
                     </tr>
                   </table>
                 </div>
@@ -72,16 +82,38 @@
                         <?php
                           $a = 1;
                           while($row = mysqli_fetch_assoc($query)){
+                            if($row['user_level']==1){
+                              $slc[0] = 'selected';
+                              $slc[1] = '';
+                            }else{
+                              $slc[0] = '';
+                              $slc[1] = 'selected';
+                            }
+
+                            if($row['user_status']==1){
+                              $bnd[0] = 'selected';
+                              $bnd[1] = '';
+                            }else{
+                              $bnd[0] = '';
+                              $bnd[1] = 'selected';
+                            }
+
                             echo '
                               <tr>
                                   <td>'.$a.'</td>
-                                  <td>'.$row['user_name'].'</td>
+                                  <td><a href="profil.php?userid='.$row['user_id'].'">'.$row['user_name'].'</a></td>
                                   <td>'.$row['user_email'].'</td>
                                   <td>'.$row['user_address'].'</td>
                                   <td>'.$row['user_phone'].'</td>
                                   <td><img src="'.$process->base_url().'asset/image/user/'.$row['user_image'].'" width="100px" height="100px" /></td>
-                                  <td>'.$row['user_level'].'</td>
-                                  <td>'.$row['user_status'].'</td>
+                                  <td><select id="userlevel" data-id="'.$row['user_id'].'">
+                                    <option value="1" '.$slc[0].'>Admin</option>
+                                    <option value="2" '.$slc[1].'>User</option>
+                                  </select></td>
+                                  <td><select id="userlevel" data-id="'.$row['user_id'].'">
+                                    <option value="1" '.$bnd[0].'>Active</option>
+                                    <option value="2" '.$bnd[1].'>Banned</option>
+                                  </select></td>
                               </tr>
                             ';
 
@@ -105,6 +137,7 @@
 
     <script type="text/javascript">
       $("#menu-pengguna").addClass('sb-active');
+      $("#adminpagetitle").html("List Pengguna");
     </script>
 
 <?php include 'footer.php';?>

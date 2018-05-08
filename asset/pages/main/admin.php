@@ -39,6 +39,7 @@
 
     <script type="text/javascript">
       $("#menu-admin").addClass('sb-active');
+      $("#adminpagetitle").html("Dashboard");
     </script>
 
 <?php include 'chat.php';?>
