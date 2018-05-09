@@ -25,6 +25,14 @@
 			';
 		}
 
+		public function console($text){
+			echo '
+				<script>
+					console.log("'.$text.'");
+				</script>
+			';
+		}
+
 		//Fungsi Yang Berisi URL Website
 		public function base_url(){
 			return $this->base_url;
@@ -112,6 +120,34 @@
 				return $data;
 		}
 
+		public function insertnotifdiff($type,$query,$user_id,$key){
+
+			switch($type){
+
+				case 'postdue':	
+					$type = 3;
+				break;
+
+				case 'posttarget':
+					$type = 4;
+				break;
+
+			}
+
+			if(mysqli_num_rows($query)==0){
+				 	$query = mysqli_query($this->connection,"INSERT INTO notification_table VALUES (
+							'NULL',
+							'0',
+							'$user_id',
+							0,
+							'".$key."',
+							'$type',
+							DATE(NOW())
+						)");
+				}
+
+		}
+
 		public function checkpostdue(){
 			$curdate = date('Y-m-d');
 			$user_id = $this->session_check()['user_id'];
@@ -130,21 +166,42 @@
 			}
 
 			foreach ($arraycount as $key) {
-				$query = mysqli_query($this->connection,"SELECT * FROM notification_table WHERE post_id = '$key' AND target_id = '$user_id'");
+				$query = mysqli_query($this->connection,"SELECT * FROM notification_table WHERE post_id = '$key' AND target_id = '$user_id' AND notif_type = 3");
 
-				if(mysqli_num_rows($query)==0){
-					 	$query = mysqli_query($this->connection,"INSERT INTO notification_table VALUES (
-								'NULL',
-								'0',
-								'$user_id',
-								0,
-								'".$key."',
-								3,
-								DATE(NOW())
-							)");
-					}
+				$this->insertnotifdiff('postdue',$query,$user_id,$key);
 			}
 
+		}
+
+		public function checkposttarget(){
+			$user_id = $this->session_check()['user_id'];
+			$arraycount = array();
+			$arrayrevid = array();
+
+			$query = mysqli_query($this->connection,"SELECT post_revenue,post_target,post_id FROM post_table WHERE user_id = '$user_id'");
+
+			while($row = mysqli_fetch_assoc($query)){
+				if($row['post_revenue']>=$row['post_target']){
+					array_push($arrayrevid,$row['post_id']);
+				}
+			}
+
+			//Jangan Set Query Ny
+			if($query){
+				$query = mysqli_query($this->connection,"SELECT * FROM post_table WHERE post_status = 2 AND user_id = '$user_id'");
+			}
+
+			while($row = mysqli_fetch_assoc($query)){
+
+				array_push($arraycount, $row['post_id']);
+
+			}
+
+			foreach ($arraycount as $key) {
+				$query = mysqli_query($this->connection,"SELECT * FROM notification_table WHERE post_id = '$key' AND target_id = '$user_id' AND notif_type = 4");
+
+				$this->insertnotifdiff('posttarget',$query,$user_id,$key);
+			}			
 		}
 
 //==============================AUTHENTICATION======================================================================
