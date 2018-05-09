@@ -12,7 +12,7 @@
             <div class="col-9 col-s-12 content-post-a2">
               <div class="col-12 news">
               <div class="col-12 chat">
-                <div class="chat-work bg-color3" style="width: 80%;transform: translate(10%,5%);height: 150%;">
+                <div class="chat-work bg-color3" style="width: 80%;transform: translate(10%,5%);height: 24vh;">
                     <div class="col-12 chat-titles bg-color3">
                       <h3 style="font-size: 16px;transform: translate(96%,16%);color: #00aeea;"><i class="fas fa-trash"></i></h3>
                     </div>

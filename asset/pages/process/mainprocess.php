@@ -25,6 +25,14 @@
 			';
 		}
 
+		public function console($text){
+			echo '
+				<script>
+					console.log("'.$text.'");
+				</script>
+			';
+		}
+
 		//Fungsi Yang Berisi URL Website
 		public function base_url(){
 			return $this->base_url;
@@ -112,6 +120,34 @@
 				return $data;
 		}
 
+		public function insertnotifdiff($type,$query,$user_id,$key){
+
+			switch($type){
+
+				case 'postdue':	
+					$type = 3;
+				break;
+
+				case 'posttarget':
+					$type = 4;
+				break;
+
+			}
+
+			if(mysqli_num_rows($query)==0){
+				 	$query = mysqli_query($this->connection,"INSERT INTO notification_table VALUES (
+							'NULL',
+							'0',
+							'$user_id',
+							0,
+							'".$key."',
+							'$type',
+							DATE(NOW())
+						)");
+				}
+
+		}
+
 		public function checkpostdue(){
 			$curdate = date('Y-m-d');
 			$user_id = $this->session_check()['user_id'];
@@ -130,21 +166,42 @@
 			}
 
 			foreach ($arraycount as $key) {
-				$query = mysqli_query($this->connection,"SELECT * FROM notification_table WHERE post_id = '$key' AND target_id = '$user_id'");
+				$query = mysqli_query($this->connection,"SELECT * FROM notification_table WHERE post_id = '$key' AND target_id = '$user_id' AND notif_type = 3");
 
-				if(mysqli_num_rows($query)==0){
-					 	$query = mysqli_query($this->connection,"INSERT INTO notification_table VALUES (
-								'NULL',
-								'0',
-								'$user_id',
-								0,
-								'".$key."',
-								3,
-								DATE(NOW())
-							)");
-					}
+				$this->insertnotifdiff('postdue',$query,$user_id,$key);
 			}
 
+		}
+
+		public function checkposttarget(){
+			$user_id = $this->session_check()['user_id'];
+			$arraycount = array();
+			$arrayrevid = array();
+
+			$query = mysqli_query($this->connection,"SELECT post_revenue,post_target,post_id FROM post_table WHERE user_id = '$user_id'");
+
+			while($row = mysqli_fetch_assoc($query)){
+				if($row['post_revenue']>=$row['post_target']){
+					array_push($arrayrevid,$row['post_id']);
+				}
+			}
+
+			//Jangan Set Query Ny
+			if($query){
+				$query = mysqli_query($this->connection,"SELECT * FROM post_table WHERE post_status = 2 AND user_id = '$user_id'");
+			}
+
+			while($row = mysqli_fetch_assoc($query)){
+
+				array_push($arraycount, $row['post_id']);
+
+			}
+
+			foreach ($arraycount as $key) {
+				$query = mysqli_query($this->connection,"SELECT * FROM notification_table WHERE post_id = '$key' AND target_id = '$user_id' AND notif_type = 4");
+
+				$this->insertnotifdiff('posttarget',$query,$user_id,$key);
+			}			
 		}
 
 //==============================AUTHENTICATION======================================================================
@@ -488,9 +545,9 @@
 				          </div>
 
 				          <style type="text/css">
-				          	.bullet-menu-'.$row['post_id'].'{position: absolute; width: 100px;height: 95px; background-color: #fff;box-shadow: 0px 1px 10px rgba(0,0,0,.3); transform: translate(345px,50px);z-index: 1; display: none;}
+				          	.bullet-menu-'.$row['post_id'].'{position: absolute; width: 100px;height: auto; background-color: #fff;box-shadow: 0px 1px 10px rgba(0,0,0,.3); transform: translate(345px,50px);z-index: 1; display: none;}
 				          	.bullet-menu-'.$row['post_id'].' ul{width: 100%; height: 100%;overflow: hidden;}
-				          	.bullet-menu-'.$row['post_id'].' ul li{display: block; list-style: none; width: 100%;height:50%; border-bottom: solid 1px #e8e8e8;}
+				          	.bullet-menu-'.$row['post_id'].' ul li{display: block; list-style: none; width: 100%;height:40px; border-bottom: solid 1px #e8e8e8;}
 				          	.bullet-menu-'.$row['post_id'].' ul li a{display: block;text-decoration: none; line-height: 45px;color: #696969;font-size: 16px; font-family: Palanquin; text-align: center;}
 				          	16px; font-family: Palanquin; text-align: center;}
 				          	.bullet-menu-'.$row['post_id'].' ul li a:hover{background-color: #e8e8e8;}
@@ -509,8 +566,8 @@
 				            <ul>';
 				             
 				            if($row['user_id']==$this->session_check()['user_id']){
-				             echo '<li class="edit-show"><h1>Edit</h1></li>';
-				             echo '<li><a id="deletepost" data-id="'.$row['post_id'].'" href="#"><h1>Hapus</h1></a></li>';	
+				             echo '<li class="edit-show"><a href="">Edit</a></li>';
+				             echo '<li><a id="deletepost" data-id="'.$row['post_id'].'" href="#">Hapus</a></li>';	
 				            }
 				              
 
@@ -1121,10 +1178,12 @@
 				        color: #00aeea;">'.substr($row['post_title'],0,20).'...</h1>       
 				            	</div>
 				                <div class="col-2plus">
-				                   <button style="margin-left: 130px" class="bullet" type="button">
+				                   <button style="margin-left: 130px"data-id='.$row['post_id'].' class="bullet" type="button">
 				                     <span></span>
 				                   </button>
 				                </div>
+
+
 				                 <div class="col-12">
 				                  <h2 style="     font-size: 17px;
 				        width: 85%;
@@ -1145,13 +1204,13 @@
 				        transform: translate(25px,10px);">'.substr($row['post_desc'],0,200).'...</h2>
 				                </div>
 				                <div class="col-12">
-				                	<div class="col-2plus">
+				                	<div class="col-6">
 				                  <h2 style="     font-size: 17px;
 				                      margin: 12px 0px;
 				        transform: translate(25px,24px);
 				        opacity: .7;">'.date('d/m/Y',strtotime($row['post_due'])).'</h2>
 				                </div>
-				                <div class="col-4plus">
+				                <div class="col-6">
 				                <h2 style="    font-size: 17px;
 				                    margin: 12px 0px;
 				        transform: translate(25px,24px);
