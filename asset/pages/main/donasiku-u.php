@@ -41,6 +41,11 @@
 </div>
  <script type="text/javascript">
       $("#mnu-donasi").addClass('active-u');
+
+      $(document).on('click','.bullet',function(){
+          var data = $(this).data('id');
+          $(".bullet-menu-"+data).toggleClass("active-bull");
+        });
     </script>
 
 <?php include 'chat-footer-u.php';?>

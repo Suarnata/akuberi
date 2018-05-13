@@ -76,7 +76,7 @@
                           
                           <?php
 
-                          $query = mysqli_query($process->connection,"SELECT post_table.*,user_table.*,category_table.* FROM post_table INNER JOIN user_table ON post_table.user_id = user_table.user_id INNER JOIN category_table ON post_table.category_id = category_table.category_id");
+                          $query = mysqli_query($process->connection,"SELECT post_table.*,user_table.*,category_table.* FROM post_table INNER JOIN user_table ON post_table.user_id = user_table.user_id INNER JOIN category_table ON post_table.category_id = category_table.category_id WHERE post_status !=2 ORDER BY post_table.post_id DESC");
 
                             $a = 1;
                             while($row = mysqli_fetch_assoc($query)){
@@ -86,7 +86,7 @@
                                   $sts[1] = '';
                                 break;
                               
-                                case 2:
+                                case 3:
                                   $sts[0] = '';
                                   $sts[1] = 'selected';
                                 break;
@@ -101,7 +101,7 @@
                                     <td><a href="user.php?search='.$row['category_name'].'">'.$row['category_name'].'</a></td>
                                     <td>Rp '.number_format($row['post_target'],2,",",".").'</td>
                                     <td><img src="'.$process->base_url().'asset/image/post/'.$row['post_img'].'" width="100px" height="100px" /></td>
-                                    <td><select id="userlevel" data-id="'.$row['user_id'].'">
+                                    <td><select id="poststatus" data-id="'.$row['post_id'].'">
                                       <option value="1" '.$sts[0].'>Aktif</option>
                                       <option value="3" '.$sts[1].'>Banned</option>
                                     </select></td>

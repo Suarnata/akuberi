@@ -110,7 +110,7 @@
                                     <option value="1" '.$slc[0].'>Admin</option>
                                     <option value="2" '.$slc[1].'>User</option>
                                   </select></td>
-                                  <td><select id="userlevel" data-id="'.$row['user_id'].'">
+                                  <td><select id="userstatus" data-id="'.$row['user_id'].'">
                                     <option value="1" '.$bnd[0].'>Active</option>
                                     <option value="2" '.$bnd[1].'>Banned</option>
                                   </select></td>

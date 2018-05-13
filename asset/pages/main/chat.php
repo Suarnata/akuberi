@@ -1,4 +1,4 @@
-<!--<div class="notif-up">
+<div class="notif-up">
         <div class="notif-up-con">
           
               <button class="cancle-notif" type="button">
@@ -30,9 +30,9 @@
     color: #00aeea;
     transform: translate(10px,0px);">Deskripsi</h1>
                   <div class="col-12">
-                    <h5 style="    font-size: 14px;
+                    <h5 id="bc-desc" style="    font-size: 14px;
     text-align: justify;
-    margin: 5.5%;">Tulisan Hanya Sebatas Beberapa Huruf Saja untuk memenuhi ruang di notifTulisan Hanya Sebatas Beberapa Huruf Saja untuk memenuhi ruang di notifTulisan Hanya Sebatas Beberapa Huruf Saja untuk memenuhi ruang di notifTulisan Hanya Sebatas Beberapa Huruf Saja untuk memenuhi ruang di notifTulisan Hanya Sebatas Beberapa Huruf Saja untuk memenuhi ruang di notifTulisan Hanya Sebatas Beberapa Huruf Saja untuk memenuhi ruang di notifTulisan Hanya Sebatas Beberapa Huruf Saja untuk memenuhi ruang di notifTulisan Hanya Sebatas Beberapa Huruf Saja untuk memenuhi ruang di notifTulisan Hanya Sebatas Beberapa Huruf Saja untuk memenuhi ruang di notifTulisan Hanya Sebatas Beberapa Huruf Saja untuk memenuhi ruang di notifTulisan Hanya Sebatas Beberapa Huruf Saja untuk memenuhi ruang di notif</h5>
+    margin: 5.5%;"></h5>
                   </div>
                 </div>
                 <div class="col-12 n-u-buton">
@@ -52,7 +52,7 @@
                 </div>
                </div> 
         </div>
-    </div> Notif Up At Up -->
+    </div>
      
 <div class="col-9 chat-u-con1">
     <div class="col-10plus chat-title-u">

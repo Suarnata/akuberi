@@ -152,12 +152,18 @@
 			$curdate = date('Y-m-d');
 			$user_id = $this->session_check()['user_id'];
 			$arraycount = array();
-			
-			$query = mysqli_query($this->connection,"UPDATE post_table SET post_status = 2 WHERE post_due = '$curdate' AND user_id = '$user_id'");
 
-			if($query){
-				$query = mysqli_query($this->connection,"SELECT * FROM post_table WHERE post_status = 2 AND user_id = '$user_id'");
+			$queryy = mysqli_query($this->connection,"SELECT * FROM post_table WHERE user_id = '$user_id'");
+
+			while($row = mysqli_fetch_assoc($queryy)){
+				$date_check = (strtotime($row['post_due']) - strtotime($curdate))/86400;
+				if($date_check<=0){
+					$id = $row['post_id'];
+					$query = mysqli_query($this->connection,"UPDATE post_table SET post_status = 2 WHERE post_id = '$id'");
+				}
 			}
+
+			$query = mysqli_query($this->connection,"SELECT * FROM post_table WHERE post_status = 2 AND user_id = '$user_id'");
 
 			while($row = mysqli_fetch_assoc($query)){
 
@@ -176,20 +182,17 @@
 		public function checkposttarget(){
 			$user_id = $this->session_check()['user_id'];
 			$arraycount = array();
-			$arrayrevid = array();
 
-			$query = mysqli_query($this->connection,"SELECT post_revenue,post_target,post_id FROM post_table WHERE user_id = '$user_id'");
+			$query2 = mysqli_query($this->connection,"SELECT * FROM post_table WHERE user_id = '$user_id'");
 
-			while($row = mysqli_fetch_assoc($query)){
+			while($row = mysqli_fetch_assoc($query2)){
 				if($row['post_revenue']>=$row['post_target']){
-					array_push($arrayrevid,$row['post_id']);
+					$id = $row['post_id'];
+					$query = mysqli_query($this->connection,"UPDATE post_table SET target_achieved = 1 WHERE post_id = '$id'");
 				}
 			}
 
-			//Jangan Set Query Ny
-			if($query){
-				$query = mysqli_query($this->connection,"SELECT * FROM post_table WHERE post_status = 2 AND user_id = '$user_id'");
-			}
+			$query = mysqli_query($this->connection,"SELECT * FROM post_table WHERE target_achieved = 1 AND user_id = '$user_id'");
 
 			while($row = mysqli_fetch_assoc($query)){
 
@@ -204,7 +207,7 @@
 			}			
 		}
 
-//==============================AUTHENTICATION======================================================================
+//=============================AUTHENTICATION======================================================================
 
 		//Fungsi Pendaftaran User
 		public function register(){
@@ -356,9 +359,9 @@
 
 			echo json_encode($data);
 		}
-//=========================== / AUTHENTICATION======================================================================
+//========================= / AUTHENTICATION======================================================================
 
-//================================USER PAGE=========================================================================
+//==============================USER PAGE=========================================================================
 		//Menampilkan jenis kategori pada halaman user
 		public function showcategories(){
 			$query = mysqli_query($this->connection,"SELECT * FROM category_table");
@@ -486,6 +489,7 @@
 						'".$dt['durasi']."',
 						'".$dt['target']."',
 						0,
+						0,
 						'".$dt['bank']."',
 						'".$dt['norek']."'
 				)");
@@ -545,9 +549,9 @@
 				          </div>
 
 				          <style type="text/css">
-				          	.bullet-menu-'.$row['post_id'].'{position: absolute; width: 100px;height: 95px; background-color: #fff;box-shadow: 0px 1px 10px rgba(0,0,0,.3); transform: translate(345px,50px);z-index: 1; display: none;}
+				          	.bullet-menu-'.$row['post_id'].'{position: absolute; width: 100px;height: auto; background-color: #fff;box-shadow: 0px 1px 10px rgba(0,0,0,.3); transform: translate(345px,50px);z-index: 1; display: none;}
 				          	.bullet-menu-'.$row['post_id'].' ul{width: 100%; height: 100%;overflow: hidden;}
-				          	.bullet-menu-'.$row['post_id'].' ul li{display: block; list-style: none; width: 100%;height:50%; border-bottom: solid 1px #e8e8e8;}
+				          	.bullet-menu-'.$row['post_id'].' ul li{display: block; list-style: none; width: 100%;height:40px; border-bottom: solid 1px #e8e8e8;}
 				          	.bullet-menu-'.$row['post_id'].' ul li a{display: block;text-decoration: none; line-height: 45px;color: #696969;font-size: 16px; font-family: Palanquin; text-align: center;}
 				          	16px; font-family: Palanquin; text-align: center;}
 				          	.bullet-menu-'.$row['post_id'].' ul li a:hover{background-color: #e8e8e8;}
@@ -566,8 +570,8 @@
 				            <ul>';
 				             
 				            if($row['user_id']==$this->session_check()['user_id']){
-				             echo '<li class="edit-show"><h1>Edit</h1></li>';
-				             echo '<li><a id="deletepost" data-id="'.$row['post_id'].'" href="#"><h1>Hapus</h1></a></li>';	
+				             echo '<li class="edit-show"><a href="edit-u.php?postid='.$row['post_id'].'">Edit</a></li>';
+				             echo '<li><a id="deletepost" data-id="'.$row['post_id'].'" href="#">Hapus</a></li>';	
 				            }
 				              
 
@@ -654,7 +658,7 @@
 						
 						case 1: 
 							echo '
-								  <div class="col-12 notif1">
+								  <div class="col-12 notif1" data-bcid="'.$row['broadcast_id'].'">
 								    <div class="col-2plus profil-img">
 								       <img style="width: 65%;
 								height: 55%;
@@ -668,11 +672,11 @@
 								      <h6 style=" font-size: 12px;
 								color: #696969;
 								transform: translate(5px,7px);
-								opacity: .5;" class="col-6">05/05/2015</h6>
+								opacity: .5;" class="col-6">'.date('d/m/Y',strtotime($row['notif_date'])).'</h6>
 								      <h6 style=" font-size: 12px;
 								color: #008ebf;
 								transform: translate(5px);
-								opacity: .5;" class="col-12">Description only 4 word</h6>
+								opacity: .5;" class="col-12">Pengumuman Dari Admin</h6>
 								    </div>
 								  </div><!-- Notifikasi -->
 							';
@@ -721,11 +725,37 @@
 								      <h6 style=" font-size: 12px;
 								color: #696969;
 								transform: translate(5px,7px);
-								opacity: .5;" class="col-6">05/05/2015</h6>
+								opacity: .5;" class="col-6">'.date('d/m/Y',strtotime($row['notif_date'])).'</h6>
 								      <h6 style=" font-size: 12px;
 								color: #008ebf;
 								transform: translate(5px);
-								opacity: .5;" class="col-12"><a id="linktopost" href="view-donate.php?postid='.$row['post_id'].'">Donasimu Mencapai Batas Waktu</a></h6>
+								opacity: .5;" class="col-12"><a id="linktopost" href="view-donate.php?postid='.$row['post_id'].'">Donasimu Telah Expired</a></h6>
+								    </div>
+								  </div><!-- Notifikasi -->
+							';
+						break;
+
+						case 4:
+							echo '
+								  <div class="col-12 notif1">
+								    <div class="col-2plus profil-img">
+								       <img style="width: 65%;
+								height: 55%;
+								border-radius: 50%;
+								transform: translate(25%,45%);" src="'.$this->base_url().'asset/image/website/system.png" alt="">
+								    </div>
+								    <div class="col-9plus profil-img">
+								      <h6 style="     font-size: 12px;
+								color: #00aeea;
+								transform: translate(5px,7px);" class="col-6">System</h6>
+								      <h6 style=" font-size: 12px;
+								color: #696969;
+								transform: translate(5px,7px);
+								opacity: .5;" class="col-6">'.date('d/m/Y',strtotime($row['notif_date'])).'</h6>
+								      <h6 style=" font-size: 12px;
+								color: #008ebf;
+								transform: translate(5px);
+								opacity: .5;" class="col-12"><a id="linktopost" href="view-donate.php?postid='.$row['post_id'].'">Donasi Telah Mencapai Target</a></h6>
 								    </div>
 								  </div><!-- Notifikasi -->
 							';
@@ -866,9 +896,9 @@
 
 			echo json_encode($data);
 		}
-//=============================== / USER PAGE=======================================================================
+//============================= / USER PAGE=======================================================================
 
-//================================DONATION PAGE=====================================================================
+//==============================DONATION PAGE=====================================================================
 		public function paymentprocess(){
 			if(!empty($_POST['userpostid'])&&!empty($_POST['postid'])&&!empty($_POST['total'])){
 				$user_id = $this->session_check()['user_id'];
@@ -923,9 +953,9 @@
 
 			echo json_encode($data);
 		}
-//============================= / DONATION PAGE=====================================================================
+//=========================== / DONATION PAGE=====================================================================
 
-//================================SETTINGS PAGE=====================================================================
+//==============================SETTINGS PAGE=====================================================================
 		public function updateprofile($image){
 
 			$data = [];
@@ -1011,9 +1041,9 @@
 
 			echo json_encode($data);
 		}
-//============================= / SETTINGS PAGE=====================================================================
+//=========================== / SETTINGS PAGE=====================================================================
 
-//==============================MYDONATION PAGE=====================================================================
+//============================MYDONATION PAGE=====================================================================
 		public function donasiku_showpost($type){
 			$user_id = $this->session_check()['user_id'];
 
@@ -1022,7 +1052,7 @@
 					$query = mysqli_query($this->connection,"SELECT post_table.*, category_table.*, user_table.*  FROM post_table
 						    INNER JOIN category_table ON post_table.category_id = category_table.category_id
 						    INNER JOIN user_table ON post_table.user_id = user_table.user_id 
-						    WHERE user_table.user_id = '$user_id' AND post_table.post_status=1
+						    WHERE user_table.user_id = '$user_id' AND post_table.post_status<3
 						    ORDER BY post_table.post_id DESC
 						  ");
 				break;
@@ -1032,7 +1062,7 @@
 						INNER JOIN post_table ON history_table.post_id = post_table.post_id
 						INNER JOIN category_table ON post_table.category_id = category_table.category_id
 						INNER JOIN user_table ON post_table.user_id = user_table.user_id
-						WHERE history_table.user_id = '$user_id'
+						WHERE history_table.user_id = '$user_id' and post_status <3 ORDER BY history_table.history_id DESC
 						");
 				break;
 			}
@@ -1043,7 +1073,7 @@
 
 				  while($row = mysqli_fetch_assoc($query)){
 				    echo '
-				    <div class="col-12 post-u">
+				    <div class="col-12 post-u" id="postwrapper-'.$row['post_id'].'">
 				      <div class="col-12 box-post-u">
 				        <div class="col-4 box-post-con bg-color1">
 				          <img style="width: 100%; height:  100%;" src="'.$this->base_url().'/asset/image/post/'.$row['post_img'].'">
@@ -1077,13 +1107,13 @@
 				            <ul>';
 				             
 				            if($row['user_id']==$this->session_check()['user_id']){
-				             echo '<li class="edit-show"><h1>Edit</h1></li>';	
+				             echo '<li class="edit-show"><a href="edit-u.php?postid='.$row['post_id'].'">Edit</a></li>';
+				             echo '<li><a id="deletepost" data-id="'.$row['post_id'].'" href="#">Hapus</a></li>';	
 				            }
 				              
 
 				          echo '
-				              <li><a href="">Bagikan</a></li>
-				              <li><a href="">Hilangkan</a></li>
+				              <li><a id="removeview" data-id="'.$row['post_id'].'" href="#">Hilangkan</a></li>
 				            </ul>
 				           </div> 
 
@@ -1157,7 +1187,7 @@
 			$query = mysqli_query($this->connection,"SELECT post_table.*, category_table.*, user_table.*  FROM post_table
 				    INNER JOIN category_table ON post_table.category_id = category_table.category_id
 				    INNER JOIN user_table ON post_table.user_id = user_table.user_id 
-				    WHERE user_table.user_id = '$user_id' AND post_table.post_status=1
+				    WHERE user_table.user_id = '$user_id' AND post_table.post_status<3
 				    ORDER BY post_table.post_revenue DESC LIMIT 0,1
 				  ");
 
@@ -1177,11 +1207,9 @@
 				        transform: translate(25px, 10px);
 				        color: #00aeea;">'.substr($row['post_title'],0,20).'...</h1>       
 				            	</div>
-				                <div class="col-2plus">
-				                   <button style="margin-left: 130px" class="bullet" type="button">
-				                     <span></span>
-				                   </button>
-				                </div>
+				                
+
+
 				                 <div class="col-12">
 				                  <h2 style="     font-size: 17px;
 				        width: 85%;
@@ -1199,16 +1227,16 @@
 				        opacity: .8;
 				        font-size: 14px;
 				        width: 80%;
-				        transform: translate(25px,10px);">'.substr($row['post_desc'],0,200).'...</h2>
+				        transform: translate(25px,10px);">'.substr($row['post_desc'],0,150).'...</h2>
 				                </div>
 				                <div class="col-12">
-				                	<div class="col-2plus">
+				                	<div class="col-6">
 				                  <h2 style="     font-size: 17px;
 				                      margin: 12px 0px;
 				        transform: translate(25px,24px);
 				        opacity: .7;">'.date('d/m/Y',strtotime($row['post_due'])).'</h2>
 				                </div>
-				                <div class="col-4plus">
+				                <div class="col-6">
 				                <h2 style="    font-size: 17px;
 				                    margin: 12px 0px;
 				        transform: translate(25px,24px);
@@ -1224,7 +1252,7 @@
 				        padding: 5px 25px;
 				        
 				        box-shadow: 0px 2px 6px rgba(0,0,0,.5);
-				        " href=""> Donasi</a></h2>
+				        " href="view-donate.php?postid='.$row['post_id'].'"> Donasi</a></h2>
 				                    </div>
 				                    <div class="col-9 look">
 				                  <h2 style="    font-size: 14px;transform: translate(40px,35px);"><a style="    background-color:#fff ;
@@ -1232,7 +1260,7 @@
 				        color: #808080;
 				        padding: 5px 25px;
 				        box-shadow: 0px 2px 6px rgba(0,0,0,.5);
-				        " href="">Lihat <i class="fas fa-eye"></i></a></h2>
+				        " href="view-donate.php?postid='.$row['post_id'].'">Lihat <i class="fas fa-eye"></i></a></h2>
 				                    </div>
 
 				                </div>
@@ -1249,13 +1277,13 @@
 			}
 
 		}
-//=========================== / MYDONATION PAGE=====================================================================
+//========================= / MYDONATION PAGE=====================================================================
 
-//================================EDIT PAGE=========================================================================
+//==============================EDIT PAGE=========================================================================
 		public function vieweditlist(){
 			$user_id = $this->session_check()['user_id'];
             $query = mysqli_query($this->connection,"SELECT post_table.*, category_table.* FROM post_table
-                INNER JOIN category_table ON post_table.category_id = category_table.category_id WHERE post_table.post_status<3 AND user_id = '$user_id' ORDER BY post_table.post_id DESC
+                INNER JOIN category_table ON post_table.category_id = category_table.category_id WHERE post_table.post_status<2 AND user_id = '$user_id' ORDER BY post_table.post_id DESC
               ");
 
             if(mysqli_num_rows($query)==0){
@@ -1284,7 +1312,7 @@
 		public function vieweditpost(){
 			$user_id = $this->session_check()['user_id'];
 			$post_id = $_POST['post_id'];
-			$query = mysqli_query($this->connection,"SELECT * FROM post_table WHERE post_id = '$post_id' AND user_id = '$user_id'");
+			$query = mysqli_query($this->connection,"SELECT * FROM post_table WHERE post_id = '$post_id' AND user_id = '$user_id' AND post_status<2");
 
 			if($query){
 				$row = mysqli_fetch_assoc($query);
@@ -1370,7 +1398,114 @@
 
 			echo json_encode($data);
 		}
-//============================= / EDIT PAGE=========================================================================
+//============================ / EDIT PAGE=========================================================================
+	
+//==============================ADMIN PAGE=========================================================================
+		public function sendbc(){
+			$user_id = $this->session_check()['user_id'];
+			$userlist = $_POST['userlist'];
+			$bcdata = $_POST['bcdata'];
+			$bcidlist = [];
+			$data = [];
+
+			foreach($userlist as $key){
+				$query = mysqli_query($this->connection,"INSERT INTO broadcast_table VALUES(
+					NULL,
+					'$user_id',
+					'$key',
+					'$bcdata',
+					DATE(NOW())
+				)");
+
+				$query = mysqli_query($this->connection,"SELECT broadcast_id FROM broadcast_table WHERE 
+					user_id = '$user_id' AND
+					target_id = '$key' AND
+					bc_description = '$bcdata' AND
+					bc_date = DATE(NOW())
+					");
+				$row = mysqli_fetch_assoc($query);
+
+				array_push($bcidlist,$row['broadcast_id']);
+			}
+
+			$a = 0;
+			foreach($bcidlist as $key){
+				$query = mysqli_query($this->connection,"INSERT INTO notification_table VALUES(
+					NULL,
+					'$user_id',
+					'$userlist[$a]',
+					'$key',
+					0,
+					1,
+					DATE(NOW())
+				)");
+
+				$a++;
+
+				if($query){
+					$data['notif'] = 'success';
+				}else{
+					$data['notif'] = 'err-db';
+				}
+			}
+
+			echo json_encode($data);
+
+		}
+
+		public function showbc(){
+			$bc_id = $_POST['bc_id'];
+			$query = mysqli_query($this->connection,"SELECT * FROM broadcast_table WHERE broadcast_id = '$bc_id'");
+			if($query){
+				$row = mysqli_fetch_assoc($query);
+				$row['notif'] = 'success';
+			}else{
+				$row['notif'] = 'err-db';
+			}
+
+			echo json_encode($row);
+		}
+
+		public function updateuser_LS($type){
+			$user_id = $_POST['user_id'];
+			$sel_val = $_POST['sel_val'];
+			$data  = [];
+
+			switch($type){
+				case 'level':
+					$query = mysqli_query($this->connection,"UPDATE user_table SET user_level = '$sel_val' WHERE user_id = '$user_id'");
+				break;	
+
+				case 'status':
+					$query = mysqli_query($this->connection,"UPDATE user_table SET user_status = '$sel_val' WHERE user_id = '$user_id'");
+				break;
+			}
+
+			if($query){
+				$data['notif'] = 'success';
+			}else{
+				$data['notif'] = 'err-db';
+			}
+
+			echo json_encode($data);
+		}
+
+		public function updatepoststatus(){
+			$post_id = $_POST['post_id'];
+			$sel_val = $_POST['sel_val'];
+			$data  = [];
+
+			$query = mysqli_query($this->connection,"UPDATE post_table SET post_status = '$sel_val' WHERE post_id = '$post_id'");
+
+			if($query){
+				$data['notif'] = 'success';
+			}else{
+				$data['notif'] = 'err-db';
+			}
+
+			echo json_encode($data);		
+		}
+//=========================== / ADMIN PAGE=========================================================================
 	}
 
 ?>

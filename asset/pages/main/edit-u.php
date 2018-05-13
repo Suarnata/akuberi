@@ -2,6 +2,63 @@
 	<div class="col-6 posting-u "> 
 		
 
+    <?php
+
+      class editdata{
+        static $row = [];
+
+        public function setdata(){
+          self::$row = [
+            'post_title' => '',
+            'post_desc' => '',
+            'post_due' => '',
+            'post_target' => '',
+            'post_img' => '',
+            'post_id' => '',
+            'post_rek' => ''
+            
+          ];
+
+          return self::$row; 
+        }
+
+      }
+
+      if(isset($_GET['postid'])&&!empty($_GET['postid'])){
+        $post_id = $_GET['postid'];
+        $user_id = $process->session_check()['user_id'];
+
+        $query = mysqli_query($process->connection,"SELECT * FROM post_table WHERE post_id = '$post_id' AND user_id = '$user_id' AND post_status<2");
+        
+        if(mysqli_num_rows($query)==1){
+          
+          $row = mysqli_fetch_assoc($query);
+          echo '
+          <script>
+          $(document).ready(function(){
+              $(\'.selectkategori option[value="\'+'.$row['category_id'].'+\'"]\').prop("selected", "selected");
+              $(\'.selectbank[value="\'+'.$row['bank_id'].'+\'"]\').prop("checked", "checked");
+              $("#submitbtn").fadeIn();
+              $("#pesan").fadeOut();
+            });
+            
+          </script>
+          ';
+
+          $imagesrc = $process->base_url().'asset/image/post/'.$row['post_img'];
+
+        }else{
+          $imagesrc = $process->base_url().'asset/image/website/editmodel.jpg';
+          $row = editdata::setdata(); 
+        }
+        
+
+      }else{
+        $imagesrc = $process->base_url().'asset/image/website/editmodel.jpg';
+        $row = editdata::setdata();
+      }
+
+    ?>
 
 
 		<div class="col-12 edit-post">
@@ -13,20 +70,20 @@
 			<div class="col-10plus edit-content">
 
         <div class="col-12 image-push" id="img-container">
-          <img src="<?php echo $process->base_url() ?>asset/image/website/editmodel.jpg" width="200px" height="145px"/><br/>
+          <img src="<?php echo $imagesrc; ?>" width="200px" height="145px"/><br/>
           <button class="picture-s2" type="button">Ubah</button>
         </div>
           		
 				<form id="editpostform" method="POST" enctype="multipart/form-data">
            <div class="col-12"> 
-            <input style="width: 98%;padding: 1%; height: 32px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="" name="judul" placeholder="Judul" required>
+            <input style="width: 98%;padding: 1%; height: 32px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="text" value="<?php echo $row['post_title'] ?>" name="judul" placeholder="Judul" required>
             <input type="file" name="image" id="inputfile" hidden/>
-            <input type="hidden" name="postid" value=""/>
-            <input type="hidden" name="imageid" value=""/>
-            <input type="hidden" name="durasiid" value=""/>
+            <input type="hidden" name="postid" value="<?php echo $row['post_id']; ?>"/>
+            <input type="hidden" name="imageid" value="<?php echo $row['post_img']; ?>"/>
+            <input type="hidden" name="durasiid" value="<?php echo $row['post_due']; ?>"/>
            </div> 
            <div class="col-12">
-            <textarea style="width: 98%;padding: 1%; height: 52px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;resize: none;" name="deskripsi" class="" placeholder="Deskripsi" required></textarea>
+            <textarea style="width: 98%;padding: 1%; height: 52px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;resize: none;" name="deskripsi" class="" placeholder="Deskripsi" required><?php echo $row['post_desc']; ?></textarea>
            </div>
            <div class="col-12"> 
            <div class="col-6"> 
@@ -44,17 +101,17 @@
             </select>
             </div>
             <div class="col-6">
-            <select style="         width: 100%;outline: none;border: solid 2px #e8e8e8;border-radius: 2px;height: 32px;margin: 0px;color: #696969;font-family: Palanquin;  margin-left: 4px;" class="" name="durasi" required>
+            <select style="width: 100%;outline: none;border: solid 2px #e8e8e8;border-radius: 2px;height: 32px;margin: 0px;color: #696969;font-family: Palanquin;  margin-left: 4px;" class="" name="durasi" required>
               <option value="tetap">Waktu Tetap</option>
               <option value="perpanjang">Perpanjang (3 Hari)</option>
             </select>
             </div>
             </div>
             <div class="col-12">
-              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" min="1000" name="norek" placeholder="No Rekening" required>
+              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" value="<?php echo $row['post_rek']; ?>" min="1000" name="norek" placeholder="No Rekening" required>
             </div>
             <div class="col-12">
-              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" min="1000" name="target" placeholder="Target Donasi (Rp)" required>
+              <input style="width: 98%;padding: 1%; height: 32px;margin: 4px 0px; outline: none;border-radius: 2px; border: solid 2px #e8e8e8;" type="number" value="<?php echo $row['post_target']; ?>" min="1000" name="target" placeholder="Target Donasi (Rp)" required>
             </div>
             <div class="col-12">
              <?php

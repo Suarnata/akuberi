@@ -60,8 +60,8 @@
         </div>
         <div class="bar1">
           <ul>
-            <li> <a href="#">Beranda</a> </li>
-            <li> <a href="#">Donasiku</a> </li>
+            <li> <a href="user.php">Beranda</a> </li>
+            <li> <a href="donasiku-u.php">Donasiku</a> </li>
             <li style="cursor:pointer;"> <a id="logout-btn" data-token="<?php echo $_COOKIE['ABID']; ?>">Keluar</a> </li>
           </ul>
         </div>
@@ -81,8 +81,18 @@
             <li id="mnu-donasi"> <a href="donasiku-u.php"><i class="fas fa-ambulance"></i>&nbsp; &nbsp;Donasiku</a> </li>
             <li id="mnu-profil"> <a href="profil.php"><i class="fas fa-user"></i> &nbsp; &nbsp; Profil</a> </li>
              <li id="mnu-edit"> <a href="edit-u.php"><i class="far fa-edit"></i> &nbsp; &nbsp; Edit Post</a> </li>
-            <li id="mnu-pengaturan"> <a href="pengaturan-user.php"><i class="fas fa-cog"></i> &nbsp; &nbsp; Pengaturan</a> </li>
 
+             <?php
+              if($process->session_check()['user_level']==1){
+                echo '
+                  <li id="mnu-edit"> <a href="admin.php"><i class="fas fa-tachometer-alt"></i> &nbsp; &nbsp; Menu Admin</a> </li>
+                ';
+              }else if($process->session_check()['user_level']==2){
+                echo '
+                  <li id="mnu-pengaturan"> <a href="pengaturan-user.php"><i class="fas fa-cog"></i> &nbsp; &nbsp; Pengaturan</a> </li>
+                ';
+              }
+             ?>
 
           </ul>
         </div>

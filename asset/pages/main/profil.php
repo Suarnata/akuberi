@@ -42,7 +42,7 @@
           $query = mysqli_query($process->connection,"SELECT * FROM history_table WHERE user_id = '".$userInfo['user_id']."'");
           $totaldonasi = mysqli_num_rows($query);
 
-          $query = mysqli_query($process->connection,"SELECT * FROM post_table WHERE user_id = '".$userInfo['user_id']."' ORDER BY post_id DESC");
+          $query = mysqli_query($process->connection,"SELECT * FROM post_table WHERE user_id = '".$userInfo['user_id']."' AND post_status<3 ORDER BY post_id DESC");
           $totalgalang = mysqli_num_rows($query);
 
         ?>
@@ -82,7 +82,7 @@
             <?php
               $query = mysqli_query($process->connection,"SELECT history_table.*,post_table.* FROM history_table
                INNER JOIN post_table ON history_table.post_id = post_table.post_id
-               WHERE history_table.user_id = '".$userInfo['user_id']."'
+               WHERE history_table.user_id = '".$userInfo['user_id']."' AND post_status<3
                ORDER BY history_table.history_id DESC
                 ");
 

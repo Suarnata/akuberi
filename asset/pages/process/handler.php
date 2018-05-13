@@ -95,6 +95,26 @@
 				$process->vieweditlist();
 			break;
 
+			case 'sendbc':
+				$process->sendbc();
+			break;
+
+			case 'showbc':
+				$process->showbc();
+			break;
+
+			case 'updateuserlevel':
+				$process->updateuser_LS('level');
+			break;
+
+			case 'updateuserstatus':
+				$process->updateuser_LS('status');
+			break;
+
+			case 'updatepoststatus':
+				$process->updatepoststatus();
+			break;
+
 		}
 
 	}else{

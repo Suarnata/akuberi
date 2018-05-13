@@ -237,6 +237,7 @@
 	});
 
 	$("#searchinput").keyup(function(e){
+		e.preventDefault();
 		var searchvalue = $(this).val();
 		if(e.keyCode==13){
 			window.location=base_url+'asset/pages/main/user.php?search='+searchvalue;
@@ -656,6 +657,169 @@
 
 //=========================== / EDIT PAGE==================================================================================
 
+//==============================ADMIN PAGE================================================================================
+	
+	$("#selectall").change(function(){
+		if($(".selecteduser").is(':checked')){
+			$(".selecteduser").prop('checked',false);
+			$(".selecteduser").removeClass('selectedready');
+		}else{
+			$(".selecteduser").prop('checked',true);
+			$(".selecteduser").addClass('selectedready');
+		}
+	});
+
+	$(".selecteduser").change(function(){
+		var userid = $(this).data('id');
+		if($(".onuser-"+userid).is(':checked')){
+			$(".onuser-"+userid).addClass('selectedready');
+		}else{
+			$(".onuser-"+userid).removeClass('selectedready');
+		}
+	});
+
+	$("#reseticon").click(function(e){
+		e.preventDefault();
+
+		if(confirm("Apakah Anda Ingin Menghapus Isi Kolom Pengumuman?")){
+			$("#bctext").val("");
+		}
+
+	});
+
+	$("#sendbc").click(function(e){
+		e.preventDefault();
+		var selecteduser = [];
+		var bc_data = $("#bctext").val();
+
+		$('.selectedready').each(function(){
+			selecteduser.push($(this).data('id'));
+		});
+
+		if(selecteduser==""){
+			alert("Pastikan Anda Telah Memilih User Untuk Dikirimi Pengumuman!");
+		}else{
+			if(bc_data==""){
+				alert("Kolom Pengumuman Tidak Boleh Kosong!");
+			}else{
+				$.ajax({
+					url:action_url+'sendbc',
+					type:'POST',
+					data:{userlist:selecteduser,bcdata:bc_data},
+					dataType:'json',
+					success:function(data){
+						switch(data.notif){
+							case 'success':
+								alert("Pengumuman Telah Berhasil Dikirim!");
+								$("#bctext").val("");
+								$(".selecteduser").prop('checked',false);
+							break;
+
+							case 'err-db':
+								alert("Terjadi Kesalahan Dengan Database!");
+							break;
+						}
+					}
+				});
+			}
+		}
+
+	});
+
+	$(document).on('click','.notif1',function(){
+	  var bcid = $(this).data('bcid');
+
+	  $.ajax({
+	  	url:action_url+'showbc',
+	  	data:{bc_id:bcid},
+	  	type:'POST',
+	  	dataType:'json',
+	  	success:function(data){
+	  		$("#bc-desc").html(data.bc_description);
+	  		$(".notif-up").fadeIn(300);
+	  		$("body").css("overflow","hidden");
+	  	}
+	  });
+
+	});
+
+	$(".cancle-notif").click(function(){
+	  $(".notif-up").fadeOut(300);
+	  $("body").css("overflow","");
+	});
+
+	$(".mengerti-notif").click(function(){
+	  $(".notif-up").fadeOut(300);
+	  $("body").css("overflow","");
+	});
+
+	$(document).on('change',"#userlevel",function(){
+		var userid = $(this).data('id');
+		var selval = $(this).val();
+		$.ajax({
+			url:action_url+'updateuserlevel',
+			type:'POST',
+			data:{user_id:userid,sel_val:selval},
+			dataType:'json',
+			success:function(data){
+				switch(data.notif){
+					case 'success':
+						alert("Level User Berhasil Diganti!");
+					break;
+
+					case 'err-db':
+						alert("Terjadi Kesalahan Dengan Database!");
+					break;
+				}
+			}
+		});
+	});
+
+	$(document).on('change',"#userstatus",function(){
+		var userid = $(this).data('id');
+		var selval = $(this).val();
+		$.ajax({
+			url:action_url+'updateuserstatus',
+			type:'POST',
+			data:{user_id:userid,sel_val:selval},
+			dataType:'json',
+			success:function(data){
+				switch(data.notif){
+					case 'success':
+						alert("Status User Berhasil Diganti!");
+					break;
+
+					case 'err-db':
+						alert("Terjadi Kesalahan Dengan Database!");
+					break;
+				}
+			}
+		});
+	});
+
+	$(document).on('change',"#poststatus",function(){
+		var postid = $(this).data('id');
+		var selval = $(this).val();
+		$.ajax({
+			url:action_url+'updatepoststatus',
+			type:'POST',
+			data:{post_id:postid,sel_val:selval},
+			dataType:'json',
+			success:function(data){
+				switch(data.notif){
+					case 'success':
+						alert("Status Post Berhasil Diganti!");
+					break;
+
+					case 'err-db':
+						alert("Terjadi Kesalahan Dengan Database!");
+					break;
+				}
+			}
+		});
+	});
+
+//=========================== / ADMIN PAGE==================================================================================
 
 
 

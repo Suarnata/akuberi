@@ -31,7 +31,7 @@ $(document).ready(function(){
   
 
   $(".notif1").click(function(){
-    $(".notif-up").slideToggle(300);
+    $(".notif-up").fadeIn(300);
     $("body").css("overflow","hidden");
   });
   $(".cancle-notif").click(function(){
