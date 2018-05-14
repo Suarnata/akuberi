@@ -120,7 +120,7 @@
 				return $data;
 		}
 
-		public function insertnotifdiff($type,$query,$user_id,$key){
+		public function insertnotifdiff($type,$queryey,$user_id,$key){
 
 			switch($type){
 
@@ -134,7 +134,7 @@
 
 			}
 
-			if(mysqli_num_rows($query)==0){
+			if(mysqli_num_rows($queryey)==0){
 				 	$query = mysqli_query($this->connection,"INSERT INTO notification_table VALUES (
 							'NULL',
 							'0',
@@ -159,22 +159,22 @@
 				$date_check = (strtotime($row['post_due']) - strtotime($curdate))/86400;
 				if($date_check<=0){
 					$id = $row['post_id'];
-					$query = mysqli_query($this->connection,"UPDATE post_table SET post_status = 2 WHERE post_id = '$id'");
+					$queryyy = mysqli_query($this->connection,"UPDATE post_table SET post_status = 2 WHERE post_id = '$id'");
 				}
 			}
 
-			$query = mysqli_query($this->connection,"SELECT * FROM post_table WHERE post_status = 2 AND user_id = '$user_id'");
+			$queryyy = mysqli_query($this->connection,"SELECT * FROM post_table WHERE post_status = 2 AND user_id = '$user_id'");
 
-			while($row = mysqli_fetch_assoc($query)){
+			while($row = mysqli_fetch_assoc($queryyy)){
 
 				array_push($arraycount, $row['post_id']);
 
 			}
 
 			foreach ($arraycount as $key) {
-				$query = mysqli_query($this->connection,"SELECT * FROM notification_table WHERE post_id = '$key' AND target_id = '$user_id' AND notif_type = 3");
+				$queryyy = mysqli_query($this->connection,"SELECT * FROM notification_table WHERE post_id = '$key' AND target_id = '$user_id' AND notif_type = 3");
 
-				$this->insertnotifdiff('postdue',$query,$user_id,$key);
+				$this->insertnotifdiff('postdue',$queryyy,$user_id,$key);
 			}
 
 		}
@@ -188,22 +188,22 @@
 			while($row = mysqli_fetch_assoc($query2)){
 				if($row['post_revenue']>=$row['post_target']){
 					$id = $row['post_id'];
-					$query = mysqli_query($this->connection,"UPDATE post_table SET target_achieved = 1 WHERE post_id = '$id'");
+					$query3 = mysqli_query($this->connection,"UPDATE post_table SET target_achieved = 1 WHERE post_id = '$id'");
 				}
 			}
 
-			$query = mysqli_query($this->connection,"SELECT * FROM post_table WHERE target_achieved = 1 AND user_id = '$user_id'");
+			$query3 = mysqli_query($this->connection,"SELECT * FROM post_table WHERE target_achieved = 1 AND user_id = '$user_id'");
 
-			while($row = mysqli_fetch_assoc($query)){
+			while($row = mysqli_fetch_assoc($query3)){
 
 				array_push($arraycount, $row['post_id']);
 
 			}
 
 			foreach ($arraycount as $key) {
-				$query = mysqli_query($this->connection,"SELECT * FROM notification_table WHERE post_id = '$key' AND target_id = '$user_id' AND notif_type = 4");
+				$query3 = mysqli_query($this->connection,"SELECT * FROM notification_table WHERE post_id = '$key' AND target_id = '$user_id' AND notif_type = 4");
 
-				$this->insertnotifdiff('posttarget',$query,$user_id,$key);
+				$this->insertnotifdiff('posttarget',$query3,$user_id,$key);
 			}			
 		}
 
@@ -476,7 +476,7 @@
 			switch($dt['notif']){
 
 				case 'success':
-					
+
 					$query = mysqli_query($this->connection,"INSERT INTO post_table VALUES(
 						NULL,
 						'".$dt['userid']."',
